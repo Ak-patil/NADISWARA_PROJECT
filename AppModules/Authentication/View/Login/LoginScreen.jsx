@@ -30,8 +30,8 @@ const Login = ({ navigation }) => {
   const [isPasswordVisible, setPasswordVisible] = useState(false);
 
   const [userInfo, setUserInfo] = useState({
-    email: "",
-    password: "",
+    email: "anandpatil676@gmail.com",
+    password: "abcd1234",
   });
   const [error, setError] = useState({
     password: "",
