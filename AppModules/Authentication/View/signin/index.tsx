@@ -1,3 +1,4 @@
+import { HStack } from "@/components/ui";
 import {
   Button,
   ButtonIcon,
@@ -12,7 +13,6 @@ import {
   FormControlLabelText,
 } from "@/components/ui/form-control";
 import { Heading } from "@/components/ui/heading";
-import { HStack } from "@/components/ui/hstack";
 import { EyeIcon, EyeOffIcon } from "@/components/ui/icon";
 import { Input, InputField, InputIcon, InputSlot } from "@/components/ui/input";
 import { Text } from "@/components/ui/text";
@@ -22,7 +22,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { Keyboard } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
 import { z } from "zod";
+import { loginViaEmailRequest } from "../../Redux/Actions/AuthAction";
+import { loginViaEmailStateSelector } from "../../Redux/Reducer/AuthSelector";
 import { AuthLayout } from "../layout";
 import { GoogleIcon } from "./assets/icons/google";
 
@@ -43,6 +46,11 @@ export const LoginWithLeftBackground = ({ navigation }) => {
   } = useForm<LoginSchemaType>({
     resolver: zodResolver(loginSchema),
   });
+  const dispatch = useDispatch();
+  const loginViaEmailState = useSelector((state) =>
+    loginViaEmailStateSelector(state)
+  );
+
   const toast = useToast();
   const [validated, setValidated] = useState({
     emailValid: true,
@@ -51,9 +59,14 @@ export const LoginWithLeftBackground = ({ navigation }) => {
 
   const onSubmit = (data: LoginSchemaType) => {
     if (data) {
-      console.log("data", data);
-      reset();
+      dispatch(
+        loginViaEmailRequest({
+          email_or_phone: data.email,
+          password: data.password,
+        })
+      );
     } else {
+      reset();
       setValidated({ emailValid: false, passwordValid: true });
     }
   };
@@ -105,6 +118,7 @@ export const LoginWithLeftBackground = ({ navigation }) => {
               render={({ field: { onChange, onBlur, value } }) => (
                 <Input size="lg">
                   <InputField
+                    className="text-md"
                     placeholder="Enter email"
                     value={value}
                     onChangeText={onChange}
@@ -147,6 +161,7 @@ export const LoginWithLeftBackground = ({ navigation }) => {
               render={({ field: { onChange, onBlur, value } }) => (
                 <Input size="lg">
                   <InputField
+                    className="text-md"
                     type={showPassword ? "text" : "password"}
                     placeholder="Enter password"
                     value={value}
@@ -174,7 +189,7 @@ export const LoginWithLeftBackground = ({ navigation }) => {
             variant="link"
             action="primary"
             className="justify-end h-5 my-0"
-            onPress={() => {}}
+            onPress={() => navigation.navigate("verifyotp")}
           >
             <ButtonText className="font-extrabold text-md text-primary-prime group-hover/link:text-primary-600">
               Forgot Password?
@@ -189,8 +204,11 @@ export const LoginWithLeftBackground = ({ navigation }) => {
             className="w-full"
             onPress={handleSubmit(onSubmit)}
           >
-            <ButtonSpinner color={"red"} />
-            <ButtonText className="font-medium">Log in</ButtonText>
+            {loginViaEmailState?.isLoading ? (
+              <ButtonSpinner color={"#FFFFFF"} />
+            ) : (
+              <ButtonText className="font-medium" children={"Log in"} />
+            )}
           </Button>
           <Button
             size="xl"
@@ -205,16 +223,16 @@ export const LoginWithLeftBackground = ({ navigation }) => {
             </ButtonText>
           </Button>
         </VStack>
-        <HStack className="self-center" space="sm">
-          <Text size="md">Don't have an account?</Text>
+        <HStack className="justify-center items-center" space="sm">
+          <Text size="lg">Don't have an account?</Text>
           <Button
             size="lg"
             variant="link"
             action="primary"
-            className="justify-end h-5 my-0"
+            className="justify-end"
             onPress={() => navigation.navigate("signup")}
           >
-            <ButtonText className="font-extrabold text-md text-primary-prime">
+            <ButtonText className="font-extrabold text-lg text-primary-prime">
               Sign up
             </ButtonText>
           </Button>

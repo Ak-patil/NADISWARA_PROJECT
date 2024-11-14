@@ -1,8 +1,4 @@
-import { useState } from "react";
-import { Toast, ToastTitle, useToast } from "@/components/ui/toast";
-import { VStack } from "@/components/ui/vstack";
-import { Heading } from "@/components/ui/heading";
-import { Text } from "@/components/ui/text";
+import { Button, ButtonText } from "@/components/ui/button";
 import {
   FormControl,
   FormControlError,
@@ -11,17 +7,19 @@ import {
   FormControlLabel,
   FormControlLabelText,
 } from "@/components/ui/form-control";
-import { Input, InputField, InputIcon, InputSlot } from "@/components/ui/input";
+import { Heading } from "@/components/ui/heading";
 import { ArrowLeftIcon, EyeIcon, EyeOffIcon, Icon } from "@/components/ui/icon";
-import { Button, ButtonText } from "@/components/ui/button";
-import { Keyboard } from "react-native";
-import { useForm, Controller } from "react-hook-form";
-import { z } from "zod";
+import { Input, InputField, InputIcon, InputSlot } from "@/components/ui/input";
+import { Pressable } from "@/components/ui/pressable";
+import { Text } from "@/components/ui/text";
+import { Toast, ToastTitle, useToast } from "@/components/ui/toast";
+import { VStack } from "@/components/ui/vstack";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AlertTriangle } from "lucide-react-native";
-import { Pressable } from "@/components/ui/pressable";
-import useRouter from "@unitools/router";
-import { AuthLayout } from "../layout";
+import { useState } from "react";
+import { Controller, useForm } from "react-hook-form";
+import { Keyboard } from "react-native";
+import { z } from "zod";
 
 const createPasswordSchema = z.object({
   password: z
@@ -102,13 +100,13 @@ const CreatePasswordWithLeftBackground = () => {
     Keyboard.dismiss();
     handleSubmit(onSubmit)();
   };
-  const router = useRouter();
+
   return (
     <VStack className="max-w-[440px] w-full" space="md">
       <VStack className="md:items-center" space="md">
         <Pressable
           onPress={() => {
-            router.back();
+            // router.back();
           }}
         >
           <Icon
@@ -244,9 +242,5 @@ const CreatePasswordWithLeftBackground = () => {
 };
 
 export const CreatePassword = () => {
-  return (
-    <AuthLayout>
-      <CreatePasswordWithLeftBackground />
-    </AuthLayout>
-  );
+  return <CreatePasswordWithLeftBackground />;
 };

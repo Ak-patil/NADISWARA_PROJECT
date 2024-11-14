@@ -26,7 +26,7 @@ export const AuthLayout = (props: AuthLayoutProps) => {
           <Card
             size="lg"
             variant="elevated"
-            className="w-[360px] h-[520px] bg-white rounded-[20px] shadow"
+            className="w-[360px] h-4.5/5 bg-white rounded-[20px] shadow"
           >
             {props.children}
           </Card>

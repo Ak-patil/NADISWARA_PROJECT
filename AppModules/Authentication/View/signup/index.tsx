@@ -10,12 +10,10 @@ import { Heading } from "@/components/ui/heading";
 import { HStack } from "@/components/ui/hstack";
 import { EyeIcon, EyeOffIcon } from "@/components/ui/icon";
 import { Input, InputField, InputIcon, InputSlot } from "@/components/ui/input";
-import { LinkText } from "@/components/ui/link";
 import { Text } from "@/components/ui/text";
 import { Toast, ToastTitle, useToast } from "@/components/ui/toast";
 import { VStack } from "@/components/ui/vstack";
 import { zodResolver } from "@hookform/resolvers/zod";
-import Link from "@unitools/link";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { Keyboard } from "react-native";
@@ -49,7 +47,7 @@ const signUpSchema = z.object({
 });
 type SignUpSchemaType = z.infer<typeof signUpSchema>;
 
-const SignUpWithLeftBackground = () => {
+const SignUpWithLeftBackground = ({ navigation }) => {
   const {
     control,
     handleSubmit,
@@ -268,32 +266,35 @@ const SignUpWithLeftBackground = () => {
             className="w-full gap-1"
             onPress={() => {}}
           >
+            <ButtonIcon as={GoogleIcon} />
             <ButtonText className="font-medium">
               Continue with Google
             </ButtonText>
-            <ButtonIcon as={GoogleIcon} />
           </Button>
         </VStack>
-        <HStack className="self-center" space="sm">
-          <Text size="md">Already have an account?</Text>
-          <Link href="/auth/signin">
-            <LinkText
-              className="font-medium text-primary-700 group-hover/link:text-primary-600 group-hover/pressed:text-primary-700"
-              size="md"
-            >
-              Login
-            </LinkText>
-          </Link>
+        <HStack className="justify-center items-center" space="sm">
+          <Text size="lg">Already have an account?</Text>
+          <Button
+            size="lg"
+            variant="link"
+            action="primary"
+            className="justify-end"
+            onPress={() => navigation.navigate("signin")}
+          >
+            <ButtonText className="font-extrabold text-lg text-primary-prime">
+              Sign
+            </ButtonText>
+          </Button>
         </HStack>
       </VStack>
     </VStack>
   );
 };
 
-export const SignUp = () => {
+export const SignUp = ({ navigation }) => {
   return (
     <AuthLayout>
-      <SignUpWithLeftBackground />
+      <SignUpWithLeftBackground navigation={navigation} />
     </AuthLayout>
   );
 };

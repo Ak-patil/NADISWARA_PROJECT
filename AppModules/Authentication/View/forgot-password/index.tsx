@@ -1,26 +1,19 @@
-import { Toast, ToastTitle, useToast } from "@/components/ui/toast";
-import { VStack } from "@/components/ui/vstack";
-import { Heading } from "@/components/ui/heading";
-import { Text } from "@/components/ui/text";
+import { Button, ButtonText } from "@/components/ui/button";
 import {
   FormControl,
   FormControlError,
-  FormControlErrorIcon,
   FormControlErrorText,
   FormControlLabel,
   FormControlLabelText,
 } from "@/components/ui/form-control";
 import { Input, InputField } from "@/components/ui/input";
-import { ArrowLeftIcon, Icon } from "@/components/ui/icon";
-import { Button, ButtonText } from "@/components/ui/button";
-import { Keyboard } from "react-native";
-import { useForm, Controller } from "react-hook-form";
-import { z } from "zod";
+import { Toast, ToastTitle, useToast } from "@/components/ui/toast";
+import { VStack } from "@/components/ui/vstack";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { AlertTriangle } from "lucide-react-native";
-import useRouter from "@unitools/router";
-import { Pressable } from "@/components/ui/pressable";
-import { AuthLayout } from "../layout";
+import { Controller, useForm } from "react-hook-form";
+import { Keyboard } from "react-native";
+import { z } from "zod";
+import { AppLayout } from "../layout/app_layout";
 
 const forgotPasswordSchema = z.object({
   email: z.string().min(1, "Email is required").email(),
@@ -57,35 +50,13 @@ const ForgotPasswordScreen = () => {
     Keyboard.dismiss();
     handleSubmit(onSubmit)();
   };
-  const router = useRouter();
-  return (
-   <VStack className="max-w-[440px] w-full" space="md">
-      <VStack className="md:items-center" space="md">
-        <Pressable
-          onPress={() => {
-            router.back();
-          }}
-        >
-          <Icon
-            as={ArrowLeftIcon}
-            className="md:hidden stroke-background-800"
-            size="xl"
-          />
-        </Pressable>
-        <VStack>
-          <Heading className="md:text-center" size="3xl">
-            Forgot Password?
-          </Heading>
-          <Text className="text-sm">
-            Enter email ID associated with your account.
-          </Text>
-        </VStack>
-      </VStack>
 
-      <VStack space="xl" className="w-full ">
+  return (
+    <VStack className="w-full flex-1 bg-white" space="4xl">
+      <VStack space="4xl" className="flex-grow">
         <FormControl isInvalid={!!errors?.email} className="w-full">
           <FormControlLabel>
-            <FormControlLabelText>Email</FormControlLabelText>
+            <FormControlLabelText size="lg">Email</FormControlLabelText>
           </FormControlLabel>
           <Controller
             defaultValue=""
@@ -102,8 +73,9 @@ const ForgotPasswordScreen = () => {
               },
             }}
             render={({ field: { onChange, onBlur, value } }) => (
-              <Input>
+              <Input size="lg">
                 <InputField
+                  className="text-md"
                   placeholder="Enter email"
                   value={value}
                   onChangeText={onChange}
@@ -115,24 +87,32 @@ const ForgotPasswordScreen = () => {
             )}
           />
           <FormControlError>
-            <FormControlErrorIcon as={AlertTriangle} />
             <FormControlErrorText>
               {errors?.email?.message}
             </FormControlErrorText>
           </FormControlError>
         </FormControl>
-        <Button className="w-full" onPress={handleSubmit(onSubmit)}>
-          <ButtonText className="font-medium">Send Link</ButtonText>
-        </Button>
       </VStack>
+      <Button
+        size="xl"
+        variant="solid"
+        action="primary"
+        className="w-full mb-8"
+        onPress={handleSubmit(onSubmit)}
+      >
+        <ButtonText className="font-medium">Continue</ButtonText>
+      </Button>
     </VStack>
   );
 };
 
 export const ForgotPassword = () => {
   return (
-    <AuthLayout>
+    <AppLayout
+      title="Enter Email"
+      content="Enter your email address to receive an OTP to change your password."
+    >
       <ForgotPasswordScreen />
-    </AuthLayout>
+    </AppLayout>
   );
 };
