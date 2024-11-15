@@ -4,7 +4,7 @@ import { SafeAreaView } from "@/components/ui/safe-area-view";
 import { Bell } from "lucide-react-native";
 import React from "react";
 
-const Home = () => {
+const Home = ({ navigation }) => {
   return (
     <SafeAreaView className="w-full h-full bg-white">
       <VStack className="w-full flex-1 bg-white top-20">
@@ -32,7 +32,7 @@ const Home = () => {
           </VStack>
         </VStack>
         <VStack className="basis-4/5">
-          <Pressable>
+          <Pressable onPress={() => navigation.navigate("AddPatient")}>
             <HStack className="w-11/12 h-[180px] bg-primary-prime rounded-tr-[20px] rounded-br-[20px] justify-between">
               <VStack
                 space="lg"
