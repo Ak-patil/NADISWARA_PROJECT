@@ -1,3 +1,4 @@
+import { SafeAreaView } from "@/components/ui/safe-area-view";
 import {
   Nunito_400Regular,
   Nunito_600SemiBold,
@@ -8,9 +9,8 @@ import {
   Raleway_700Bold,
   useFonts,
 } from "@expo-google-fonts/raleway";
-import { LinearGradient } from "expo-linear-gradient";
 import React, { useState } from "react";
-import { SafeAreaView, Text, TouchableOpacity } from "react-native";
+import { Text, TouchableOpacity } from "react-native";
 import {
   Codes,
   Parity,
@@ -69,17 +69,15 @@ const Profile = () => {
   };
   return (
     <>
-      <LinearGradient colors={["#E5ECF9", "#F6F7F9"]} style={styles.container}>
-        <SafeAreaView style={styles.container}>
-          <Text style={styles.status}>{status}</Text>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={handleUsbCommunication}
-          >
-            <Text style={styles.buttonText}>Start USB Communication</Text>
-          </TouchableOpacity>
-        </SafeAreaView>
-      </LinearGradient>
+      <SafeAreaView className="w-full h-full">
+        <Text style={styles.status}>{status}</Text>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={handleUsbCommunication}
+        >
+          <Text style={styles.buttonText}>Start USB Communication</Text>
+        </TouchableOpacity>
+      </SafeAreaView>
     </>
   );
 };

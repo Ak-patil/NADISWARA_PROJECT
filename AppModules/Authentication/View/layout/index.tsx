@@ -14,19 +14,21 @@ export const AuthLayout = (props: AuthLayoutProps) => {
         contentContainerStyle={{ flexGrow: 1 }}
       >
         <LinearGradient
-          className="flex-1 justify-center items-center space-y-2"
+          className="flex-1 justify-center items-center"
           colors={["#572673", "#572673", "#FFFFFF", "#FFFFFF"]}
           locations={[0, 0.55, 0.55, 1]}
         >
           <Image
-            className="w-1/2 h-52 justify-center"
+            className="w-48 h-48 justify-center"
             source={require("../../../../assets/OOHY_LOGO.png")}
             alt="logo"
+            resizeMode="center"
+            // resizeMode="contain"
           />
           <Card
             size="lg"
             variant="elevated"
-            className="w-[360px] h-4.5/5 bg-white rounded-[20px] shadow"
+            className="w-5/6 h-4.5/5 bg-white rounded-[20px] shadow"
           >
             {props.children}
           </Card>
