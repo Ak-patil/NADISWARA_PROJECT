@@ -1,3 +1,4 @@
+import { appendObjectToForm } from "@/BaseModule/Utils/helpers";
 import { Button, ButtonIcon, ButtonText } from "@/components/ui/button";
 import {
   FormControl,
@@ -17,7 +18,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { Keyboard } from "react-native";
+import { useDispatch } from "react-redux";
 import { z } from "zod";
+import { signupViaEmailRequest } from "../../Redux/Actions/AuthAction";
 import { AuthLayout } from "../layout";
 import { GoogleIcon } from "./assets/icons/google";
 
@@ -57,21 +60,19 @@ const SignUpWithLeftBackground = ({ navigation }) => {
     resolver: zodResolver(signUpSchema),
   });
   const toast = useToast();
+  const dispatch = useDispatch();
 
   const onSubmit = (data: SignUpSchemaType) => {
-    if (data.password === data.confirmpassword) {
-      toast.show({
-        placement: "bottom right",
-        render: ({ id }) => {
-          return (
-            <Toast nativeID={id} variant="accent" action="success">
-              <ToastTitle>Success</ToastTitle>
-            </Toast>
-          );
-        },
-      });
-      reset();
+    if (data) {
+      const userData = {
+        "email/phone_number": data.email,
+        password1: data.password,
+        password2: data.confirmpassword,
+      };
+      const updatedForm = appendObjectToForm(userData);
+      dispatch(signupViaEmailRequest(updatedForm));
     } else {
+      reset();
       toast.show({
         placement: "bottom right",
         render: ({ id }) => {

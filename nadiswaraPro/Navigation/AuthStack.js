@@ -3,12 +3,12 @@ import { SignUp } from "@/AppModules/Authentication/View/signup";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 // import { CardStyleInterpolators } from "@react-navigation/stack";
 import { ForgotPassword } from "@/AppModules/Authentication/View/forgot-password";
-import { VerifyOtp } from "@/AppModules/Authentication/View/forgot-password/verify_otp";
 import React from "react";
 import { Easing } from "react-native";
 import AccountSuccess from "../../AppModules/Authentication/View/Signup_OLD/AccountSuccess";
 import OtpScreen from "../../AppModules/Authentication/View/Signup_OLD/OtpScreen";
-import WelcomeScreen from "../../AppModules/Authentication/View/Welcome/WelcomeScreen";
+import { VerifyOtp } from "../../AppModules/Authentication/View/forgot-password/verify_otp";
+import { VerifyOtpEmail } from "../../AppModules/Authentication/View/forgot-password/verify_otp_email";
 
 const Stack = createNativeStackNavigator();
 
@@ -48,11 +48,6 @@ const AuthStack = () => {
       animation="fade"
     >
       <Stack.Screen
-        name="Welcome"
-        component={WelcomeScreen}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
         name="signin"
         component={SignIn}
         options={{ headerShown: false, animation: "slide_from_right" }}
@@ -63,8 +58,16 @@ const AuthStack = () => {
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        name="verifyotp"
+        name="VerifyOtp"
         component={VerifyOtp}
+        options={{
+          title: "Verify Otp",
+          headerTitleAlign: "center",
+        }}
+      />
+      <Stack.Screen
+        name="VerifyOtpEmail"
+        component={VerifyOtpEmail}
         options={{
           title: "Forgot password",
           headerTitleAlign: "center",
@@ -78,7 +81,7 @@ const AuthStack = () => {
       <Stack.Screen
         name="signup"
         component={SignUp}
-        options={{ headerShown: false }}
+        options={{ headerShown: false, animation: "slide_from_right" }}
       />
 
       <Stack.Screen

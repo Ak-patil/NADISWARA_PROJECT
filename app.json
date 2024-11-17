@@ -4,25 +4,35 @@
     "slug": "NADISWARA_PROJECT",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/OOHY_LOGO.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/OOHY_LOGO.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#572673"
     },
     "ios": {
       "supportsTablet": true
     },
+    "plugins": [
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#572673",
+          "image": "./assets/OOHY_LOGO.png",
+          "imageWidth": 200
+        }
+      ]
+    ],
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "foregroundImage": "./assets/OOHY_LOGO.png",
+        "backgroundColor": "#572673"
       },
       "package": "com.nadiswaraPro"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/OOHY_LOGO.png"
     },
     "extra": {
       "eas": {

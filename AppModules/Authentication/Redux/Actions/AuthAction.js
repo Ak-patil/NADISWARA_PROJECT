@@ -30,3 +30,23 @@ export const verifyOtpSuccess = createAction(
   AuthActionsConst.VERIFY_OTP_SUCCESS
 );
 export const verifyOtpError = createAction(AuthActionsConst.VERIFY_OTP__ERROR);
+
+export const verifyOtpEmailRequest = createAction(
+  AuthActionsConst.VERIFY_OTP_EMAIL_REQUEST
+);
+export const verifyOtpEmailSuccess = createAction(
+  AuthActionsConst.VERIFY_OTP_EMAIL_SUCCESS
+);
+export const verifyOtpEmailError = createAction(
+  AuthActionsConst.VERIFY_OTP_EMAIL_ERROR
+);
+
+export const resetPasswordRequest = createAction(
+  AuthActionsConst.RESET_PASSWORD_REQUEST
+);
+export const resetPasswordSuccess = createAction(
+  AuthActionsConst.RESET_PASSWORD_SUCCESS
+);
+export const resetPasswordError = createAction(
+  AuthActionsConst.RESET_PASSWORD_ERROR
+);

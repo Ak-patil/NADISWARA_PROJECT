@@ -184,7 +184,7 @@ export const LoginWithLeftBackground = ({ navigation }) => {
             variant="link"
             action="primary"
             className="justify-end h-5 my-0"
-            onPress={() => navigation.navigate("verifyotp")}
+            onPress={() => navigation.navigate("VerifyOtpEmail")}
           >
             <ButtonText className="font-extrabold text-md text-primary-prime group-hover/link:text-primary-600">
               Forgot Password?

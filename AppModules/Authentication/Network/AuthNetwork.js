@@ -5,6 +5,8 @@ import {
 import {
   LoginviaemailrequestEndpoint,
   SignupviaemailrequestEndpoint,
+  resetPasswordEndpoint,
+  verifyOtpEmailEndpoint,
   verifyOtpEndpoint,
 } from "../../../nadiswaraPro/Network/urls";
 
@@ -47,6 +49,38 @@ export const AuthNetwork = {
       },
     },
     url: verifyOtpEndpoint,
+    data: payload,
+    restAPIType: REST_API_TYPE.AUTH,
+  }),
+
+  verifyOtpEmailRequestApiCall: (payload) => ({
+    method: NETWORK_METHOD.POST,
+    config: {
+      headers: {
+        "content-type": "multipart/form-data",
+        "User-Agent": "PostmanRuntime/7.40.0",
+        Accept: "application/json",
+        "Accept-Encoding": "gzip, deflate, br",
+        Connection: "keep-alive",
+      },
+    },
+    url: verifyOtpEmailEndpoint,
+    data: payload,
+    restAPIType: REST_API_TYPE.AUTH,
+  }),
+
+  resetPasswordRequestApiCall: (payload) => ({
+    method: NETWORK_METHOD.POST,
+    config: {
+      headers: {
+        "content-type": "application/json",
+        "User-Agent": "PostmanRuntime/7.40.0",
+        Accept: "*/*",
+        "Accept-Encoding": "gzip, deflate, br",
+        Connection: "keep-alive",
+      },
+    },
+    url: resetPasswordEndpoint,
     data: payload,
     restAPIType: REST_API_TYPE.AUTH,
   }),

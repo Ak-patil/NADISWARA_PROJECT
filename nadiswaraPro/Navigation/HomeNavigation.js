@@ -21,27 +21,47 @@ const HomeNavigation = () => {
       <Stack.Screen
         name="AddPatient"
         component={AddPatient}
-        options={{ headerShown: true, title: "Add new patient" }}
+        options={{
+          headerShown: true,
+          title: "Add new patient",
+          headerTitleAlign: "center",
+        }}
       />
       <Stack.Screen
         name="ManagePatient"
         component={ManagePatient}
-        options={{ headerShown: true, title: "Manage patients" }}
+        options={{
+          headerShown: true,
+          title: "Manage patients",
+          headerTitleAlign: "center",
+        }}
       />
       <Stack.Screen
         name="DeviceConnection"
         component={DeviceConnection}
-        options={{ headerShown: true, title: "Device" }}
+        options={{
+          headerShown: true,
+          title: "Device",
+          headerTitleAlign: "center",
+        }}
       />
       <Stack.Screen
         name="AnalysePulse"
         component={AnalysePulse}
-        options={{ headerShown: true, title: "Pulse" }}
+        options={{
+          headerShown: true,
+          title: "Pulse",
+          headerTitleAlign: "center",
+        }}
       />
       <Stack.Screen
         name="FetchReport"
         component={FetchReport}
-        options={{ headerShown: true, title: "Fetched Report" }}
+        options={{
+          headerShown: true,
+          title: "Fetched Report",
+          headerTitleAlign: "center",
+        }}
       />
     </Stack.Navigator>
   );

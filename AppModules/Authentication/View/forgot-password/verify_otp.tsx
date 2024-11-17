@@ -1,3 +1,4 @@
+import { HStack, VStack } from "@/components/ui";
 import { Button, ButtonText } from "@/components/ui/button";
 import {
   FormControl,
@@ -8,13 +9,18 @@ import {
 } from "@/components/ui/form-control";
 import { EyeIcon, EyeOffIcon } from "@/components/ui/icon";
 import { Input, InputField, InputIcon, InputSlot } from "@/components/ui/input";
-import { Toast, ToastTitle, useToast } from "@/components/ui/toast";
-import { VStack } from "@/components/ui/vstack";
+import { useToast } from "@/components/ui/toast";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { Keyboard } from "react-native";
+import { KeyboardAvoidingView, Platform, ScrollView } from "react-native";
+import { useDispatch } from "react-redux";
 import { z } from "zod";
+import TimerCount from "../../../../BaseModule/Components/TimerCount";
+import {
+  resetPasswordRequest,
+  verifyOtpRequest,
+} from "../../Redux/Actions/AuthAction";
 import { AppLayout } from "../layout/app_layout";
 
 const verifyOtpSchema = z.object({
@@ -42,7 +48,7 @@ const verifyOtpSchema = z.object({
 
 type verifyOtpSchemaType = z.infer<typeof verifyOtpSchema>;
 
-const VerifyOtpScreen = () => {
+const VerifyOtpScreen = ({ userEmail, isEmail }) => {
   const {
     control,
     handleSubmit,
@@ -52,143 +58,177 @@ const VerifyOtpScreen = () => {
     resolver: zodResolver(verifyOtpSchema),
   });
   const toast = useToast();
+  const dispatch = useDispatch();
+  const [otp2, setOtp] = useState(["", "", "", "", "", ""]);
+  const inputRefs = useRef(Array(6).fill(null));
+  const [isOtpFilled, setIsOtpFilled] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
+  const handleOtpChange = (value, index) => {
+    if (isNaN(value)) return;
+
+    const updatedOtp = [...otp2];
+    updatedOtp[index] = value;
+    setOtp(updatedOtp);
+
+    const isFilled = updatedOtp.every((val) => val !== "");
+    setIsOtpFilled(isFilled);
+
+    if (value !== "" && index < 5) {
+      inputRefs.current[index + 1].focus();
+    } else {
+      inputRefs.current[index].blur();
+    }
+  };
+
+  const handleResendClick = () => {
+    setOtp(["", "", "", "", "", ""]);
+    dispatch(verifyOtpRequest({ otp: otp2.join("") }));
+  };
+
   const onSubmit = (_data: verifyOtpSchemaType) => {
-    toast.show({
-      placement: "bottom right",
-      render: ({ id }) => {
-        return (
-          <Toast nativeID={id} variant="accent" action="success">
-            <ToastTitle>Link Sent Successfully</ToastTitle>
-          </Toast>
-        );
-      },
-    });
-    reset();
+    console.log("isOtpFilled", isOtpFilled);
+    if (!isOtpFilled) {
+      return;
+    }
+    dispatch(
+      resetPasswordRequest({
+        otp: otp2.join(""),
+        password1: _data.password,
+        password2: _data.confirmpassword,
+      })
+    );
+    // Handle form submission logic here
   };
 
   const handleState = () => {
-    setShowPassword((showState) => {
-      return !showState;
-    });
+    setShowPassword((prevState) => !prevState);
   };
+
   const handleConfirmPwState = () => {
-    setShowConfirmPassword((showState) => {
-      return !showState;
-    });
-  };
-  const handleKeyPress = () => {
-    Keyboard.dismiss();
-    handleSubmit(onSubmit)();
+    setShowConfirmPassword((prevState) => !prevState);
   };
 
   return (
-    <VStack className="w-full flex-1 bg-white justify-between" space="4xl">
-      <VStack space="xl" className="w-full">
-        <FormControl isInvalid={!!errors.password}>
-          <FormControlLabel>
-            <FormControlLabelText>Password</FormControlLabelText>
-          </FormControlLabel>
-          <Controller
-            defaultValue=""
-            name="password"
-            control={control}
-            rules={{
-              validate: async (value) => {
-                try {
-                  await verifyOtpSchema.parseAsync({
-                    password: value,
-                  });
-                  return true;
-                } catch (error: any) {
-                  return error.message;
-                }
-              },
-            }}
-            render={({ field: { onChange, onBlur, value } }) => (
-              <Input size="lg">
-                <InputField
-                  className="text-md"
-                  placeholder="Password"
-                  value={value}
-                  onChangeText={onChange}
-                  onBlur={onBlur}
-                  onSubmitEditing={handleKeyPress}
-                  returnKeyType="done"
-                  type={showPassword ? "text" : "password"}
-                />
-                <InputSlot onPress={handleState} className="pr-3">
-                  <InputIcon as={showPassword ? EyeIcon : EyeOffIcon} />
-                </InputSlot>
-              </Input>
-            )}
-          />
-          <FormControlError>
-            <FormControlErrorText>
-              {errors?.password?.message}
-            </FormControlErrorText>
-          </FormControlError>
-        </FormControl>
-        <FormControl isInvalid={!!errors.confirmpassword}>
-          <FormControlLabel>
-            <FormControlLabelText>Confirm Password</FormControlLabelText>
-          </FormControlLabel>
-          <Controller
-            defaultValue=""
-            name="confirmpassword"
-            control={control}
-            rules={{
-              validate: async (value) => {
-                try {
-                  await verifyOtpSchema.parseAsync({
-                    password: value,
-                  });
-                  return true;
-                } catch (error: any) {
-                  return error.message;
-                }
-              },
-            }}
-            render={({ field: { onChange, onBlur, value } }) => (
-              <Input size="lg">
-                <InputField
-                  placeholder="Confirm Password"
-                  className="text-md"
-                  value={value}
-                  onChangeText={onChange}
-                  onBlur={onBlur}
-                  onSubmitEditing={handleKeyPress}
-                  returnKeyType="done"
-                  type={showConfirmPassword ? "text" : "password"}
-                />
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : undefined}
+      style={{ flex: 1, width: "100%" }}
+    >
+      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+        <VStack className="w-full flex-1 bg-white justify-between">
+          <VStack space="xl" className="w-full">
+            <FormControl isInvalid={!isOtpFilled}>
+              <HStack className="justify-between items-center">
+                {otp2.map((value, index) => (
+                  <Input
+                    size="lg"
+                    className="w-[46px] h-[46px] rounded-xl"
+                    key={index}
+                  >
+                    <InputField
+                      className="text-lg font-semibold self-center"
+                      onChangeText={(text) => handleOtpChange(text, index)}
+                      value={value}
+                      maxLength={1}
+                      keyboardType="numeric"
+                      autoFocus={index === 0}
+                      ref={(input) => (inputRefs.current[index] = input)}
+                    />
+                  </Input>
+                ))}
+              </HStack>
+              <FormControlError>
+                <FormControlErrorText>
+                  {!isOtpFilled && "Please fill in all OTP fields"}
+                </FormControlErrorText>
+              </FormControlError>
+            </FormControl>
+            <HStack className="justify-end">
+              <TimerCount handleResendClick={handleResendClick} />
+            </HStack>
 
-                <InputSlot onPress={handleConfirmPwState} className="pr-3">
-                  <InputIcon as={showConfirmPassword ? EyeIcon : EyeOffIcon} />
-                </InputSlot>
-              </Input>
-            )}
-          />
-          <FormControlError>
-            <FormControlErrorText>
-              {errors?.confirmpassword?.message}
-            </FormControlErrorText>
-          </FormControlError>
-        </FormControl>
-      </VStack>
-      <VStack>
-        <Button
-          size="xl"
-          variant="solid"
-          action="primary"
-          className="w-full mb-8"
-          onPress={handleSubmit(onSubmit)}
-        >
-          <ButtonText className="font-medium">Update Password</ButtonText>
-        </Button>
-      </VStack>
-    </VStack>
+            <FormControl isInvalid={!!errors.password}>
+              <FormControlLabel>
+                <FormControlLabelText size="lg">Password</FormControlLabelText>
+              </FormControlLabel>
+              <Controller
+                name="password"
+                control={control}
+                defaultValue=""
+                render={({ field: { onChange, onBlur, value } }) => (
+                  <Input size="lg">
+                    <InputField
+                      className="text-md"
+                      placeholder="Password"
+                      value={value}
+                      onChangeText={onChange}
+                      onBlur={onBlur}
+                      type={showPassword ? "text" : "password"}
+                    />
+                    <InputSlot onPress={handleState} className="pr-3">
+                      <InputIcon as={showPassword ? EyeIcon : EyeOffIcon} />
+                    </InputSlot>
+                  </Input>
+                )}
+              />
+              <FormControlError>
+                <FormControlErrorText>
+                  {errors.password?.message}
+                </FormControlErrorText>
+              </FormControlError>
+            </FormControl>
+
+            <FormControl isInvalid={!!errors.confirmpassword}>
+              <FormControlLabel>
+                <FormControlLabelText size="lg">
+                  Confirm Password
+                </FormControlLabelText>
+              </FormControlLabel>
+              <Controller
+                name="confirmpassword"
+                control={control}
+                defaultValue=""
+                render={({ field: { onChange, onBlur, value } }) => (
+                  <Input size="lg">
+                    <InputField
+                      className="text-md"
+                      placeholder="Confirm Password"
+                      value={value}
+                      onChangeText={onChange}
+                      onBlur={onBlur}
+                      type={showConfirmPassword ? "text" : "password"}
+                    />
+                    <InputSlot onPress={handleConfirmPwState} className="pr-3">
+                      <InputIcon
+                        as={showConfirmPassword ? EyeIcon : EyeOffIcon}
+                      />
+                    </InputSlot>
+                  </Input>
+                )}
+              />
+              <FormControlError>
+                <FormControlErrorText>
+                  {errors.confirmpassword?.message}
+                </FormControlErrorText>
+              </FormControlError>
+            </FormControl>
+          </VStack>
+
+          <VStack className="pt-4">
+            <Button
+              size="xl"
+              variant="solid"
+              action="primary"
+              className="w-full mb-8 "
+              onPress={handleSubmit(onSubmit)}
+            >
+              <ButtonText className="font-medium">Update Password</ButtonText>
+            </Button>
+          </VStack>
+        </VStack>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 };
 
@@ -198,7 +238,7 @@ export const VerifyOtp = () => {
       title="Enter OTP & New Password"
       content="A verification code has been sent to sidhar@gmail.com"
     >
-      <VerifyOtpScreen />
+      <VerifyOtpScreen userEmail="example@mail.com" isEmail={true} />
     </AppLayout>
   );
 };

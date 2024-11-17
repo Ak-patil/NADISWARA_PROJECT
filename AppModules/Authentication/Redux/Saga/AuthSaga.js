@@ -150,11 +150,101 @@ function* verifyOtpRequest(action) {
   }
 }
 
+function* verifyOtpEMailRequest(action) {
+  try {
+    const response = yield apiCall(
+      AuthNetwork.verifyOtpEmailRequestApiCall,
+      action.payload
+    );
+    const verifyOtpEmailResponse = yield response;
+    if (verifyOtpEmailResponse) {
+      if (
+        verifyOtpEmailResponse &&
+        verifyOtpEmailResponse?.data?.status === "success" &&
+        verifyOtpEmailResponse?.status === 200
+      ) {
+        yield put(
+          AuthActions.verifyOtpEmailSuccess(verifyOtpEmailResponse?.message)
+        );
+        handleNavigation("VerifyOtp");
+      } else {
+        yield put(
+          AuthActions.verifyOtpEmailError({
+            message: verifyOtpEmailResponse?.message,
+          })
+        );
+        Toast.show(verifyOtpEmailResponse?.message, {
+          type: "danger",
+          placement: "bottom",
+          duration: 3000,
+          animationType: "zoom-in",
+          dangerColor: "red",
+        });
+      }
+    }
+  } catch (e) {
+    yield put(AuthActions.verifyOtpEmailError({ message: "Network Error" }));
+    Toast.show("Network Error", {
+      type: "danger",
+      placement: "bottom",
+      duration: 3000,
+      animationType: "zoom-in",
+      dangerColor: "red",
+    });
+  }
+}
+
+function* resetPasswordRequest(action) {
+  try {
+    const response = yield apiCall(
+      AuthNetwork.resetPasswordRequestApiCall,
+      action.payload
+    );
+    const resetPasswordResponse = yield response;
+    if (resetPasswordResponse) {
+      if (
+        resetPasswordResponse &&
+        resetPasswordResponse?.data?.status === "success" &&
+        resetPasswordResponse?.status === 200
+      ) {
+        yield put(
+          AuthActions.resetPasswordSuccess(resetPasswordResponse?.message)
+        );
+        handleNavigation("signin");
+      } else {
+        yield put(
+          AuthActions.resetPasswordError({
+            message: resetPasswordResponse?.message,
+          })
+        );
+        Toast.show(resetPasswordResponse?.message, {
+          type: "danger",
+          placement: "bottom",
+          duration: 3000,
+          animationType: "zoom-in",
+          dangerColor: "red",
+        });
+      }
+    }
+  } catch (e) {
+    yield put(AuthActions.resetPasswordError({ message: "Network Error" }));
+    Toast.show("Network Error", {
+      type: "danger",
+      placement: "bottom",
+      duration: 3000,
+      animationType: "zoom-in",
+      dangerColor: "red",
+    });
+  }
+}
+
 function* AuthSaga() {
   yield all([
     takeLeading(AuthActions.loginViaEmailRequest, loginViaEmailRequest),
     takeLeading(AuthActions.signupViaEmailRequest, signupViaEmailRequest),
     takeLeading(AuthActions.verifyOtpRequest, verifyOtpRequest),
+    takeLeading(AuthActions.verifyOtpEmailRequest, verifyOtpEMailRequest),
+    takeLeading(AuthActions.resetPasswordRequest, resetPasswordRequest),
   ]);
 }
 

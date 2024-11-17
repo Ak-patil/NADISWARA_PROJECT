@@ -6,20 +6,10 @@ import {
   Nunito_700Bold,
   useFonts,
 } from "@expo-google-fonts/nunito";
-import {
-  ActivityIndicator,
-  Image,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { StyleSheet, TextInput, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useDispatch, useSelector } from "react-redux";
 import TimerCount from "../../../../BaseModule/Components/TimerCount";
-import CustomBackHeader from "../../../../BaseModule/Custom/CustomBackHeader";
-import Colors from "../../../../nadiswaraPro/Utils/Color";
 import {
   horizontalScale,
   moderateScale,
@@ -118,17 +108,6 @@ const OtpScreen = ({ navigation, userEmail, isEmail }) => {
   return (
     <>
       <View style={styles.container}>
-        <CustomBackHeader>Otp screen</CustomBackHeader>
-        <View style={styles.ImageContainer}>
-          <Image
-            style={styles.signupImage}
-            source={require("../../../../assets/Otp_screen.png")}
-          />
-        </View>
-        <Text style={styles.otpText}>Enter OTP</Text>
-        <Text style={styles.otpMessage}>
-          A verification code has been sent to sidhar@gmail.com
-        </Text>
         <View
           style={{
             width: "100%",
@@ -152,18 +131,6 @@ const OtpScreen = ({ navigation, userEmail, isEmail }) => {
           ))}
         </View>
 
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => {
-            handleSubmit();
-          }}
-        >
-          {verifyOtpState?.isLoading ? (
-            <ActivityIndicator size={"small"} color={"white"} />
-          ) : (
-            <Text style={styles.buttonText}>Continue</Text>
-          )}
-        </TouchableOpacity>
         <View
           style={{
             paddingVertical: verticalScale(12),
@@ -218,8 +185,7 @@ export const styles = StyleSheet.create({
 
   button: {
     width: "100%",
-    position: "absolute",
-    backgroundColor: Colors.PRIMARY.PRIMARY_RETRO_BLUE,
+
     paddingVertical: verticalScale(12),
     borderRadius: moderateScale(50),
     bottom: verticalScale(32),
