@@ -1,10 +1,5 @@
 import { HStack } from "@/components/ui";
-import {
-  Button,
-  ButtonIcon,
-  ButtonSpinner,
-  ButtonText,
-} from "@/components/ui/button";
+import { Button, ButtonIcon, ButtonText } from "@/components/ui/button";
 import {
   FormControl,
   FormControlError,
@@ -21,7 +16,7 @@ import { VStack } from "@/components/ui/vstack";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { Keyboard } from "react-native";
+import { ActivityIndicator, Keyboard } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { z } from "zod";
 import { loginViaEmailRequest } from "../../Redux/Actions/AuthAction";
@@ -205,7 +200,7 @@ export const LoginWithLeftBackground = ({ navigation }) => {
             onPress={handleSubmit(onSubmit)}
           >
             {loginViaEmailState?.isLoading ? (
-              <ButtonSpinner color={"#FFFFFF"} />
+              <ActivityIndicator size="small" color="#ffffff" />
             ) : (
               <ButtonText className="font-medium" children={"Log in"} />
             )}

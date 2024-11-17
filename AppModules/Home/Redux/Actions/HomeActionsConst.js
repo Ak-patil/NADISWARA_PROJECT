@@ -1,1 +1,3 @@
-export const HomeActions = {};
+export const ADD_PATIENT_REQUEST = "ADD_PATIENT__REQUEST";
+export const ADD_PATIENT_SUCCESS = "ADD_PATIENT__SUCCESS";
+export const ADD_PATIENT__ERROR = "ADD_PATIENT__ERROR";

@@ -18,10 +18,15 @@ import {
   RadioIndicator,
   RadioLabel,
 } from "@/components/ui/radio";
+import { ScrollView } from "@/components/ui/scroll-view";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CircleIcon } from "lucide-react-native";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
+import { Keyboard } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import { addPatientRequest } from "../../Home/Redux/Actions/HomeAction";
+import { addPatientStateSelector } from "../../Home/Redux/Reducer/HomeSelector";
 
 import { z } from "zod";
 
@@ -63,194 +68,202 @@ const AddPatient = () => {
       gender: "Male", // Initial value for gender
     },
   });
+  const dispatch = useDispatch();
+  const addPatientState = useSelector((state) =>
+    addPatientStateSelector(state)
+  );
 
   const onSubmit = (data: addPatientSchemaType) => {
     if (data) {
-      console.log("data addPatientSchemaType", data);
+      dispatch(
+        addPatientRequest({
+          name: data.firstName,
+          gender: data.gender,
+          age: 24,
+          dob: "1997-05-03",
+          phone_number: "9234567890",
+        })
+      );
     } else {
       reset();
     }
   };
 
   const handleKeyPress = () => {
-    // Keyboard.dismiss();
-    // handleSubmit(onSubmit)();
+    Keyboard.dismiss();
+    handleSubmit(onSubmit)();
   };
 
   return (
     <VStack className="w-full bg-white flex-1">
       {/* Form Content */}
-      <VStack space="4xl" className="px-[20px] pt-11 flex-grow">
-        {/* First Name Input */}
-        <FormControl className="w-full">
-          <FormControlLabel>
-            <FormControlLabelText size="lg">First Name</FormControlLabelText>
-          </FormControlLabel>
-          <Controller
-            name="firstName"
-            control={control}
-            defaultValue=""
-            render={({ field: { onChange, onBlur, value } }) => (
-              <Input size="lg">
-                <InputField
-                  className="text-md"
-                  placeholder="Enter First Name"
-                  value={value}
-                  onChangeText={onChange}
-                  onBlur={onBlur}
-                  onSubmitEditing={handleKeyPress}
-                  returnKeyType="next"
-                />
-              </Input>
+      <ScrollView>
+        <VStack space="4xl" className="px-[20px] pt-11 flex-grow">
+          {/* First Name Input */}
+          <FormControl className="w-full">
+            <FormControlLabel>
+              <FormControlLabelText size="lg">First Name</FormControlLabelText>
+            </FormControlLabel>
+            <Controller
+              name="firstName"
+              control={control}
+              defaultValue=""
+              render={({ field: { onChange, onBlur, value } }) => (
+                <Input size="lg">
+                  <InputField
+                    className="text-md"
+                    placeholder="Enter First Name"
+                    value={value}
+                    onChangeText={onChange}
+                    onBlur={onBlur}
+                    onSubmitEditing={handleKeyPress}
+                    returnKeyType="next"
+                  />
+                </Input>
+              )}
+            />
+            {errors.firstName && (
+              <FormControlLabelText className="text-red-400">
+                {errors.firstName.message}
+              </FormControlLabelText>
             )}
-          />
-          {errors.firstName && (
-            <FormControlLabelText className="text-red-400">
-              {errors.firstName.message}
-            </FormControlLabelText>
-          )}
-        </FormControl>
+          </FormControl>
 
-        {/* Last Name Input */}
-        <FormControl className="w-full">
-          <FormControlLabel>
-            <FormControlLabelText size="lg">Last Name</FormControlLabelText>
-          </FormControlLabel>
-          <Controller
-            name="lastName"
-            control={control}
-            defaultValue=""
-            render={({ field: { onChange, onBlur, value } }) => (
-              <Input size="lg">
-                <InputField
-                  className="text-base"
-                  placeholder="Enter Last Name"
-                  value={value}
-                  onChangeText={onChange}
-                  onBlur={onBlur}
-                  onSubmitEditing={handleKeyPress}
-                  returnKeyType="next"
-                />
-              </Input>
+          {/* Last Name Input */}
+          <FormControl className="w-full">
+            <FormControlLabel>
+              <FormControlLabelText size="lg">Last Name</FormControlLabelText>
+            </FormControlLabel>
+            <Controller
+              name="lastName"
+              control={control}
+              defaultValue=""
+              render={({ field: { onChange, onBlur, value } }) => (
+                <Input size="lg">
+                  <InputField
+                    className="text-base"
+                    placeholder="Enter Last Name"
+                    value={value}
+                    onChangeText={onChange}
+                    onBlur={onBlur}
+                    onSubmitEditing={handleKeyPress}
+                    returnKeyType="next"
+                  />
+                </Input>
+              )}
+            />
+            {errors.lastName && (
+              <FormControlLabelText className="text-red-400">
+                {errors.lastName.message}
+              </FormControlLabelText>
             )}
-          />
-          {errors.lastName && (
-            <FormControlLabelText className="text-red-400">
-              {errors.lastName.message}
-            </FormControlLabelText>
-          )}
-        </FormControl>
+          </FormControl>
 
-        {/* Date of Birth Input */}
-        <FormControl className="w-full">
-          <FormControlLabel>
-            <FormControlLabelText size="lg">Date of Birth</FormControlLabelText>
-          </FormControlLabel>
-          <Controller
-            name="dateOfBirth"
-            control={control}
-            defaultValue=""
-            render={({ field: { onChange, onBlur, value } }) => (
-              <Input size="lg">
-                <InputField
-                  className="text-base"
-                  placeholder="DD-MM-YYYY"
-                  value={value}
-                  onChangeText={onChange}
-                  onBlur={onBlur}
-                  onSubmitEditing={handleKeyPress}
-                  returnKeyType="next"
-                />
-              </Input>
+          {/* Date of Birth Input */}
+          <FormControl className="w-full">
+            <FormControlLabel>
+              <FormControlLabelText size="lg">
+                Date of Birth
+              </FormControlLabelText>
+            </FormControlLabel>
+            <Controller
+              name="dateOfBirth"
+              control={control}
+              defaultValue=""
+              render={({ field: { onChange, onBlur, value } }) => (
+                <Input size="lg">
+                  <InputField
+                    className="text-base"
+                    placeholder="DD-MM-YYYY"
+                    value={value}
+                    onChangeText={onChange}
+                    onBlur={onBlur}
+                    onSubmitEditing={handleKeyPress}
+                    returnKeyType="next"
+                  />
+                </Input>
+              )}
+            />
+            {errors.dateOfBirth && (
+              <FormControlLabelText className="text-red-400">
+                {errors.dateOfBirth.message}
+              </FormControlLabelText>
             )}
-          />
-          {errors.dateOfBirth && (
-            <FormControlLabelText className="text-red-400">
-              {errors.dateOfBirth.message}
-            </FormControlLabelText>
-          )}
-        </FormControl>
+          </FormControl>
 
-        {/* Gender Input */}
+          {/* Gender Input */}
 
-        <FormControl className="w-full">
-          <FormControlLabel>
-            <FormControlLabelText size="lg">Gender</FormControlLabelText>
-          </FormControlLabel>
-          <Controller
-            name="gender"
-            control={control}
-            render={({ field: { value, onChange } }) => (
-              <RadioGroup value={value} onChange={onChange}>
-                <HStack space="2xl">
-                  <Radio value="Male">
-                    <RadioIndicator>
-                      <RadioIcon as={CircleIcon} />
-                    </RadioIndicator>
-                    <RadioLabel className="text-base">Male</RadioLabel>
-                  </Radio>
-                  <Radio value="Female">
-                    <RadioIndicator>
-                      <RadioIcon as={CircleIcon} />
-                    </RadioIndicator>
-                    <RadioLabel className="text-base">Female</RadioLabel>
-                  </Radio>
-                </HStack>
-              </RadioGroup>
+          <FormControl className="w-full">
+            <FormControlLabel>
+              <FormControlLabelText size="lg">Gender</FormControlLabelText>
+            </FormControlLabel>
+            <Controller
+              name="gender"
+              control={control}
+              render={({ field: { value, onChange } }) => (
+                <RadioGroup value={value} onChange={onChange}>
+                  <HStack space="2xl">
+                    <Radio value="Male">
+                      <RadioIndicator>
+                        <RadioIcon as={CircleIcon} />
+                      </RadioIndicator>
+                      <RadioLabel className="text-base">Male</RadioLabel>
+                    </Radio>
+                    <Radio value="Female">
+                      <RadioIndicator>
+                        <RadioIcon as={CircleIcon} />
+                      </RadioIndicator>
+                      <RadioLabel className="text-base">Female</RadioLabel>
+                    </Radio>
+                  </HStack>
+                </RadioGroup>
+              )}
+            />
+            {errors.gender && (
+              <FormControlLabelText className="text-red-400">
+                {errors.gender.message}
+              </FormControlLabelText>
             )}
-          />
-          {errors.gender && (
-            <FormControlLabelText className="text-red-400">
-              {errors.gender.message}
-            </FormControlLabelText>
-          )}
-        </FormControl>
+          </FormControl>
 
-        {/* Rest of the form (Last Name, Email, Gender) */}
+          {/* Rest of the form (Last Name, Email, Gender) */}
 
-        {/* Email Input */}
-        <FormControl className="w-full">
-          <FormControlLabel>
-            <FormControlLabelText size="lg">Email</FormControlLabelText>
-          </FormControlLabel>
-          <Controller
-            name="email"
-            control={control}
-            defaultValue=""
-            render={({ field: { onChange, onBlur, value } }) => (
-              <Input size="lg">
-                <InputField
-                  placeholder="Enter email"
-                  value={value}
-                  onChangeText={onChange}
-                  onBlur={onBlur}
-                  onSubmitEditing={handleKeyPress}
-                  returnKeyType="next"
-                />
-              </Input>
+          {/* Email Input */}
+          <FormControl className="w-full">
+            <FormControlLabel>
+              <FormControlLabelText size="lg">Email</FormControlLabelText>
+            </FormControlLabel>
+            <Controller
+              name="email"
+              control={control}
+              defaultValue=""
+              render={({ field: { onChange, onBlur, value } }) => (
+                <Input size="lg">
+                  <InputField
+                    placeholder="Enter email"
+                    value={value}
+                    onChangeText={onChange}
+                    onBlur={onBlur}
+                    onSubmitEditing={handleKeyPress}
+                    returnKeyType="next"
+                  />
+                </Input>
+              )}
+            />
+            {errors.email && (
+              <FormControlLabelText className="text-red-400">
+                {errors.email.message}
+              </FormControlLabelText>
             )}
-          />
-          {errors.email && (
-            <FormControlLabelText className="text-red-400">
-              {errors.email.message}
-            </FormControlLabelText>
-          )}
-        </FormControl>
+          </FormControl>
 
-        {/* Other Form Fields (Last Name, Date of Birth, Gender, Email) */}
-        {/* ... */}
-      </VStack>
+          {/* Other Form Fields (Last Name, Date of Birth, Gender, Email) */}
+          {/* ... */}
+        </VStack>
+      </ScrollView>
 
       {/* Submit Button */}
-      <VStack
-        className="px-[20px] pb-5 bg-white"
-        style={{
-          position: "absolute",
-          bottom: 0,
-          left: 0,
-          right: 0,
-        }}
-      >
+      <VStack className="px-[20px] pb-2 bg-white">
         <Button
           size="xl"
           variant="solid"
@@ -258,8 +271,11 @@ const AddPatient = () => {
           className="w-full"
           onPress={handleSubmit(onSubmit)}
         >
-          <ButtonSpinner color={"#FFFFFF"} />
-          <ButtonText className="font-medium" children={"Add"} />
+          {addPatientState?.isLoading ? (
+            <ButtonSpinner color={"#FFFFFF"} />
+          ) : (
+            <ButtonText className="font-medium" children={"Add"} />
+          )}
         </Button>
       </VStack>
     </VStack>

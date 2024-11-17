@@ -4,8 +4,10 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
 import { Platform, StyleSheet, View } from "react-native";
 import { Icon } from "react-native-elements"; // You can use any icon library or custom icons
+import AllReports from "../../AppModules/Home/Views/AllReports";
 import EditProfile from "../../AppModules/MyProfile/View/EditProfile";
 import Profile from "../../AppModules/MyProfile/View/Profile";
+import Colors from "../Utils/Color";
 import { moderateScale, verticalScale } from "../Utils/Metrics";
 import HomeNavigation from "./HomeNavigation";
 
@@ -36,9 +38,9 @@ const AllreportsNavigation = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Profile"
-        component={Profile}
-        options={{ headerShown: false }}
+        name="AllReports"
+        component={AllReports}
+        options={{ headerShown: true, title: "Search Patient" }}
       />
     </Stack.Navigator>
   );
@@ -64,7 +66,7 @@ const BottomTabNavigation = () => {
                 // Example: Set the icon for Home tab
                 iconName = "home"; // Use an icon name or a custom icon
               } else if (route.name === "All Reports") {
-                iconName = "document"; // Use an icon name or a custom icon
+                iconName = "search"; // Use an icon name or a custom icon
               } else if (route.name === "Profile") {
                 iconName = "person"; // Use an icon name or a custom icon
               }
@@ -90,7 +92,7 @@ const BottomTabNavigation = () => {
             tabBarHideOnKeyboard: true,
             tabBarStyle: { height: verticalScale(70) },
             tabBarIconStyle: { marginTop: verticalScale(7) },
-            tabBarActiveTintColor: "#000", // Active tab icon color
+            tabBarActiveTintColor: Colors.PRIMARY.PRIMARY_PURPLE, // Active tab icon color
             tabBarInactiveTintColor: "#888", // Inactive tab icon color
           })}
         >

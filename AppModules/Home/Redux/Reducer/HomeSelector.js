@@ -1,2 +1,2 @@
-export const exploreJobsListSelector = (state) => state.jobsState.exploreJobsList;
-export const exploreJobsFailedMessageSelector = (state) => state.jobsState.exploreJobsFailedMessage;
+export const addPatientStateSelector = (state) =>
+  state.homestate.addPatientState;

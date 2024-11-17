@@ -1,4 +1,7 @@
 import AddPatient from "../../AppModules/Home/Views/AddPatient";
+import AnalysePulse from "../../AppModules/Home/Views/Analyse";
+import DeviceConnection from "../../AppModules/Home/Views/DeviceConnection";
+import FetchReport from "../../AppModules/Home/Views/FetchReport";
 import ManagePatient from "../../AppModules/Home/Views/ManagePatient";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -24,6 +27,21 @@ const HomeNavigation = () => {
         name="ManagePatient"
         component={ManagePatient}
         options={{ headerShown: true, title: "Manage patients" }}
+      />
+      <Stack.Screen
+        name="DeviceConnection"
+        component={DeviceConnection}
+        options={{ headerShown: true, title: "Device" }}
+      />
+      <Stack.Screen
+        name="AnalysePulse"
+        component={AnalysePulse}
+        options={{ headerShown: true, title: "Pulse" }}
+      />
+      <Stack.Screen
+        name="FetchReport"
+        component={FetchReport}
+        options={{ headerShown: true, title: "Fetched Report" }}
       />
     </Stack.Navigator>
   );
