@@ -10,6 +10,13 @@ const initialState = {
     data: {},
     message: "",
   },
+  patientListState: {
+    isLoading: false,
+    isError: false,
+    isSuccess: false,
+    data: {},
+    message: "",
+  },
 };
 
 const addPatientRequest = (state, action) => {
@@ -47,11 +54,53 @@ const addPatientError = (state, action) => {
   });
 };
 
+const patientlistrequest = (state = initialState, action) => {
+  if (!state.patientListState) {
+    return initialState;
+  }
+  return update(state, {
+    patientListState: {
+      isLoading: { $set: true },
+      isError: { $set: false },
+      isSuccess: { $set: true },
+      message: { $set: "" },
+      data: { $set: {} }, // Clear previous data on request start
+    },
+  });
+};
+
+const patientlistsuccess = (state, action) => {
+  const payload = action?.payload || {};
+  return update(state, {
+    patientListState: {
+      isLoading: { $set: false },
+      isError: { $set: false },
+      isSuccess: { $set: true },
+      message: { $set: payload.message || "Success" },
+      data: { $set: payload }, // Ensure action.payload.data exists
+    },
+  });
+};
+
+const patientlisterror = (state, action) => {
+  return update(state, {
+    patientListState: {
+      isLoading: { $set: false },
+      isError: { $set: true },
+      isSuccess: { $set: false },
+      message: { $set: action.payload.message || "Error occurred" },
+    },
+  });
+};
+
 export default handleActions(
   {
     [HomeActionsConst.ADD_PATIENT_REQUEST]: addPatientRequest,
     [HomeActionsConst.ADD_PATIENT_SUCCESS]: addPatientSuccess,
     [HomeActionsConst.ADD_PATIENT__ERROR]: addPatientError,
+    [HomeActionsConst.PATIENT_LIST_REQUEST]: patientlistrequest,
+    [HomeActionsConst.PATIENT_LIST_SUCCESS]: patientlistsuccess,
+    [HomeActionsConst.PATIENT_LIST_ERROR]: patientlisterror,
   },
   initialState
 );

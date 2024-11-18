@@ -263,7 +263,7 @@ const AddPatient = () => {
       </ScrollView>
 
       {/* Submit Button */}
-      <VStack className="px-[20px] pb-2 bg-white mt-4">
+      <VStack className="px-[20px] pb-2 bg-white mt-8">
         <Button
           size="xl"
           variant="solid"

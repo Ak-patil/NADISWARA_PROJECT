@@ -10,3 +10,13 @@ export const addPatientSuccess = createAction(
 export const addPatientError = createAction(
   HomeActionsConst.ADD_PATIENT__ERROR
 );
+
+export const patientListRequest = createAction(
+  HomeActionsConst.PATIENT_LIST_REQUEST
+);
+export const patientListSuccess = createAction(
+  HomeActionsConst.PATIENT_LIST_SUCCESS
+);
+export const patientListError = createAction(
+  HomeActionsConst.PATIENT_LIST_ERROR
+);

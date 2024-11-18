@@ -2,7 +2,10 @@ import {
   NETWORK_METHOD,
   REST_API_TYPE,
 } from "../../../nadiswaraPro/Network/SessionConst";
-import { addPatientEndpoint } from "../../../nadiswaraPro/Network/urls";
+import {
+  addPatientEndpoint,
+  patientListEndpoint,
+} from "../../../nadiswaraPro/Network/urls";
 
 export const HomeNetwork = {
   addPatientRequestApiCall: (payload) => ({
@@ -17,6 +20,19 @@ export const HomeNetwork = {
       },
     },
     url: addPatientEndpoint,
+    data: payload,
+    restAPIType: REST_API_TYPE.BASIC,
+  }),
+  patientListApiCall: (payload) => ({
+    method: NETWORK_METHOD.GET,
+    config: {
+      headers: {
+        "content-type": "application/json",
+        "User-Agent": "PostmanRuntime/7.40.0",
+        Connection: "keep-alive",
+      },
+    },
+    url: patientListEndpoint,
     data: payload,
     restAPIType: REST_API_TYPE.BASIC,
   }),

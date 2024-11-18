@@ -4,7 +4,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
 import { Platform, StyleSheet, View } from "react-native";
 import { Icon } from "react-native-elements"; // You can use any icon library or custom icons
-import AllReports from "../../AppModules/Home/Views/AllReports";
+import AddPatient from "../../AppModules/Home/Views/AddPatient";
+import ManagePatient from "../../AppModules/Home/Views/ManagePatient";
 import EditProfile from "../../AppModules/MyProfile/View/EditProfile";
 import Profile from "../../AppModules/MyProfile/View/Profile";
 import Colors from "../Utils/Color";
@@ -34,13 +35,26 @@ const ProfileNavigation = () => {
   );
 };
 
-const AllreportsNavigation = () => {
+const ManagePatientNavigation = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="AllReports"
-        component={AllReports}
-        options={{ headerShown: true, title: "Search Patient" }}
+        name="ManagePatient"
+        component={ManagePatient}
+        options={{
+          headerShown: true,
+          title: "Manage Patients",
+          headerTitleAlign: "center",
+        }}
+      />
+      <Stack.Screen
+        name="AddPatient"
+        component={AddPatient}
+        options={{
+          headerShown: true,
+          title: "Add new patient",
+          headerTitleAlign: "center",
+        }}
       />
     </Stack.Navigator>
   );
@@ -65,7 +79,7 @@ const BottomTabNavigation = () => {
               if (route.name === "Home") {
                 // Example: Set the icon for Home tab
                 iconName = "home"; // Use an icon name or a custom icon
-              } else if (route.name === "All Reports") {
+              } else if (route.name === "Manage Patients") {
                 iconName = "search"; // Use an icon name or a custom icon
               } else if (route.name === "Profile") {
                 iconName = "person"; // Use an icon name or a custom icon
@@ -102,8 +116,8 @@ const BottomTabNavigation = () => {
             options={{ headerShown: false }}
           />
           <Tab.Screen
-            name="All Reports"
-            component={AllreportsNavigation}
+            name="Manage Patients"
+            component={ManagePatientNavigation}
             options={{ headerShown: false }}
           />
           <Tab.Screen
