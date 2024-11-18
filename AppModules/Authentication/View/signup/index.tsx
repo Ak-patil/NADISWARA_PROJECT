@@ -17,10 +17,11 @@ import { VStack } from "@/components/ui/vstack";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { Keyboard } from "react-native";
-import { useDispatch } from "react-redux";
+import { ActivityIndicator, Keyboard } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
 import { z } from "zod";
 import { signupViaEmailRequest } from "../../Redux/Actions/AuthAction";
+import { signupViaEmailStateSelector } from "../../Redux/Reducer/AuthSelector";
 import { AuthLayout } from "../layout";
 import { GoogleIcon } from "./assets/icons/google";
 
@@ -61,6 +62,10 @@ const SignUpWithLeftBackground = ({ navigation }) => {
   });
   const toast = useToast();
   const dispatch = useDispatch();
+
+  const signupViaEmailState = useSelector((state) =>
+    signupViaEmailStateSelector(state)
+  );
 
   const onSubmit = (data: SignUpSchemaType) => {
     if (data) {
@@ -258,7 +263,11 @@ const SignUpWithLeftBackground = ({ navigation }) => {
             className="w-full"
             onPress={handleSubmit(onSubmit)}
           >
-            <ButtonText className="font-medium">Sign up</ButtonText>
+            {signupViaEmailState?.isLoading ? (
+              <ActivityIndicator size="small" color="#ffffff" />
+            ) : (
+              <ButtonText className="font-medium" children={"Signup"} />
+            )}
           </Button>
           <Button
             size="xl"

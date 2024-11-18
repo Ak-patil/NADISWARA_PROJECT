@@ -80,7 +80,7 @@ function* signupViaEmailRequest(action) {
           animationType: "zoom-in",
           successColor: "green",
         });
-        handleNavigation("OtpScreen");
+        handleNavigation("signupScreenTwo", action.payload);
       } else {
         yield put(
           AuthActions.signupViaEmailError({

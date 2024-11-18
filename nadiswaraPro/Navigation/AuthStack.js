@@ -5,10 +5,10 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { ForgotPassword } from "@/AppModules/Authentication/View/forgot-password";
 import React from "react";
 import { Easing } from "react-native";
-import AccountSuccess from "../../AppModules/Authentication/View/Signup_OLD/AccountSuccess";
-import OtpScreen from "../../AppModules/Authentication/View/Signup_OLD/OtpScreen";
 import { VerifyOtp } from "../../AppModules/Authentication/View/forgot-password/verify_otp";
 import { VerifyOtpEmail } from "../../AppModules/Authentication/View/forgot-password/verify_otp_email";
+import { AccountSuccess } from "../../AppModules/Authentication/View/signup/account_success_screen";
+import { SignupScreenTwo } from "../../AppModules/Authentication/View/signup/signup_screen_two";
 
 const Stack = createNativeStackNavigator();
 
@@ -53,11 +53,6 @@ const AuthStack = () => {
         options={{ headerShown: false, animation: "slide_from_right" }}
       />
       <Stack.Screen
-        name="OtpScreen"
-        component={OtpScreen}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
         name="VerifyOtp"
         component={VerifyOtp}
         options={{
@@ -82,6 +77,17 @@ const AuthStack = () => {
         name="signup"
         component={SignUp}
         options={{ headerShown: false, animation: "slide_from_right" }}
+      />
+
+      <Stack.Screen
+        name="signupScreenTwo"
+        component={SignupScreenTwo}
+        options={{
+          headerShown: true,
+          animation: "slide_from_right",
+          title: "Verify Otp",
+          headerTitleAlign: "center",
+        }}
       />
 
       <Stack.Screen
