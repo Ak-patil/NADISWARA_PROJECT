@@ -25,9 +25,17 @@ import { AuthLayout } from "../layout";
 import { GoogleIcon } from "./assets/icons/google";
 
 const loginSchema = z.object({
-  email: z.string().min(1, "Email is required").email(),
+  email_or_phone: z
+    .string()
+    .min(1, "Email or phone number is required")
+    .refine(
+      (value) =>
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) || /^[6-9]\d{9}$/.test(value),
+      {
+        message: "Enter a valid email or phone number",
+      }
+    ),
   password: z.string().min(1, "Password is required"),
-  rememberme: z.boolean().optional(),
 });
 
 type LoginSchemaType = z.infer<typeof loginSchema>;
@@ -56,7 +64,7 @@ export const LoginWithLeftBackground = ({ navigation }) => {
     if (data) {
       dispatch(
         loginViaEmailRequest({
-          email_or_phone: data.email,
+          email_or_phone: data.email_or_phone,
           password: data.password,
         })
       );
@@ -79,7 +87,7 @@ export const LoginWithLeftBackground = ({ navigation }) => {
   // const router = useRouter();
   return (
     <>
-      <VStack className="items-center" space="md">
+      <VStack className="items-center" space="xs">
         <Heading className="text-[#0f0f0f] font-extrabold" size="2xl">
           Login
         </Heading>
@@ -87,23 +95,25 @@ export const LoginWithLeftBackground = ({ navigation }) => {
           Login to your existing account using your email and password
         </Text>
       </VStack>
-      <VStack className="w-full">
+      <VStack className="w-full" space="xl">
         <VStack space="xl" className="w-full">
           <FormControl
-            isInvalid={!!errors?.email || !validated.emailValid}
-            className="w-full"
+            isInvalid={!!errors?.email_or_phone || !validated.emailValid}
+            className="w-full pt-2"
           >
             <FormControlLabel>
-              <FormControlLabelText size="lg">Email</FormControlLabelText>
+              <FormControlLabelText size="lg">
+                Email or phone number
+              </FormControlLabelText>
             </FormControlLabel>
             <Controller
               defaultValue=""
-              name="email"
+              name="email_or_phone"
               control={control}
               rules={{
                 validate: async (value) => {
                   try {
-                    await loginSchema.parseAsync({ email: value });
+                    await loginSchema.parseAsync({ email_or_phone: value });
                     return true;
                   } catch (error: any) {
                     return error.message;
@@ -114,7 +124,7 @@ export const LoginWithLeftBackground = ({ navigation }) => {
                 <Input size="lg">
                   <InputField
                     className="text-md"
-                    placeholder="Enter email"
+                    placeholder="Email or phone number"
                     value={value}
                     onChangeText={onChange}
                     onBlur={onBlur}
@@ -126,8 +136,8 @@ export const LoginWithLeftBackground = ({ navigation }) => {
             />
             <FormControlError>
               <FormControlErrorText>
-                {errors?.email?.message ||
-                  (!validated.emailValid && "Email ID not found")}
+                {errors?.email_or_phone?.message ||
+                  (!validated.emailValid && "Invalid email or phone number")}
               </FormControlErrorText>
             </FormControlError>
           </FormControl>
@@ -183,7 +193,7 @@ export const LoginWithLeftBackground = ({ navigation }) => {
             size="lg"
             variant="link"
             action="primary"
-            className="justify-end h-5 my-0"
+            className="justify-end h-6"
             onPress={() => navigation.navigate("VerifyOtpEmail")}
           >
             <ButtonText className="font-extrabold text-md text-primary-prime group-hover/link:text-primary-600">
@@ -191,7 +201,7 @@ export const LoginWithLeftBackground = ({ navigation }) => {
             </ButtonText>
           </Button>
         </VStack>
-        <VStack className="w-full my-7 " space="lg">
+        <VStack className="w-full my-2 " space="xl">
           <Button
             size="xl"
             variant="solid"

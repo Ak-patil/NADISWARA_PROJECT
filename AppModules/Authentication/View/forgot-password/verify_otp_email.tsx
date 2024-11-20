@@ -11,10 +11,11 @@ import { VStack } from "@/components/ui/vstack";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { Keyboard } from "react-native";
-import { useDispatch } from "react-redux";
+import { ActivityIndicator, Keyboard } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
 import { z } from "zod";
 import { verifyOtpEmailRequest } from "../../Redux/Actions/AuthAction";
+import { verifyEmailStateSelector } from "../../Redux/Reducer/AuthSelector";
 import { AppLayout } from "../layout/app_layout";
 
 const verifyOtpEmailSchema = z.object({
@@ -34,6 +35,10 @@ const VerifyOtpEmailScreen = () => {
   });
 
   const dispatch = useDispatch();
+
+  const verifyEmailState = useSelector((state) =>
+    verifyEmailStateSelector(state)
+  );
 
   const [validated, setValidated] = useState({
     emailValid: true,
@@ -64,7 +69,9 @@ const VerifyOtpEmailScreen = () => {
           className="w-full"
         >
           <FormControlLabel>
-            <FormControlLabelText size="lg">Email</FormControlLabelText>
+            <FormControlLabelText size="lg">
+              Email or phone number
+            </FormControlLabelText>
           </FormControlLabel>
           <Controller
             defaultValue=""
@@ -84,7 +91,7 @@ const VerifyOtpEmailScreen = () => {
               <Input size="lg">
                 <InputField
                   className="text-md"
-                  placeholder="Enter email"
+                  placeholder="Enter email or phone number"
                   value={value}
                   onChangeText={onChange}
                   onBlur={onBlur}
@@ -110,7 +117,11 @@ const VerifyOtpEmailScreen = () => {
           className="w-full mb-8"
           onPress={handleSubmit(onSubmit)}
         >
-          <ButtonText className="font-medium">Continue</ButtonText>
+          {verifyEmailState?.isLoading ? (
+            <ActivityIndicator size="small" color="#ffffff" />
+          ) : (
+            <ButtonText className="font-medium">Continue</ButtonText>
+          )}
         </Button>
       </VStack>
     </VStack>
@@ -120,8 +131,8 @@ const VerifyOtpEmailScreen = () => {
 export const VerifyOtpEmail = () => {
   return (
     <AppLayout
-      title="Enter Email"
-      content="Enter your email address to receive an OTP to reset your password."
+      title="Enter email or phone number"
+      content="Enter your email address or phone number to receive an OTP to change your password."
     >
       <VerifyOtpEmailScreen />
     </AppLayout>

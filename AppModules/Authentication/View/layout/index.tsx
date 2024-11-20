@@ -15,15 +15,14 @@ export const AuthLayout = (props: AuthLayoutProps) => {
       >
         <LinearGradient
           className="flex-1 justify-center items-center"
-          colors={["#572673", "#572673", "#FFFFFF", "#FFFFFF"]}
+          colors={["#6a1a57", "#6a1a57", "#FFFFFF", "#FFFFFF"]}
           locations={[0, 0.55, 0.55, 1]}
         >
           <Image
-            className="w-48 h-48 justify-center"
-            source={require("../../../../assets/OOHY_LOGO.png")}
+            className="w-3/4 h-40 justify-center"
+            source={require("../../../../assets/nadiswara_logo.png")}
             alt="logo"
-            resizeMode="center"
-            // resizeMode="contain"
+            resizeMode="contain"
           />
           <Card
             size="lg"

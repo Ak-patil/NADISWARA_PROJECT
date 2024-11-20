@@ -40,10 +40,10 @@ const Home = ({ navigation }) => {
                 style={{ width: "60%" }}
               >
                 <Text size="xl" className="text-white font-semibold">
-                  Start with a sensor
+                  Add new patient
                 </Text>
                 <Text className="text-white text-md font-normal">
-                  Begin your health journey using sensor technology.
+                  Add a new patient with just a few simple details.
                 </Text>
                 <Image
                   source={require("./.././../../assets/Arrow_img.png")}
@@ -54,8 +54,8 @@ const Home = ({ navigation }) => {
               </VStack>
               <VStack className="w-1/3 bg-white rounded-xl justify-center items-center my-4 right-[12px]">
                 <Image
-                  source={require("./.././../../assets/thermo.png")}
-                  alt="Thermo"
+                  source={require("./.././../../assets/patient_add.png")}
+                  alt="add_patient"
                   style={{ width: 100, height: 100 }} // Set a specific height and width for the image
                   resizeMode="contain" // Ensures the image is scaled correctly
                 />

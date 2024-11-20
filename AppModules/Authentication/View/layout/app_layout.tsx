@@ -10,11 +10,15 @@ type AuthLayoutProps = {
 export const AppLayout = ({ title, content, children }: AuthLayoutProps) => {
   return (
     <SafeAreaView className="w-full h-full bg-white">
-      <VStack className="flex-1 bg-white justify-between items-center px-8">
+      <VStack
+        space="4xl"
+        className="flex-1 bg-white justify-between items-center px-8"
+      >
         <Image
-          className="w-2/3 h-52 justify-center my-4"
-          source={require("../../../../assets/Otp_screen.png")}
+          className="w-5/6 h-40 justify-center top-8"
+          source={require("../../../../assets/nadiswara_logo_2.png")}
           alt="logo"
+          resizeMode="contain"
         />
         <VStack className="items-center py-8">
           <Heading className="text-[#0f0f0f] font-medium" size="xl">

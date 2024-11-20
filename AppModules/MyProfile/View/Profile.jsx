@@ -11,11 +11,11 @@ import {
 } from "@expo-google-fonts/raleway";
 import React, { useState } from "react";
 import { Text, TouchableOpacity } from "react-native";
-import {
-  Codes,
-  Parity,
-  UsbSerialManager,
-} from "react-native-usb-serialport-for-android";
+// import {
+//   Codes,
+//   Parity,
+//   UsbSerialManager,
+// } from "react-native-usb-serialport-for-android";
 import { styles } from "../Style/ProfileScreenStyles/ProfileScreen.styles";
 
 const Profile = () => {
@@ -73,7 +73,7 @@ const Profile = () => {
         <Text style={styles.status}>{status}</Text>
         <TouchableOpacity
           style={styles.button}
-          onPress={handleUsbCommunication}
+          // onPress={handleUsbCommunication}
         >
           <Text style={styles.buttonText}>Start USB Communication</Text>
         </TouchableOpacity>

@@ -81,6 +81,8 @@ const BottomTabNavigation = () => {
                 iconName = "home"; // Use an icon name or a custom icon
               } else if (route.name === "All Patients") {
                 iconName = "people"; // Use an icon name or a custom icon
+              } else if (route.name === "All Reports") {
+                iconName = "person"; // Use an icon name or a custom icon
               } else if (route.name === "Profile") {
                 iconName = "person"; // Use an icon name or a custom icon
               }
@@ -118,6 +120,11 @@ const BottomTabNavigation = () => {
           <Tab.Screen
             name="All Patients"
             component={ManagePatientNavigation}
+            options={{ headerShown: false }}
+          />
+          <Tab.Screen
+            name="All reports"
+            component={ProfileNavigation}
             options={{ headerShown: false }}
           />
           <Tab.Screen

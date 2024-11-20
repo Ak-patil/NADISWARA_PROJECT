@@ -13,14 +13,20 @@ import { useToast } from "@/components/ui/toast";
 import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useRef, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { KeyboardAvoidingView, Platform, ScrollView } from "react-native";
-import { useDispatch } from "react-redux";
+import {
+  ActivityIndicator,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+} from "react-native";
+import { useDispatch, useSelector } from "react-redux";
 import { z } from "zod";
 import TimerCount from "../../../../BaseModule/Components/TimerCount";
 import {
   resetPasswordRequest,
   verifyOtpRequest,
 } from "../../Redux/Actions/AuthAction";
+import { resetPasswordStateSelector } from "../../Redux/Reducer/AuthSelector";
 import { AppLayout } from "../layout/app_layout";
 
 const verifyOtpSchema = z.object({
@@ -59,6 +65,10 @@ const VerifyOtpScreen = ({ userEmail, isEmail }) => {
   });
   const toast = useToast();
   const dispatch = useDispatch();
+
+  const resetPasswordState = useSelector((state) =>
+    resetPasswordStateSelector(state)
+  );
   const [otp2, setOtp] = useState(["", "", "", "", "", ""]);
   const inputRefs = useRef(Array(6).fill(null));
   const [isOtpFilled, setIsOtpFilled] = useState(false);
@@ -223,7 +233,11 @@ const VerifyOtpScreen = ({ userEmail, isEmail }) => {
               className="w-full mb-8 "
               onPress={handleSubmit(onSubmit)}
             >
-              <ButtonText className="font-medium">Update Password</ButtonText>
+              {resetPasswordState?.isLoading ? (
+                <ActivityIndicator size="small" color="#ffffff" />
+              ) : (
+                <ButtonText className="font-medium">Update Password</ButtonText>
+              )}
             </Button>
           </VStack>
         </VStack>

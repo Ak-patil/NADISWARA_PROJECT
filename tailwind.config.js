@@ -33,7 +33,7 @@ module.exports = {
           800: "rgb(var(--color-primary-800)/<alpha-value>)",
           900: "rgb(var(--color-primary-900)/<alpha-value>)",
           950: "rgb(var(--color-primary-950)/<alpha-value>)",
-          prime: "#572673",
+          prime: "#6a1a57",
         },
         secondary: {
           0: "rgb(var(--color-secondary-0)/<alpha-value>)",
@@ -169,7 +169,8 @@ module.exports = {
           info: "rgb(var(--color-background-info)/<alpha-value>)",
           light: "#FBFBFB",
           dark: "#181719",
-          primary: "#572673",
+          primary: "#6a1a57",
+          // #6a1a57
           secondary: "#755757",
         },
         indicator: {
@@ -179,7 +180,7 @@ module.exports = {
         },
       },
       fontFamily: {
-        heading: undefined,
+        heading: ["Clash Grotesk", "sans-serif"],
         body: undefined,
         mono: undefined,
         roboto: ["Roboto", "sans-serif"],

@@ -26,7 +26,16 @@ import { AuthLayout } from "../layout";
 import { GoogleIcon } from "./assets/icons/google";
 
 const signUpSchema = z.object({
-  email: z.string().min(1, "Email is required").email(),
+  email_or_phone: z
+    .string()
+    .min(1, "Email or phone number is required")
+    .refine(
+      (value) =>
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) || /^[6-9]\d{9}$/.test(value),
+      {
+        message: "Enter a valid email or phone number",
+      }
+    ),
   password: z
     .string()
     .min(6, "Must be at least 8 characters in length")
@@ -70,7 +79,7 @@ const SignUpWithLeftBackground = ({ navigation }) => {
   const onSubmit = (data: SignUpSchemaType) => {
     if (data) {
       const userData = {
-        "email/phone_number": data.email,
+        "email/phone_number": data.email_or_phone,
         password1: data.password,
         password2: data.confirmpassword,
       };
@@ -114,25 +123,27 @@ const SignUpWithLeftBackground = ({ navigation }) => {
         <Heading className="text-center" size="2xl">
           Sign up
         </Heading>
-        <Text size="lg" className="text-center text-[#848484] font-normal">
+        <Text size="md" className="text-center text-[#848484] font-normal">
           Sign up and start using gluestack
         </Text>
       </VStack>
 
       <VStack className="w-full">
         <VStack space="xl" className="w-full">
-          <FormControl isInvalid={!!errors.email}>
+          <FormControl isInvalid={!!errors.email_or_phone}>
             <FormControlLabel>
-              <FormControlLabelText size="lg">Email</FormControlLabelText>
+              <FormControlLabelText size="lg">
+                Email or phone number
+              </FormControlLabelText>
             </FormControlLabel>
             <Controller
-              name="email"
+              name="email_or_phone"
               defaultValue=""
               control={control}
               rules={{
                 validate: async (value) => {
                   try {
-                    await signUpSchema.parseAsync({ email: value });
+                    await signUpSchema.parseAsync({ email_or_phone: value });
                     return true;
                   } catch (error: any) {
                     return error.message;
@@ -143,7 +154,7 @@ const SignUpWithLeftBackground = ({ navigation }) => {
                 <Input size="lg">
                   <InputField
                     className="text-md"
-                    placeholder="Email"
+                    placeholder="Email or phone number"
                     type="text"
                     value={value}
                     onChangeText={onChange}
@@ -156,13 +167,15 @@ const SignUpWithLeftBackground = ({ navigation }) => {
             />
             <FormControlError>
               <FormControlErrorText>
-                {errors?.email?.message}
+                {errors?.email_or_phone?.message}
               </FormControlErrorText>
             </FormControlError>
           </FormControl>
           <FormControl isInvalid={!!errors.password}>
             <FormControlLabel>
-              <FormControlLabelText size="lg">Password</FormControlLabelText>
+              <FormControlLabelText size="lg">
+                New password
+              </FormControlLabelText>
             </FormControlLabel>
             <Controller
               defaultValue=""
@@ -184,7 +197,7 @@ const SignUpWithLeftBackground = ({ navigation }) => {
                 <Input size="lg">
                   <InputField
                     className="text-md"
-                    placeholder="Password"
+                    placeholder="New password"
                     value={value}
                     onChangeText={onChange}
                     onBlur={onBlur}
@@ -207,7 +220,7 @@ const SignUpWithLeftBackground = ({ navigation }) => {
           <FormControl isInvalid={!!errors.confirmpassword}>
             <FormControlLabel>
               <FormControlLabelText size="lg">
-                Confirm Password
+                Confirm new password
               </FormControlLabelText>
             </FormControlLabel>
             <Controller
@@ -229,7 +242,7 @@ const SignUpWithLeftBackground = ({ navigation }) => {
               render={({ field: { onChange, onBlur, value } }) => (
                 <Input size="lg">
                   <InputField
-                    placeholder="Confirm Password"
+                    placeholder="Confirm new password"
                     className="text-md"
                     value={value}
                     onChangeText={onChange}

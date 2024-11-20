@@ -2,7 +2,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
-import { ActivityIndicator, Platform, StyleSheet, View } from "react-native";
+import { ActivityIndicator, StyleSheet, View } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler"; // Import GestureHandlerRootView
 import AuthStack from "./AuthStack";
 import BottomTabNavigation from "./BottomTabNavigation";
@@ -67,15 +67,11 @@ const AppNavigation = ({ initialRouteName }) => {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <NavigationContainer ref={navigationRef}>
-        {Platform.OS !== "ios" ? (
-          <MainStack
-            initialRouteName={
-              accessToken.length > 0 ? "appstack" : initialRouteName
-            }
-          />
-        ) : (
-          <MainStack initialRouteName={"appstack"} />
-        )}
+        <MainStack
+          initialRouteName={
+            accessToken.length > 0 ? "appstack" : initialRouteName
+          }
+        />
       </NavigationContainer>
     </GestureHandlerRootView>
   );
