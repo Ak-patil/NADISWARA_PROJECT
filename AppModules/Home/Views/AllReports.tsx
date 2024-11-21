@@ -132,19 +132,9 @@ const AllReports = () => {
     item: (typeof patients)[0];
     index: number;
   }) => {
-    const isSelected = selectedIndex === index;
     return (
-      <Pressable
-        onPress={() => handleSelect(index)}
-        className={`py-1 ${isSelected ? "bg-red-300" : "bg-white"}`}
-      >
-        <Card
-          size="sm"
-          variant="elevated"
-          className={`shadow-md mx-[2px] ${
-            isSelected ? "bg-red-300" : "bg-white"
-          }`}
-        >
+      <Pressable onPress={() => {}}>
+        <Card size="sm" variant="elevated" className="shadow-md mx-[2px]">
           <HStack space="md" className="w-full py-1">
             <Avatar size="md" className="bg-[#e6e6fa]">
               <AvatarFallbackText className="text-black">

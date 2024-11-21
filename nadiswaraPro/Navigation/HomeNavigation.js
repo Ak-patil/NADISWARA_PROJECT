@@ -1,4 +1,5 @@
 import AddPatient from "../../AppModules/Home/Views/AddPatient";
+import AllPatients from "../../AppModules/Home/Views/AllPatients";
 import AnalysePulse from "../../AppModules/Home/Views/Analyse";
 import DeviceConnection from "../../AppModules/Home/Views/DeviceConnection";
 import FetchReport from "../../AppModules/Home/Views/FetchReport";
@@ -17,6 +18,15 @@ const HomeNavigation = () => {
         name="HomeScreen"
         component={Home}
         options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="AllPatients"
+        component={AllPatients}
+        options={{
+          headerShown: true,
+          title: "All Patients",
+          headerTitleAlign: "center",
+        }}
       />
       <Stack.Screen
         name="AddPatient"

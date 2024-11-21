@@ -24,11 +24,11 @@ export const AddBalanceScreen = () => {
           className="w-full flex-1"
           contentContainerStyle={{ flexGrow: 1 }}
         >
-          <VStack className="flex-1 px-6 justify-evenly">
+          <VStack className="flex-1 px-6 mt-32">
             <Card
               size="lg"
               variant="elevated"
-              className="w-full h-[194px] bg-white rounded-[20px] shadow mt-32"
+              className="w-full h-[194px] bg-white rounded-[20px] shadow "
             >
               <EnterAmountComponent />
             </Card>

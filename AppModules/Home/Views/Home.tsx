@@ -28,7 +28,7 @@ const Home = ({ navigation }) => {
           </VStack>
         </VStack>
         <VStack className="basis-4/5">
-          <Pressable onPress={() => navigation.navigate("AddPatient")}>
+          <Pressable onPress={() => navigation.navigate("AllPatients")}>
             <HStack className="w-11/12 h-[180px] bg-primary-prime rounded-tr-[20px] rounded-br-[20px] justify-between">
               <VStack
                 space="lg"
