@@ -88,7 +88,7 @@ const AddPatient = () => {
           gender: data.gender,
           age: 24,
           dob: "1997-05-03",
-          phone_number: "9234567890",
+          phone_number: data.phoneNumber,
         })
       );
     } else {
@@ -266,7 +266,9 @@ const AddPatient = () => {
 
           <FormControl isInvalid={!!errors.phoneNumber}>
             <FormControlLabel className="mb-2">
-              <FormControlLabelText>Phone number</FormControlLabelText>
+              <FormControlLabelText size="lg">
+                Phone number
+              </FormControlLabelText>
             </FormControlLabel>
             <Controller
               name="phoneNumber"
