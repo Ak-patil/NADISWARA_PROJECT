@@ -4,7 +4,7 @@
     "slug": "NADISWARA_PROJECT",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/nadiswara_logo.png",
+    "icon": "./assets/app_icon_circle.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/nadiswara_logo.png",
@@ -27,7 +27,7 @@
     ],
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/nadiswara_logo.png",
+        "foregroundImage": "./assets/app_icon_circle.png",
         "backgroundColor": "#6a1a57"
       },
       "package": "com.nadiswaraPro"

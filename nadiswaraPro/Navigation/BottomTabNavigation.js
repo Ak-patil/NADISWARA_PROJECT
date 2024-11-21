@@ -6,8 +6,10 @@ import { Platform, StyleSheet, View } from "react-native";
 import { Icon } from "react-native-elements"; // You can use any icon library or custom icons
 import AddPatient from "../../AppModules/Home/Views/AddPatient";
 import ManagePatient from "../../AppModules/Home/Views/ManagePatient";
+import { AddBalanceScreen } from "../../AppModules/MyProfile/View/AddBalanceScreen";
 import EditProfile from "../../AppModules/MyProfile/View/EditProfile";
-import Profile from "../../AppModules/MyProfile/View/Profile";
+import { WalletScreen } from "../../AppModules/MyProfile/View/WalletScreen";
+import { ProfileScreen } from "../../AppModules/MyProfile/View/index";
 import Colors from "../Utils/Color";
 import { moderateScale, verticalScale } from "../Utils/Metrics";
 import HomeNavigation from "./HomeNavigation";
@@ -22,9 +24,27 @@ const ProfileNavigation = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Profile"
-        component={Profile}
+        name="ProfileScreen"
+        component={ProfileScreen}
         options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="WalletScreen"
+        component={WalletScreen}
+        options={{
+          headerShown: true,
+          title: "Wallet",
+          headerTitleAlign: "center",
+        }}
+      />
+      <Stack.Screen
+        name="AddBalanceScreen"
+        component={AddBalanceScreen}
+        options={{
+          headerShown: true,
+          title: "Add balance",
+          headerTitleAlign: "center",
+        }}
       />
       <Stack.Screen
         name="Edit Profile"
