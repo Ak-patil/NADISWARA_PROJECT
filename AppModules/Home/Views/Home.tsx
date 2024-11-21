@@ -11,16 +11,12 @@ const Home = ({ navigation }) => {
         <VStack className="basis-1/5">
           <HStack className="justify-between items-center px-6">
             <Image
-              source={require("./.././../../assets/oohy_icon.png")}
+              source={require("./.././../../assets/logo_home.png")}
               alt="Logo"
-              className="w-32"
+              className="w-32 h-14"
               resizeMode="contain" // Ensures the image is scaled correctly
             />
-            <Icon
-              as={Bell}
-              className="color-primary-prime w-1/5 h-10"
-              size="xl"
-            />
+            <Icon as={Bell} className="color-primary-prime  h-14" size="xl" />
           </HStack>
           <VStack className="px-6 top-[3]">
             <Heading size="lg" className="text-black">

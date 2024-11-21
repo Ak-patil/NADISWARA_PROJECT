@@ -24,7 +24,7 @@ export const AddBalanceScreen = () => {
           className="w-full flex-1"
           contentContainerStyle={{ flexGrow: 1 }}
         >
-          <VStack className="flex-1 px-6">
+          <VStack className="flex-1 px-6 justify-evenly">
             <Card
               size="lg"
               variant="elevated"

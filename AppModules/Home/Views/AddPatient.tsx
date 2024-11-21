@@ -19,6 +19,7 @@ import {
   RadioLabel,
 } from "@/components/ui/radio";
 import { ScrollView } from "@/components/ui/scroll-view";
+import { Select, SelectInput, SelectTrigger } from "@/components/ui/select";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CircleIcon } from "lucide-react-native";
 import React from "react";
@@ -52,6 +53,12 @@ const addPatientSchema = z.object({
     .refine(isValidDate, "Invalid date or date is in the future"),
   gender: z.enum(["Male", "Female"], "Gender is required"),
   email: z.string().min(1, "Email is required").email(),
+  phoneNumber: z
+    .string()
+    .regex(
+      /^[6-9]\d{9}$/,
+      "Phone number must be a valid 10-digit Indian phone number"
+    ),
 });
 
 type addPatientSchemaType = z.infer<typeof addPatientSchema>;
@@ -257,8 +264,51 @@ const AddPatient = () => {
             )}
           </FormControl>
 
-          {/* Other Form Fields (Last Name, Date of Birth, Gender, Email) */}
-          {/* ... */}
+          <FormControl isInvalid={!!errors.phoneNumber}>
+            <FormControlLabel className="mb-2">
+              <FormControlLabelText>Phone number</FormControlLabelText>
+            </FormControlLabel>
+            <Controller
+              name="phoneNumber"
+              control={control}
+              rules={{
+                validate: async (value) => {
+                  try {
+                    await addPatientSchema.parseAsync({ phoneNumber: value });
+                    return true;
+                  } catch (error: any) {
+                    return error.message;
+                  }
+                },
+              }}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <HStack className="gap-1">
+                  <Select className="w-[14%]">
+                    <SelectTrigger variant="outline" size="lg">
+                      <SelectInput placeholder="+91" />
+                    </SelectTrigger>
+                  </Select>
+                  <Input size="lg" className="flex-1">
+                    <InputField
+                      placeholder="999*******"
+                      type="text"
+                      value={value}
+                      onChangeText={onChange}
+                      keyboardType="number-pad"
+                      onBlur={onBlur}
+                      onSubmitEditing={handleKeyPress}
+                      returnKeyType="done"
+                    />
+                  </Input>
+                </HStack>
+              )}
+            />
+            {errors.phoneNumber && (
+              <FormControlLabelText className="text-red-400">
+                {errors.phoneNumber.message}
+              </FormControlLabelText>
+            )}
+          </FormControl>
         </VStack>
       </ScrollView>
 
