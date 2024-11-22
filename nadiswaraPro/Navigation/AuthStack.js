@@ -7,6 +7,7 @@ import React from "react";
 import { Easing } from "react-native";
 import { VerifyOtp } from "../../AppModules/Authentication/View/forgot-password/verify_otp";
 import { VerifyOtpEmail } from "../../AppModules/Authentication/View/forgot-password/verify_otp_email";
+import { LoginViaPhone } from "../../AppModules/Authentication/View/signin/loginViaPhone";
 import { AccountSuccess } from "../../AppModules/Authentication/View/signup/account_success_screen";
 import { SignupScreenTwo } from "../../AppModules/Authentication/View/signup/signup_screen_two";
 
@@ -50,6 +51,11 @@ const AuthStack = () => {
       <Stack.Screen
         name="signin"
         component={SignIn}
+        options={{ headerShown: false, animation: "slide_from_right" }}
+      />
+      <Stack.Screen
+        name="LoginViaPhone"
+        component={LoginViaPhone}
         options={{ headerShown: false, animation: "slide_from_right" }}
       />
       <Stack.Screen

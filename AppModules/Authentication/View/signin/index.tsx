@@ -13,6 +13,7 @@ import { Input, InputField, InputIcon, InputSlot } from "@/components/ui/input";
 import { Text } from "@/components/ui/text";
 import { useToast } from "@/components/ui/toast";
 import { VStack } from "@/components/ui/vstack";
+import { handleNavigation } from "@/nadiswaraPro/Navigation/NaviagationHelper";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
@@ -220,7 +221,18 @@ export const LoginWithLeftBackground = ({ navigation }) => {
             variant="outline"
             action="secondary"
             className="w-full gap-1"
-            onPress={() => {}}
+            onPress={() => handleNavigation("LoginViaPhone")}
+          >
+            <ButtonText className="font-medium color-primary-prime">
+              Login via OTP
+            </ButtonText>
+          </Button>
+          <Button
+            size="xl"
+            variant="outline"
+            action="secondary"
+            className="w-full gap-1"
+            onPress={() => handleNavigation("LoginViaPhone")}
           >
             <ButtonIcon as={GoogleIcon} />
             <ButtonText className="font-medium">
