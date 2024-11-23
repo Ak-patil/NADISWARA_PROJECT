@@ -27,7 +27,7 @@ function* addPatientRequest(action) {
           animationType: "zoom-in",
           successColor: "green",
         });
-        handleNavigation("DeviceConnection");
+        handleNavigation("FormOne");
       } else {
         yield put(
           HomeActions.addPatientError({

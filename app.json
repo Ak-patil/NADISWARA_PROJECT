@@ -17,11 +17,16 @@
     },
     "plugins": [
       [
-        "expo-splash-screen",
+        "expo-font",
         {
-          "backgroundColor": "#6a1a57",
-          "image": "./assets/nadiswara_logo.png",
-          "imageWidth": 200
+          "fonts": [
+            "./assets/fonts/ClashGrotesk-Regular.otf",
+            "./assets/fonts/ClashGrotesk-Medium.otf",
+            "./assets/fonts/ClashGrotesk-Bold.otf",
+            "./assets/fonts/ClashGrotesk-Semibold.otf",
+            "./assets/fonts/ClashGrotesk-Extralight.otf",
+            "./assets/fonts/ClashGrotesk-Light.otf"
+          ]
         }
       ]
     ],

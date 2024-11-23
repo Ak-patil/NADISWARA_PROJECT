@@ -92,7 +92,7 @@ export const LoginWithLeftBackground = ({ navigation }) => {
         <Heading className="text-[#0f0f0f] font-extrabold" size="2xl">
           Login
         </Heading>
-        <Text size="md" className="text-center text-[#848484]  font-normal">
+        <Text size="md" className="text-center text-[#848484]">
           Login to your existing account using your email and password
         </Text>
       </VStack>
@@ -197,7 +197,7 @@ export const LoginWithLeftBackground = ({ navigation }) => {
             className="justify-end h-6"
             onPress={() => navigation.navigate("VerifyOtpEmail")}
           >
-            <ButtonText className="font-extrabold text-md text-primary-prime group-hover/link:text-primary-600">
+            <ButtonText className="font-extrabold text-md text-primary-prime group-hover/link:text-primary-600 font-ClashMedium">
               Forgot Password?
             </ButtonText>
           </Button>

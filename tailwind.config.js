@@ -181,7 +181,11 @@ module.exports = {
       },
       fontFamily: {
         heading: ["Clash Grotesk", "sans-serif"],
-        body: undefined,
+        ClashRegular: ["ClashGrotesk-Regular"],
+        ClashBold: ["ClashGrotesk-Bold"],
+        ClashMedium: ["ClashGrotesk-Medium"],
+        ClashSemiBold: ["ClashGrotesk-Semibold"],
+        ClashVariable: ["ClashGrotesk-Variable"],
         mono: undefined,
         roboto: ["Roboto", "sans-serif"],
       },
