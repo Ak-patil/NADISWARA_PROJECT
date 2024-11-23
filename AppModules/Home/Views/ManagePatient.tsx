@@ -3,10 +3,6 @@ import {
   ButtonText,
   HStack,
   Heading,
-  Input,
-  InputField,
-  InputIcon,
-  InputSlot,
   Text,
   VStack,
 } from "@/components/ui";
@@ -18,7 +14,6 @@ import {
 import { Divider } from "@/components/ui/divider";
 import { Pressable } from "@/components/ui/pressable";
 import { FlashList } from "@shopify/flash-list";
-import { SearchIcon } from "lucide-react-native";
 import { useEffect, useState } from "react";
 import { ActivityIndicator } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
@@ -87,15 +82,7 @@ const ManagePatient = ({ navigation }) => {
   );
 
   return (
-    <VStack className="w-full flex-1 bg-white px-[20px] pt-8">
-      {/* Header */}
-      <Input size="xl" className="bg-white rounded-xl mb-4">
-        <InputSlot className="pl-3">
-          <InputIcon as={SearchIcon} />
-        </InputSlot>
-        <InputField placeholder="Search..." />
-      </Input>
-
+    <VStack className="w-full flex-1 bg-white px-[20px] pt-20">
       <HStack className="justify-between mb-4 items-baseline">
         <Text size="xl" className="font-bold">
           All Patients

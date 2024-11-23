@@ -1,12 +1,5 @@
-import {
-  Button,
-  ButtonSpinner,
-  ButtonText,
-  Heading,
-  Image,
-  Text,
-  VStack,
-} from "@/components/ui";
+import LottieAnimation from "@/AppModules/Authentication/Utils/lottie";
+import { Button, ButtonText, Heading, Text, VStack } from "@/components/ui";
 import { Pressable } from "@/components/ui/pressable";
 import { handleNavigation } from "@/nadiswaraPro/Navigation/NaviagationHelper";
 
@@ -19,11 +12,11 @@ const AnalysePulse = () => {
         Check your pulse for instant health insights
       </Text> */}
 
-      <Image
-        className="w-1/2 h-28"
-        source={require("../../../assets/analyse.png")}
-        alt="device"
-        resizeMode="contain"
+      <LottieAnimation
+        animationSource={require("../../../assets/lottie/pulse.json")}
+        width={300}
+        height={300}
+        containerStyle={{ backgroundColor: "#ffffff" }}
       />
       <Heading className="text-xl font-medium pt-4">
         Analysing your pulse...
@@ -50,7 +43,6 @@ const AnalysePulse = () => {
           className="w-full"
           onPress={() => handleNavigation("FetchReport")}
         >
-          <ButtonSpinner color={"#FFFFFF"} />
           <ButtonText className="font-medium" children={"Analyse"} />
         </Button>
       </VStack>

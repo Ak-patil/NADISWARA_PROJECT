@@ -1,100 +1,35 @@
-import {
-  Nunito_400Regular,
-  Nunito_600SemiBold,
-  Nunito_700Bold,
-  useFonts,
-} from "@expo-google-fonts/nunito";
-import React from "react";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { handleNavigation } from "../../../nadiswaraPro/Navigation/NaviagationHelper";
-import {
-  horizontalScale,
-  moderateScale,
-  verticalScale,
-} from "../../../nadiswaraPro/Utils/Metrics";
+import LottieAnimation from "@/AppModules/Authentication/Utils/lottie";
+import { Button, ButtonText, Text, VStack } from "@/components/ui";
+import { resetStack } from "@/nadiswaraPro/Navigation/NavigationService";
 
-import Colors from "../../../nadiswaraPro/Utils/Color";
-
-const FetchReport = ({ navigation }) => {
-  let [fontsLoaded, fontError] = useFonts({
-    Nunito_600SemiBold,
-    Nunito_700Bold,
-    Nunito_400Regular,
-  });
-
-  if (!fontsLoaded && !fontError) {
-    return null;
-  }
-
-  const continueButton = () => {
-    handleNavigation("Login");
-  };
-
+const FetchReport = () => {
   return (
-    <View style={styles.container}>
-      <Image
-        style={styles.signupImage}
-        source={require("../../../assets/success.png")}
+    <VStack className="w-full flex-1 bg-white px-[20px] pt-8 justify-center items-center">
+      <LottieAnimation
+        animationSource={require("../../../assets/lottie/success.json")}
+        width={300}
+        height={300}
+        containerStyle={{ backgroundColor: "#ffffff" }}
       />
-      <Text
-        style={{
-          color: "#0F0F0F",
-          textAlign: "center",
-          fontWeight: 500,
-          fontSize: moderateScale(18),
-          paddingVertical: verticalScale(16),
-        }}
-      >
+      <Text size="2xl" className="font-bold">
         Report fetched successfully
       </Text>
-      <TouchableOpacity onPress={() => navigation.navigate("HomeScreen")}>
-        <Text
-          style={{
-            color: Colors.PRIMARY.PRIMARY_PURPLE,
-            fontWeight: 500,
-            fontSize: 16,
-            textDecorationLine: "underline",
-          }}
+      <Button
+        size="lg"
+        variant="link"
+        action="primary"
+        className="justify-end h-6"
+        onPress={() => resetStack("appstack")}
+      >
+        <ButtonText
+          size="xl"
+          className="font-extrabold underline text-primary-prime group-hover/link:text-primary-600"
         >
           View Report
-        </Text>
-      </TouchableOpacity>
-    </View>
+        </ButtonText>
+      </Button>
+    </VStack>
   );
 };
 
 export default FetchReport;
-
-export const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#FFFFFF",
-    paddingHorizontal: horizontalScale(16),
-  },
-
-  signupImage: {
-    // width: horizontalScale(240),
-    // height: verticalScale(163.53),
-    justifyContent: "center",
-    alignItems: "center",
-  },
-
-  button: {
-    width: "100%",
-    position: "absolute",
-    backgroundColor: Colors.PRIMARY.PRIMARY_PURPLE,
-    paddingVertical: verticalScale(12),
-    borderRadius: moderateScale(50),
-    bottom: verticalScale(32),
-    alignSelf: "center",
-  },
-
-  buttonText: {
-    color: "#FFFFFF",
-    fontSize: moderateScale(16),
-    fontWeight: "bold",
-    textAlign: "center",
-  },
-});

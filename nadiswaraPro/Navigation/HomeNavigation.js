@@ -4,6 +4,8 @@ import AnalysePulse from "../../AppModules/Home/Views/Analyse";
 import DeviceConnection from "../../AppModules/Home/Views/DeviceConnection";
 import FetchReport from "../../AppModules/Home/Views/FetchReport";
 import ManagePatient from "../../AppModules/Home/Views/ManagePatient";
+import { FormTwo } from "../../AppModules/Home/Views/Questionaries";
+import { FormOne } from "../../AppModules/Home/Views/QuestionariesOne";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
@@ -18,6 +20,22 @@ const HomeNavigation = () => {
         name="HomeScreen"
         component={Home}
         options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="FormOne"
+        component={FormOne}
+        options={{
+          headerShown: true,
+          title: "",
+        }}
+      />
+      <Stack.Screen
+        name="FormTwo"
+        component={FormTwo}
+        options={{
+          headerShown: true,
+          title: "",
+        }}
       />
       <Stack.Screen
         name="AllPatients"

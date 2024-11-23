@@ -23,6 +23,7 @@ import { Controller, useForm } from "react-hook-form";
 
 import { Text } from "@/components/ui";
 import { Divider } from "@/components/ui/divider";
+import { handleNavigation } from "@/nadiswaraPro/Navigation/NaviagationHelper";
 
 interface FormValues {
   hungerLevel: string;
@@ -32,7 +33,7 @@ interface FormValues {
   headacheTypes: string[];
 }
 
-export const SignIn: React.FC = () => {
+export const FormTwo: React.FC = () => {
   const { control, handleSubmit, watch, setValue } = useForm<FormValues>({
     defaultValues: {
       hungerLevel: "",
@@ -45,6 +46,7 @@ export const SignIn: React.FC = () => {
 
   const onSubmit = (data: FormValues) => {
     console.log("Form Data:", data);
+    handleNavigation("DeviceConnection");
   };
 
   const headache = watch("headache");
@@ -71,7 +73,7 @@ export const SignIn: React.FC = () => {
         contentContainerStyle={{ paddingBottom: 100 }}
         showsVerticalScrollIndicator={false}
       >
-        <VStack className="flex-1 bg-white mt-16" space="xl">
+        <VStack className="flex-1 bg-white mt-4" space="xl">
           <VStack className="w-full h-[260px] bg-white rounded-[20px] border border-[#ededed] p-6">
             <Text className="text-[#0f0f0f] text-2xl font-medium">
               How would you describe your hunger levels?

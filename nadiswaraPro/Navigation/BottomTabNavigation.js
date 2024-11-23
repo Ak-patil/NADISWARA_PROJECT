@@ -5,6 +5,7 @@ import { HeartPulse, Home, User2, Users } from "lucide-react-native";
 import React from "react";
 import { Animated, Platform, StyleSheet, View } from "react-native";
 import AddPatient from "../../AppModules/Home/Views/AddPatient";
+import AllReports from "../../AppModules/Home/Views/AllReports";
 import ManagePatient from "../../AppModules/Home/Views/ManagePatient";
 import { AddBalanceScreen } from "../../AppModules/MyProfile/View/AddBalanceScreen";
 import EditProfile from "../../AppModules/MyProfile/View/EditProfile";
@@ -61,9 +62,7 @@ const ManagePatientNavigation = () => {
         name="ManagePatient"
         component={ManagePatient}
         options={{
-          headerShown: true,
-          title: "All Patients",
-          headerTitleAlign: "center",
+          headerShown: false,
         }}
       />
       <Stack.Screen
@@ -73,6 +72,20 @@ const ManagePatientNavigation = () => {
           headerShown: true,
           title: "Add new patient",
           headerTitleAlign: "center",
+        }}
+      />
+    </Stack.Navigator>
+  );
+};
+
+const AllReportsNavigation = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="AllReportsScreen"
+        component={AllReports}
+        options={{
+          headerShown: false,
         }}
       />
     </Stack.Navigator>
@@ -153,7 +166,7 @@ const BottomTabNavigation = () => {
         />
         <Tab.Screen
           name="All reports"
-          component={ProfileNavigation}
+          component={AllReportsNavigation}
           options={{ headerShown: false }}
         />
         <Tab.Screen

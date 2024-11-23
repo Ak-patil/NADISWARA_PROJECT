@@ -81,7 +81,7 @@ const AllPatients = () => {
     return (
       <React.Fragment key={index}>
         <Pressable
-          onPress={() => handleNavigation("AddPatient")}
+          onPress={() => handleNavigation("FormOne")}
           className="w-full flex-1"
         >
           <HStack className="items-start w-full flex-1 py-4" space="2xl">
