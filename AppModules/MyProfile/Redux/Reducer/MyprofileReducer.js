@@ -1,5 +1,5 @@
-import { handleActions } from "redux-actions";
 import update from "immutability-helper";
+import { handleActions } from "redux-actions";
 import * as Myprofileactionconst from "../Actions/MyprofileActionsConst";
 
 const initialState = {
@@ -11,6 +11,20 @@ const initialState = {
     message: "",
   },
   updateProfileState: {
+    isLoading: false,
+    isError: false,
+    isSuccess: false,
+    data: {},
+    message: "",
+  },
+  addBalanceState: {
+    isLoading: false,
+    isError: false,
+    isSuccess: false,
+    data: {},
+    message: "",
+  },
+  getBalanceState: {
     isLoading: false,
     isError: false,
     isSuccess: false,
@@ -89,6 +103,76 @@ const updateProfileError = (state, action) => {
   });
 };
 
+const addBalanceRequest = (state, action) => {
+  return update(state, {
+    addBalanceState: {
+      isLoading: { $set: true },
+      isError: { $set: false },
+      isSuccess: { $set: true },
+      message: { $set: "" },
+      data: { $set: action.payload },
+    },
+  });
+};
+
+const addBalanceSuccess = (state, action) => {
+  return update(state, {
+    addBalanceState: {
+      isLoading: { $set: false },
+      isError: { $set: false },
+      isSuccess: { $set: true },
+      message: { $set: "" },
+      data: { $set: action.payload },
+    },
+  });
+};
+
+const addBalanceError = (state, action) => {
+  return update(state, {
+    addBalanceState: {
+      isLoading: { $set: false },
+      isError: { $set: true },
+      isSuccess: { $set: false },
+      message: { $set: action.payload.message },
+    },
+  });
+};
+
+const getBalanceRequest = (state, action) => {
+  return update(state, {
+    getBalanceState: {
+      isLoading: { $set: true },
+      isError: { $set: false },
+      isSuccess: { $set: true },
+      message: { $set: "" },
+      data: { $set: action.payload },
+    },
+  });
+};
+
+const getBalanceSuccess = (state, action) => {
+  return update(state, {
+    getBalanceState: {
+      isLoading: { $set: false },
+      isError: { $set: false },
+      isSuccess: { $set: true },
+      message: { $set: "" },
+      data: { $set: action.payload },
+    },
+  });
+};
+
+const getBalanceError = (state, action) => {
+  return update(state, {
+    getBalanceState: {
+      isLoading: { $set: false },
+      isError: { $set: true },
+      isSuccess: { $set: false },
+      message: { $set: action.payload.message },
+    },
+  });
+};
+
 export default handleActions(
   {
     [Myprofileactionconst.GET_PROFILE_REQUEST]: getProfileRequest,
@@ -97,6 +181,12 @@ export default handleActions(
     [Myprofileactionconst.UPDATE_PROFILE_REQUEST]: updateProfileRequest,
     [Myprofileactionconst.UPDATE_PROFILE_SUCCESS]: updateProfileSuccess,
     [Myprofileactionconst.UPDATE_PROFILE_ERROR]: updateProfileError,
+    [Myprofileactionconst.ADD_BALANCE_REQUEST]: addBalanceRequest,
+    [Myprofileactionconst.ADD_BALANCE_SUCCESS]: addBalanceSuccess,
+    [Myprofileactionconst.ADD_BALANCE_ERROR]: addBalanceError,
+    [Myprofileactionconst.GET_BALANCE_REQUEST]: getBalanceRequest,
+    [Myprofileactionconst.GET_BALANCE_SUCCESS]: getBalanceSuccess,
+    [Myprofileactionconst.GET_BALANCE_ERROR]: getBalanceError,
   },
   initialState
 );

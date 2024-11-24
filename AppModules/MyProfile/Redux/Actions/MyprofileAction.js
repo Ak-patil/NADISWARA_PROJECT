@@ -20,3 +20,23 @@ export const updateProfileSuccess = createAction(
 export const updateProfileError = createAction(
   Myprofileactionconst.UPDATE_PROFILE_ERROR
 );
+
+export const addBalanceRequest = createAction(
+  Myprofileactionconst.ADD_BALANCE_REQUEST
+);
+export const addBalanceSuccess = createAction(
+  Myprofileactionconst.ADD_BALANCE_SUCCESS
+);
+export const addBalanceError = createAction(
+  Myprofileactionconst.ADD_BALANCE_ERROR
+);
+
+export const getBalanceRequest = createAction(
+  Myprofileactionconst.GET_BALANCE_REQUEST
+);
+export const getBalanceSuccess = createAction(
+  Myprofileactionconst.GET_BALANCE_SUCCESS
+);
+export const getBalanceError = createAction(
+  Myprofileactionconst.GET_BALANCE_ERROR
+);

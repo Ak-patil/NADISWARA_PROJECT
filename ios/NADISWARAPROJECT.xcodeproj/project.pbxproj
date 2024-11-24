@@ -16,6 +16,12 @@
 		96905EF65AED1B983A6B3ABC /* libPods-NADISWARAPROJECT.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58EEBF8E8E6FB1BC6CAF49B5 /* libPods-NADISWARAPROJECT.a */; };
 		B18059E884C0ABDD17F3DC3D /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
+		3A54BE4B02CC466B96ADA92B /* ClashGrotesk-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = D1BB9680482140E6A63B87C2 /* ClashGrotesk-Regular.otf */; };
+		936733A1BC9242308B58937D /* ClashGrotesk-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = BC880DF1912B4CA1AB4FC810 /* ClashGrotesk-Medium.otf */; };
+		29D4D11432B34E87AD5411E4 /* ClashGrotesk-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8F9C750107684CC3B3E89233 /* ClashGrotesk-Bold.otf */; };
+		8AAE0DCD3329480CA7956BB9 /* ClashGrotesk-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 796F6883F56B48898DD1A34E /* ClashGrotesk-Semibold.otf */; };
+		0824D602CA2E4ECCA72ABBC4 /* ClashGrotesk-Extralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 36D28B212F4F459C8AF6142F /* ClashGrotesk-Extralight.otf */; };
+		2A453E9AF67D4B03A0B8AABB /* ClashGrotesk-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1B389806E74B46AB9BE11493 /* ClashGrotesk-Light.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +41,12 @@
 		EA82A1DD56CE192640C54F9C /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = NADISWARAPROJECT/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-NADISWARAPROJECT/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
+		D1BB9680482140E6A63B87C2 /* ClashGrotesk-Regular.otf */ = {isa = PBXFileReference; name = "ClashGrotesk-Regular.otf"; path = "../assets/fonts/ClashGrotesk-Regular.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		BC880DF1912B4CA1AB4FC810 /* ClashGrotesk-Medium.otf */ = {isa = PBXFileReference; name = "ClashGrotesk-Medium.otf"; path = "../assets/fonts/ClashGrotesk-Medium.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		8F9C750107684CC3B3E89233 /* ClashGrotesk-Bold.otf */ = {isa = PBXFileReference; name = "ClashGrotesk-Bold.otf"; path = "../assets/fonts/ClashGrotesk-Bold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		796F6883F56B48898DD1A34E /* ClashGrotesk-Semibold.otf */ = {isa = PBXFileReference; name = "ClashGrotesk-Semibold.otf"; path = "../assets/fonts/ClashGrotesk-Semibold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		36D28B212F4F459C8AF6142F /* ClashGrotesk-Extralight.otf */ = {isa = PBXFileReference; name = "ClashGrotesk-Extralight.otf"; path = "../assets/fonts/ClashGrotesk-Extralight.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		1B389806E74B46AB9BE11493 /* ClashGrotesk-Light.otf */ = {isa = PBXFileReference; name = "ClashGrotesk-Light.otf"; path = "../assets/fonts/ClashGrotesk-Light.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +103,7 @@
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				D65327D7A22EEC0BE12398D9 /* Pods */,
 				D7E4C46ADA2E9064B798F356 /* ExpoModulesProviders */,
+				F302037FD4CB45E582031EB4 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -138,6 +151,20 @@
 			);
 			name = ExpoModulesProviders;
 			sourceTree = "<group>";
+		};
+		F302037FD4CB45E582031EB4 /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				D1BB9680482140E6A63B87C2 /* ClashGrotesk-Regular.otf */,
+				BC880DF1912B4CA1AB4FC810 /* ClashGrotesk-Medium.otf */,
+				8F9C750107684CC3B3E89233 /* ClashGrotesk-Bold.otf */,
+				796F6883F56B48898DD1A34E /* ClashGrotesk-Semibold.otf */,
+				36D28B212F4F459C8AF6142F /* ClashGrotesk-Extralight.otf */,
+				1B389806E74B46AB9BE11493 /* ClashGrotesk-Light.otf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -204,6 +231,12 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
 				0FE7ABDBB59E0B9361AEAE5B /* PrivacyInfo.xcprivacy in Resources */,
+				3A54BE4B02CC466B96ADA92B /* ClashGrotesk-Regular.otf in Resources */,
+				936733A1BC9242308B58937D /* ClashGrotesk-Medium.otf in Resources */,
+				29D4D11432B34E87AD5411E4 /* ClashGrotesk-Bold.otf in Resources */,
+				8AAE0DCD3329480CA7956BB9 /* ClashGrotesk-Semibold.otf in Resources */,
+				0824D602CA2E4ECCA72ABBC4 /* ClashGrotesk-Extralight.otf in Resources */,
+				2A453E9AF67D4B03A0B8AABB /* ClashGrotesk-Light.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,7 +444,7 @@
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nadiswarapro;
-				PRODUCT_NAME = NADISWARAPROJECT;
+				PRODUCT_NAME = "NADISWARAPROJECT";
 				SWIFT_OBJC_BRIDGING_HEADER = "NADISWARAPROJECT/NADISWARAPROJECT-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -439,7 +472,7 @@
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nadiswarapro;
-				PRODUCT_NAME = NADISWARAPROJECT;
+				PRODUCT_NAME = "NADISWARAPROJECT";
 				SWIFT_OBJC_BRIDGING_HEADER = "NADISWARAPROJECT/NADISWARAPROJECT-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -1,17 +1,31 @@
 import { Button, ButtonText, HStack, Text, VStack } from "@/components/ui";
 import React, { useState } from "react";
-import { TextInput } from "react-native";
+import { Keyboard, TextInput } from "react-native";
 
-const EnterAmountComponent: React.FC = () => {
+type EnterAmountComponentProps = {
+  onAmountChange: (amount: number) => void;
+};
+
+const EnterAmountComponent: React.FC<EnterAmountComponentProps> = ({
+  onAmountChange,
+}) => {
   const [amount, setAmount] = useState<number>(0);
 
   const handleInputChange = (value: string): void => {
     const numericValue = parseInt(value, 10);
-    setAmount(isNaN(numericValue) ? 0 : numericValue);
+    const updatedAmount = isNaN(numericValue) ? 0 : numericValue;
+    setAmount(updatedAmount);
+    onAmountChange(updatedAmount); // Notify the parent of the change
   };
 
   const incrementAmount = (value: number): void => {
-    setAmount((prevAmount) => prevAmount + value);
+    const updatedAmount = amount + value;
+    setAmount(updatedAmount);
+    onAmountChange(updatedAmount); // Notify the parent of the change
+  };
+
+  const handleKeyPress = () => {
+    Keyboard.dismiss();
   };
 
   return (
@@ -30,6 +44,7 @@ const EnterAmountComponent: React.FC = () => {
         placeholder="Enter Amount"
         value={amount.toString()}
         onChangeText={handleInputChange}
+        onSubmitEditing={handleKeyPress}
         returnKeyType="done"
         keyboardType="numeric"
       />

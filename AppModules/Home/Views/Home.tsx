@@ -1,10 +1,14 @@
+import { getBalanceRequest } from "@/AppModules/MyProfile/Redux/Actions/MyprofileAction";
 import { HStack, Heading, Icon, Image, Text, VStack } from "@/components/ui";
 import { Pressable } from "@/components/ui/pressable";
 import { SafeAreaView } from "@/components/ui/safe-area-view";
 import { Bell } from "lucide-react-native";
 import React from "react";
+import { useDispatch } from "react-redux";
 
 const Home = ({ navigation }) => {
+  const dispatch = useDispatch();
+  dispatch(getBalanceRequest());
   return (
     <SafeAreaView className="w-full h-full bg-white">
       <VStack className="w-full flex-1 bg-white top-20">

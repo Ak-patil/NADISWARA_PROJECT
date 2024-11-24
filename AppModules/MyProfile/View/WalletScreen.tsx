@@ -1,3 +1,4 @@
+import { getBalanceSelector } from "@/AppModules/MyProfile/Redux/Reducer/MyprofileSelector";
 import {
   Button,
   ButtonText,
@@ -14,8 +15,9 @@ import { SafeAreaView } from "@/components/ui/safe-area-view";
 import { handleNavigation } from "@/nadiswaraPro/Navigation/NaviagationHelper";
 import { cn } from "@gluestack-ui/nativewind-utils/cn";
 import { IndianRupeeIcon } from "lucide-react-native";
-import React from "react";
-import { ScrollView } from "react-native";
+import React, { useEffect, useState } from "react";
+import { ActivityIndicator, ScrollView } from "react-native";
+import { useSelector } from "react-redux";
 
 const transactions = [
   {
@@ -57,6 +59,16 @@ const transactions = [
 ];
 
 export const WalletScreen = () => {
+  const [amount, setAmount] = useState();
+
+  const walletBalanceState = useSelector((state) => getBalanceSelector(state));
+
+  useEffect(() => {
+    if (walletBalanceState?.isSuccess) {
+      setAmount(walletBalanceState?.data);
+    }
+  }, [walletBalanceState]);
+
   return (
     <SafeAreaView className="w-full h-full">
       <VStack className="w-full h-full flex-1 bg-white px-8">
@@ -65,8 +77,13 @@ export const WalletScreen = () => {
           <Text className="text-white text-lg font-medium">
             Available balance
           </Text>
+
           <Heading size="3xl" className="text-white font-semibold py-3">
-            ₹ 1092.09
+            {walletBalanceState?.isLoading ? (
+              <ActivityIndicator color={"white"} />
+            ) : (
+              `₹ ${amount}`
+            )}
           </Heading>
           <Divider className="bg-white mt-4" />
           <Text className="text-center text-white text-sm font-normal pt-1 w-3/4">

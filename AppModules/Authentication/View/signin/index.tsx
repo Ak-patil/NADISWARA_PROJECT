@@ -89,7 +89,10 @@ export const LoginWithLeftBackground = ({ navigation }) => {
   return (
     <>
       <VStack className="items-center" space="xs">
-        <Heading className="text-[#0f0f0f] font-extrabold" size="2xl">
+        <Heading
+          className="text-[#0f0f0f] font-extrabold font-ClashBold"
+          size="2xl"
+        >
           Login
         </Heading>
         <Text size="md" className="text-center text-[#848484]">
