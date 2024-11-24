@@ -31,6 +31,13 @@ const initialState = {
     data: {},
     message: "",
   },
+  walletTransactionsState: {
+    isLoading: false,
+    isError: false,
+    isSuccess: false,
+    data: {},
+    message: "",
+  },
 };
 
 const getProfileRequest = (state, action) => {
@@ -173,6 +180,41 @@ const getBalanceError = (state, action) => {
   });
 };
 
+const getWalletTransactionsRequest = (state, action) => {
+  return update(state, {
+    walletTransactionsState: {
+      isLoading: { $set: true },
+      isError: { $set: false },
+      isSuccess: { $set: true },
+      message: { $set: "" },
+      data: { $set: action.payload },
+    },
+  });
+};
+
+const getWalletTransactionsSuccess = (state, action) => {
+  return update(state, {
+    walletTransactionsState: {
+      isLoading: { $set: false },
+      isError: { $set: false },
+      isSuccess: { $set: true },
+      message: { $set: "" },
+      data: { $set: action.payload },
+    },
+  });
+};
+
+const getWalletTransactionsError = (state, action) => {
+  return update(state, {
+    walletTransactionsState: {
+      isLoading: { $set: false },
+      isError: { $set: true },
+      isSuccess: { $set: false },
+      message: { $set: action.payload.message },
+    },
+  });
+};
+
 export default handleActions(
   {
     [Myprofileactionconst.GET_PROFILE_REQUEST]: getProfileRequest,
@@ -187,6 +229,12 @@ export default handleActions(
     [Myprofileactionconst.GET_BALANCE_REQUEST]: getBalanceRequest,
     [Myprofileactionconst.GET_BALANCE_SUCCESS]: getBalanceSuccess,
     [Myprofileactionconst.GET_BALANCE_ERROR]: getBalanceError,
+    [Myprofileactionconst.GET_WALLET_TRANSACTION_REQUEST]:
+      getWalletTransactionsRequest,
+    [Myprofileactionconst.GET_WALLET_TRANSACTION_SUCCESS]:
+      getWalletTransactionsSuccess,
+    [Myprofileactionconst.GET_WALLET_TRANSACTION_ERROR]:
+      getWalletTransactionsError,
   },
   initialState
 );

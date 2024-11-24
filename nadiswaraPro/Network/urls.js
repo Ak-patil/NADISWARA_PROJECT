@@ -10,3 +10,4 @@ export const patientListEndpoint = `${BASE_URL}/patient_profile/profile/`;
 export const addBalanceOrderCreationEndpoint = `${BASE_URL}/pulse_payments/payment/create-order/`;
 export const paymentVerificationEndpoint = `${BASE_URL}/pulse_payments/payment/create-order/`;
 export const getWalletBalanceEndpoint = `${BASE_URL}/pulse_payments/payment/balance/`;
+export const getWalletTransactionsEndpoint = `${BASE_URL}/pulse_payments/payment/history/`;

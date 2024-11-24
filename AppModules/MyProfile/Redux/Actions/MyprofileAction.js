@@ -40,3 +40,13 @@ export const getBalanceSuccess = createAction(
 export const getBalanceError = createAction(
   Myprofileactionconst.GET_BALANCE_ERROR
 );
+
+export const getWalletTransactionsRequest = createAction(
+  Myprofileactionconst.GET_WALLET_TRANSACTION_REQUEST
+);
+export const getWalletTransactionsSuccess = createAction(
+  Myprofileactionconst.GET_WALLET_TRANSACTION_SUCCESS
+);
+export const getWalletTransactionsError = createAction(
+  Myprofileactionconst.GET_WALLET_TRANSACTION_ERROR
+);

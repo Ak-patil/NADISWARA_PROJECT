@@ -6,3 +6,5 @@ export const addBalanceSelector = (state) =>
   state.myprofilestate.addBalanceState;
 export const getBalanceSelector = (state) =>
   state.myprofilestate.getBalanceState;
+export const walletTransactionsSelector = (state) =>
+  state.myprofilestate.walletTransactionsState;

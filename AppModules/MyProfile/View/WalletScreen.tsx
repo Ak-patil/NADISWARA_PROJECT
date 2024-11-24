@@ -1,4 +1,8 @@
-import { getBalanceSelector } from "@/AppModules/MyProfile/Redux/Reducer/MyprofileSelector";
+import {
+  getBalanceSelector,
+  walletTransactionsSelector,
+} from "@/AppModules/MyProfile/Redux/Reducer/MyprofileSelector";
+import { getFormatedDateTime } from "@/BaseModule/Utils/helpers";
 import {
   Button,
   ButtonText,
@@ -13,61 +17,58 @@ import { Box } from "@/components/ui/box";
 import { Divider } from "@/components/ui/divider";
 import { SafeAreaView } from "@/components/ui/safe-area-view";
 import { handleNavigation } from "@/nadiswaraPro/Navigation/NaviagationHelper";
-import { cn } from "@gluestack-ui/nativewind-utils/cn";
+import { FlashList } from "@shopify/flash-list";
 import { IndianRupeeIcon } from "lucide-react-native";
 import React, { useEffect, useState } from "react";
-import { ActivityIndicator, ScrollView } from "react-native";
-import { useSelector } from "react-redux";
-
-const transactions = [
-  {
-    name: "John Doe",
-    date: "10 oct 2024",
-    relation: "Father",
-    age: -100,
-    gender: "Male",
-    numberOfRecords: 12,
-    avatar: "https://example.com/avatars/john_doe.jpg",
-  },
-  {
-    name: "Jane Smith",
-    date: "05 oct 2024",
-    relation: "Mother",
-    age: -200,
-    gender: "Female",
-    numberOfRecords: 18,
-    avatar: "https://example.com/avatars/jane_smith.jpg",
-  },
-  {
-    name: "Emily Johnson",
-    date: "10 nov 2024",
-    relation: "Daughter",
-    age: 200,
-    gender: "Female",
-    numberOfRecords: 5,
-    avatar: "https://example.com/avatars/emily_johnson.jpg",
-  },
-  {
-    name: "Michael Brown",
-    date: "10 dec 2024",
-    relation: "Son",
-    age: 300,
-    gender: "Male",
-    numberOfRecords: 7,
-    avatar: "https://example.com/avatars/michael_brown.jpg",
-  },
-];
+import { ActivityIndicator } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import { getWalletTransactionsRequest } from "../Redux/Actions/MyprofileAction";
 
 export const WalletScreen = () => {
-  const [amount, setAmount] = useState();
+  const [amount, setAmount] = useState<number | undefined>();
+  const [filteredEventData, setFilteredEventData] = useState<any[]>([]);
+  const dispatch = useDispatch();
 
-  const walletBalanceState = useSelector((state) => getBalanceSelector(state));
+  useEffect(() => {
+    dispatch(getWalletTransactionsRequest());
+  }, [dispatch]);
+
+  const walletTransactionData = useSelector((state: any) =>
+    walletTransactionsSelector(state)
+  );
+
+  useEffect(() => {
+    if (walletTransactionData?.isSuccess) {
+      setFilteredEventData(walletTransactionData?.data);
+    }
+  }, [walletTransactionData]);
+
+  const walletBalanceState = useSelector((state: any) =>
+    getBalanceSelector(state)
+  );
 
   useEffect(() => {
     if (walletBalanceState?.isSuccess) {
       setAmount(walletBalanceState?.data);
     }
   }, [walletBalanceState]);
+
+  const renderTransactionItem = ({ item }: { item: any }) => (
+    <HStack space="2xl" className="justify-between items-center w-full py-3">
+      <HStack className="items-center" space="md">
+        <Avatar size="md" className="bg-[#e9e6fa]">
+          <Icon as={IndianRupeeIcon} size="lg" className="color-[#6a1a57]" />
+        </Avatar>
+        <VStack>
+          <Heading size="lg">{item?.description}</Heading>
+          <Text size="md" className="text-[#848484] file:font-normal">
+            {getFormatedDateTime(item?.purchased_at)}
+          </Text>
+        </VStack>
+      </HStack>
+      <Text className="color-[#6a1a57]">{item?.amount}</Text>
+    </HStack>
+  );
 
   return (
     <SafeAreaView className="w-full h-full">
@@ -92,62 +93,19 @@ export const WalletScreen = () => {
         </Box>
 
         {/* Transactions List */}
-        <ScrollView className="flex-1 mt-6">
-          <VStack className="self-start">
-            <Heading size="xl" className="font-semibold text-black">
-              Previous transactions
-            </Heading>
-            <VStack className="py-2 rounded-xl justify-between items-center">
-              {transactions.map((item, index) => (
-                <React.Fragment key={index}>
-                  <HStack
-                    space="2xl"
-                    className="justify-between items-center w-full py-3"
-                  >
-                    <HStack className="items-center" space="md">
-                      <Avatar
-                        size="md"
-                        className={cn(
-                          { "bg-[#fae6e6]": item.age > 0 },
-                          { "bg-[#e9e6fa]": item.age < 0 }
-                        )}
-                      >
-                        <Icon
-                          as={IndianRupeeIcon}
-                          size="lg"
-                          className={cn(
-                            { "color-[#d32121]": item.age > 0 },
-                            { "color-[#6a1a57]": item.age < 0 }
-                          )}
-                        />
-                      </Avatar>
-                      <VStack>
-                        <Heading size="lg">{item.name}</Heading>
-                        <Text
-                          size="md"
-                          className="text-[#848484] file:font-normal"
-                        >
-                          {item.date}
-                        </Text>
-                      </VStack>
-                    </HStack>
-                    <Text
-                      className={cn(
-                        { "color-[#d32121]": item.age > 0 },
-                        { "color-[#6a1a57]": item.age < 0 }
-                      )}
-                    >
-                      {item.age}
-                    </Text>
-                  </HStack>
-                  {transactions.length - 1 !== index && (
-                    <Divider className="my-1" />
-                  )}
-                </React.Fragment>
-              ))}
-            </VStack>
-          </VStack>
-        </ScrollView>
+        <VStack className="self-start flex-1 mt-6 w-full">
+          <Heading size="xl" className="font-semibold text-black mb-4">
+            Previous transactions
+          </Heading>
+          <FlashList
+            data={filteredEventData}
+            renderItem={renderTransactionItem}
+            keyExtractor={(item, index) => `transaction-${index}`}
+            estimatedItemSize={80} // Adjust based on your item height
+            ItemSeparatorComponent={() => <Divider className="my-1" />}
+            showsVerticalScrollIndicator={false}
+          />
+        </VStack>
 
         {/* Add Button */}
         <VStack className="pb-4 bg-white">

@@ -94,6 +94,38 @@ function* getWalletBalance() {
   }
 }
 
+function* getWalletTransactions() {
+  try {
+    const response = yield apiCall(
+      MyprofileNetwork.getWalletTransactionsRequestApiCall
+    );
+    const walletTransactions = yield response;
+    if (walletTransactions) {
+      if (
+        walletTransactions &&
+        walletTransactions?.data?.status === "success" &&
+        walletTransactions?.status === 200
+      ) {
+        yield put(
+          MyprofileAction.getWalletTransactionsSuccess(
+            walletTransactions?.data?.data?.transactions
+          )
+        );
+      } else {
+        yield put(
+          MyprofileAction.getWalletTransactionsError({
+            message: walletTransactions?.data?.message,
+          })
+        );
+      }
+    }
+  } catch (e) {
+    yield put(
+      MyprofileAction.getWalletTransactionsError({ message: "Network Error" })
+    );
+  }
+}
+
 function* addBalancerequest(action) {
   const { amount } = action.payload;
 
@@ -183,6 +215,10 @@ function* MyprofileSaga() {
     takeLeading(MyprofileAction.updateProfileRequest, updateProfileRequest),
     takeLeading(MyprofileAction.addBalanceRequest, addBalancerequest),
     takeLeading(MyprofileAction.getBalanceRequest, getWalletBalance),
+    takeLeading(
+      MyprofileAction.getWalletTransactionsRequest,
+      getWalletTransactions
+    ),
   ]);
 }
 

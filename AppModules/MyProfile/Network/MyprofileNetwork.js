@@ -7,6 +7,7 @@ import {
   UpdateprofiledetailsEndpoint,
   addBalanceOrderCreationEndpoint,
   getWalletBalanceEndpoint,
+  getWalletTransactionsEndpoint,
   paymentVerificaitonEndpoint,
 } from "../../../nadiswaraPro/Network/urls";
 
@@ -64,6 +65,16 @@ export const MyprofileNetwork = {
       },
     },
     url: getWalletBalanceEndpoint,
+    restAPIType: REST_API_TYPE.BASIC,
+  }),
+  getWalletTransactionsRequestApiCall: () => ({
+    method: NETWORK_METHOD.GET,
+    config: {
+      headers: {
+        "content-type": "application/json",
+      },
+    },
+    url: getWalletTransactionsEndpoint,
     restAPIType: REST_API_TYPE.BASIC,
   }),
 };
