@@ -33,7 +33,7 @@ module.exports = {
           800: "rgb(var(--color-primary-800)/<alpha-value>)",
           900: "rgb(var(--color-primary-900)/<alpha-value>)",
           950: "rgb(var(--color-primary-950)/<alpha-value>)",
-          prime: "#6a1a57",
+          prime: "#6A1B58",
         },
         secondary: {
           0: "rgb(var(--color-secondary-0)/<alpha-value>)",
@@ -48,6 +48,7 @@ module.exports = {
           800: "rgb(var(--color-secondary-800)/<alpha-value>)",
           900: "rgb(var(--color-secondary-900)/<alpha-value>)",
           950: "rgb(var(--color-secondary-950)/<alpha-value>)",
+          second: "#62236B",
         },
         tertiary: {
           50: "rgb(var(--color-tertiary-50)/<alpha-value>)",
@@ -103,6 +104,7 @@ module.exports = {
           800: "rgb(var(--color-warning-800)/<alpha-value>)",
           900: "rgb(var(--color-warning-900)/<alpha-value>)",
           950: "rgb(var(--color-warning-950)/<alpha-value>)",
+          warning: "#C21F1F",
         },
         info: {
           0: "rgb(var(--color-info-0)/<alpha-value>)",
@@ -163,7 +165,7 @@ module.exports = {
           900: "rgb(var(--color-background-900)/<alpha-value>)",
           950: "rgb(var(--color-background-950)/<alpha-value>)",
           error: "rgb(var(--color-background-error)/<alpha-value>)",
-          warning: "rgb(var(--color-background-warning)/<alpha-value>)",
+          warning: "#FAE6E6",
           muted: "rgb(var(--color-background-muted)/<alpha-value>)",
           success: "rgb(var(--color-background-success)/<alpha-value>)",
           info: "rgb(var(--color-background-info)/<alpha-value>)",
@@ -177,6 +179,17 @@ module.exports = {
           primary: "rgb(var(--color-indicator-primary)/<alpha-value>)",
           info: "rgb(var(--color-indicator-info)/<alpha-value>)",
           error: "rgb(var(--color-indicator-error)/<alpha-value>)",
+        },
+        text: {
+          text1: "#0F0F0F",
+          text2: "#848484",
+        },
+        icon: {
+          iconColor: "#E9E6FA",
+        },
+        divider: {
+          divderLineCards: "#F7F7F7",
+          divderLine: "#EDEDED",
         },
       },
       fontFamily: {

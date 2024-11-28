@@ -30,7 +30,7 @@ const EnterAmountComponent: React.FC<EnterAmountComponentProps> = ({
 
   return (
     <VStack space="lg" className="py-2">
-      <Text size="lg" className="font-semibold">
+      <Text size="lg" className="font-ClashSemiBold">
         Enter Amount
       </Text>
       <TextInput
@@ -54,9 +54,12 @@ const EnterAmountComponent: React.FC<EnterAmountComponentProps> = ({
             key={value}
             variant="outline"
             size="md"
+            className="color-primary-prime"
             onPress={() => incrementAmount(value)}
           >
-            <ButtonText>+{value}</ButtonText>
+            <ButtonText className="text-primary-prime font-ClashMedium">
+              +{value}
+            </ButtonText>
           </Button>
         ))}
       </HStack>

@@ -7,11 +7,12 @@ import {
   FormControlLabelText,
 } from "@/components/ui/form-control";
 import { Input, InputField } from "@/components/ui/input";
+import { Spinner } from "@/components/ui/spinner";
 import { VStack } from "@/components/ui/vstack";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { ActivityIndicator, Keyboard } from "react-native";
+import { Keyboard } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { z } from "zod";
 import { verifyOtpEmailRequest } from "../../Redux/Actions/AuthAction";
@@ -69,7 +70,7 @@ const VerifyOtpEmailScreen = () => {
           className="w-full"
         >
           <FormControlLabel>
-            <FormControlLabelText size="lg">
+            <FormControlLabelText size="lg" className="font-ClashMedium">
               Email or phone number
             </FormControlLabelText>
           </FormControlLabel>
@@ -90,7 +91,7 @@ const VerifyOtpEmailScreen = () => {
             render={({ field: { onChange, onBlur, value } }) => (
               <Input size="lg">
                 <InputField
-                  className="text-md"
+                  className="text-md font-ClashRegular"
                   placeholder="Enter email or phone number"
                   value={value}
                   onChangeText={onChange}
@@ -118,9 +119,9 @@ const VerifyOtpEmailScreen = () => {
           onPress={handleSubmit(onSubmit)}
         >
           {verifyEmailState?.isLoading ? (
-            <ActivityIndicator size="small" color="#ffffff" />
+            <Spinner size={"small"} className="color-white" />
           ) : (
-            <ButtonText className="font-medium">Continue</ButtonText>
+            <ButtonText className="font-ClashMedium">Continue</ButtonText>
           )}
         </Button>
       </VStack>

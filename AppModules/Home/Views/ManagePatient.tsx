@@ -43,12 +43,17 @@ const renderPatientItem = ({ item }: { item: Patient }) => (
     </Avatar>
 
     <VStack>
-      <Heading size="lg">{item.name}</Heading>
-      <Text size="md" className="text-[#848484] font-normal">
+      <Heading size="lg" className="font-ClashMedium text-text-text1">
+        {item.name}
+      </Heading>
+      <Text size="md" className="text-text-text2 font-ClashRegular">
         {item.age}, {item.gender}
       </Text>
       <Pressable>
-        <Text size="md" className="font-medium text-primary-prime underline">
+        <Text
+          size="md"
+          className="font-ClashMedium text-primary-prime underline"
+        >
           {item.family_member} Record{item.family_member > 1 ? "s" : ""}
         </Text>
       </Pressable>
@@ -75,7 +80,7 @@ const ManagePatient = ({ navigation }) => {
 
   const renderEmptyComponent = () => (
     <VStack className="items-center justify-center mt-8">
-      <Text size="lg" className="text-[#848484] font-medium">
+      <Text size="lg" className="text-text-text2 font-ClashMedium">
         No patients available. Please add a new patient.
       </Text>
     </VStack>
@@ -84,7 +89,7 @@ const ManagePatient = ({ navigation }) => {
   return (
     <VStack className="w-full flex-1 bg-white px-[20px] pt-20">
       <HStack className="justify-between mb-4 items-baseline">
-        <Text size="xl" className="font-bold">
+        <Text size="xl" className="font-ClashMedium text-text-text1">
           All Patients
         </Text>
         <Button
@@ -94,7 +99,10 @@ const ManagePatient = ({ navigation }) => {
           className="justify-end"
           onPress={() => navigation.navigate("AddPatient")}
         >
-          <ButtonText size="xl" className="font-bold color-primary-prime">
+          <ButtonText
+            size="xl"
+            className="font-ClashMedium color-primary-prime"
+          >
             + Add New
           </ButtonText>
         </Button>
@@ -105,7 +113,7 @@ const ManagePatient = ({ navigation }) => {
       {patientListData?.isLoading ? (
         <VStack className="flex-1 justify-center items-center">
           <ActivityIndicator size="large" color="#562672" />
-          <Text size="md" className="text-gray-600 mt-4">
+          <Text size="md" className="text-gray-600 mt-4 font-ClashMedium">
             Loading patients...
           </Text>
         </VStack>

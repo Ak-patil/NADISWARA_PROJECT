@@ -11,7 +11,7 @@ const FetchReport = () => {
         height={300}
         containerStyle={{ backgroundColor: "#ffffff" }}
       />
-      <Text size="2xl" className="font-bold">
+      <Text size="2xl" className="font-ClashMedium text-text-text1">
         Report fetched successfully
       </Text>
       <Button
@@ -22,8 +22,8 @@ const FetchReport = () => {
         onPress={() => resetStack("appstack")}
       >
         <ButtonText
-          size="xl"
-          className="font-extrabold underline text-primary-prime group-hover/link:text-primary-600"
+          size="lg"
+          className="font-ClashMedium underline text-primary-prime group-hover/link:text-primary-600"
         >
           View Report
         </ButtonText>

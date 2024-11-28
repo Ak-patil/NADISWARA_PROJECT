@@ -19,6 +19,7 @@ import {
   SelectPortal,
   SelectTrigger,
 } from "@/components/ui/select";
+import { Spinner } from "@/components/ui/spinner";
 import { Text } from "@/components/ui/text";
 import { VStack } from "@/components/ui/vstack";
 import { handleNavigation } from "@/nadiswaraPro/Navigation/NaviagationHelper";
@@ -26,7 +27,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { ChevronDownIcon } from "lucide-react-native";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { ActivityIndicator, Keyboard } from "react-native";
+import { Keyboard } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { z } from "zod";
 import { loginViaEmailStateSelector } from "../../Redux/Reducer/AuthSelector";
@@ -89,10 +90,13 @@ export const LoginViaPhoneComponent = ({ navigation }) => {
   return (
     <>
       <VStack className="items-center" space="xs">
-        <Heading className="text-[#0f0f0f] font-extrabold" size="2xl">
+        <Heading className="text-text-text1 font-ClashSemiBold" size="xl">
           Login via OTP
         </Heading>
-        <Text size="md" className="text-center text-[#848484]  font-normal">
+        <Text
+          size="md"
+          className="text-center text-text-text2 font-ClashRegular"
+        >
           Login to your existing account using OTP
         </Text>
       </VStack>
@@ -100,7 +104,7 @@ export const LoginViaPhoneComponent = ({ navigation }) => {
         <VStack space="xl" className="w-full py-8">
           <FormControl isInvalid={!!errors.phoneNumber}>
             <FormControlLabel className="mb-2">
-              <FormControlLabelText size="lg">
+              <FormControlLabelText size="lg" className="font-ClashSemiBold">
                 Phone number
               </FormControlLabelText>
             </FormControlLabel>
@@ -121,7 +125,10 @@ export const LoginViaPhoneComponent = ({ navigation }) => {
                 <HStack className="gap-1">
                   <Select className="w-[24%]">
                     <SelectTrigger variant="outline" size="lg">
-                      <SelectInput placeholder="+91" />
+                      <SelectInput
+                        placeholder="+91"
+                        className="font-ClashRegular"
+                      />
                       <SelectIcon className="mr-1" as={ChevronDownIcon} />
                     </SelectTrigger>
                     <SelectPortal>
@@ -137,6 +144,7 @@ export const LoginViaPhoneComponent = ({ navigation }) => {
                   </Select>
                   <Input size="lg" className="flex-1">
                     <InputField
+                      className="text-md font-ClashRegular"
                       placeholder="999*******"
                       type="text"
                       value={value}
@@ -151,7 +159,7 @@ export const LoginViaPhoneComponent = ({ navigation }) => {
               )}
             />
             {errors.phoneNumber && (
-              <FormControlLabelText className="text-red-400">
+              <FormControlLabelText className="text-red-400 font-ClashRegular">
                 {errors.phoneNumber.message}
               </FormControlLabelText>
             )}
@@ -166,31 +174,35 @@ export const LoginViaPhoneComponent = ({ navigation }) => {
             onPress={handleSubmit(onSubmit)}
           >
             {loginViaEmailState?.isLoading ? (
-              <ActivityIndicator size="small" color="#ffffff" />
+              <Spinner size="small" className="color-white" />
             ) : (
-              <ButtonText className="font-medium" children="Send OTP" />
+              <ButtonText
+                size="lg"
+                className="font-ClashMedium"
+                children="Send OTP"
+              />
             )}
           </Button>
           <Button
-            size="xl"
+            size="lg"
             variant="outline"
             action="secondary"
             className="w-full gap-1"
             onPress={() => handleNavigation("signin")}
           >
-            <ButtonText className="font-medium color-primary-prime">
+            <ButtonText className="font-ClashMedium color-primary-prime">
               Login with password
             </ButtonText>
           </Button>
           <Button
-            size="xl"
+            size="lg"
             variant="outline"
             action="secondary"
             className="w-full gap-1"
             onPress={() => {}}
           >
             <ButtonIcon as={GoogleIcon} />
-            <ButtonText className="font-medium">
+            <ButtonText size="lg" className="font-ClashMedium">
               Continue with Google
             </ButtonText>
           </Button>
@@ -204,7 +216,7 @@ export const LoginViaPhoneComponent = ({ navigation }) => {
             className="justify-end"
             onPress={() => navigation.navigate("signup")}
           >
-            <ButtonText className="font-extrabold text-lg text-primary-prime">
+            <ButtonText className="font-ClashMedium text-lg text-primary-prime">
               Sign up
             </ButtonText>
           </Button>

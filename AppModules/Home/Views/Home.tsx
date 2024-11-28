@@ -17,16 +17,16 @@ const Home = ({ navigation }) => {
             <Image
               source={require("./.././../../assets/logo_home.png")}
               alt="Logo"
-              className="w-32 h-14"
+              className="w-36 h-16"
               resizeMode="contain" // Ensures the image is scaled correctly
             />
             <Icon as={Bell} className="color-primary-prime  h-14" size="xl" />
           </HStack>
           <VStack className="px-6 top-[3]">
-            <Heading size="lg" className="text-black">
+            <Heading size="xl" className="text-black font-ClashMedium">
               Analyse Your Health
             </Heading>
-            <Text className="text-[#848484]" size="sm">
+            <Text className="text-text-text2 font-ClashRegular" size="md">
               Understand your health better with simple steps.
             </Text>
           </VStack>
@@ -39,10 +39,13 @@ const Home = ({ navigation }) => {
                 className="items-start justify-center pl-4"
                 style={{ width: "60%" }}
               >
-                <Text size="xl" className="text-white font-semibold">
+                <Text size="lg" className="text-white font-ClashMedium">
                   Add new patient
                 </Text>
-                <Text className="text-white text-md font-normal">
+                <Text
+                  size="md"
+                  className="text-white text-md font-ClashRegular"
+                >
                   Add a new patient with just a few simple details.
                 </Text>
                 <Image
@@ -77,10 +80,10 @@ const Home = ({ navigation }) => {
                 className="items-start justify-center pl-4"
                 style={{ width: "60%" }}
               >
-                <Text size="xl" className="text-white font-semibold">
+                <Text size="lg" className="text-white font-ClashMedium">
                   Go sensor free
                 </Text>
-                <Text className="text-white text-md font-normal">
+                <Text className="text-white text-md font-ClashRegular">
                   Analyze your health with a tongue image.
                 </Text>
                 <Image

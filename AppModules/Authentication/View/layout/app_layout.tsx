@@ -1,4 +1,4 @@
-import { Heading, Image, Text, VStack } from "@/components/ui";
+import { Image, Text, VStack } from "@/components/ui";
 import { SafeAreaView } from "@/components/ui/safe-area-view";
 
 type AuthLayoutProps = {
@@ -21,10 +21,13 @@ export const AppLayout = ({ title, content, children }: AuthLayoutProps) => {
           resizeMode="contain"
         />
         <VStack className="items-center py-8">
-          <Heading className="text-[#0f0f0f] font-medium" size="xl">
+          <Text className="text-text-text1 font-ClashMedium" size="2xl">
             {title}
-          </Heading>
-          <Text size="md" className="text-center text-[#848484]  font-normal">
+          </Text>
+          <Text
+            size="md"
+            className="text-center text-text-text2  font-ClashRegular"
+          >
             {content}
           </Text>
         </VStack>

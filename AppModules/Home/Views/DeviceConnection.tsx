@@ -12,11 +12,11 @@ const DeviceConnection = () => {
         height={300}
         containerStyle={{ backgroundColor: "#ffffff" }}
       />
-      <Heading className="text-xl font-medium pt-4">
+      <Heading className="text-xl font-ClashMedium pt-4">
         Connecting to sensor...
       </Heading>
       <Pressable onPress={() => handleNavigation("AnalysePulse")}>
-        <Text className="text-base color-primary-prime font-normal">
+        <Text className="text-base color-primary-prime font-ClashRegular">
           1 Device found
         </Text>
       </Pressable>

@@ -6,14 +6,10 @@ import {
   FormControlErrorText,
 } from "@/components/ui/form-control";
 import { Input, InputField } from "@/components/ui/input";
+import { Spinner } from "@/components/ui/spinner";
 import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
-import {
-  ActivityIndicator,
-  KeyboardAvoidingView,
-  Platform,
-  ScrollView,
-} from "react-native";
+import { KeyboardAvoidingView, Platform, ScrollView } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import TimerCount from "../../../../BaseModule/Components/TimerCount";
 import { verifyOtpRequest } from "../../Redux/Actions/AuthAction";
@@ -92,7 +88,7 @@ const SignupScreenComponent: React.FC<SignupScreenComponentProps> = () => {
                 ))}
               </HStack>
               <FormControlError>
-                <FormControlErrorText>
+                <FormControlErrorText className="font-ClashRegular">
                   {!isOtpFilled && "Please fill in all OTP fields"}
                 </FormControlErrorText>
               </FormControlError>
@@ -110,9 +106,13 @@ const SignupScreenComponent: React.FC<SignupScreenComponentProps> = () => {
               onPress={handleSubmit(onSubmit)}
             >
               {verifyOtpViaEmailState?.isLoading ? (
-                <ActivityIndicator size="small" color="#ffffff" />
+                <Spinner size="small" className="color-white" />
               ) : (
-                <ButtonText className="font-medium" children={"Continue"} />
+                <ButtonText
+                  size="lg"
+                  className="font-ClashMedium"
+                  children={"Continue"}
+                />
               )}
             </Button>
           </VStack>

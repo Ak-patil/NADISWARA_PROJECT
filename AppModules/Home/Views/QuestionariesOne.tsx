@@ -77,7 +77,7 @@ export const FormOne: React.FC = () => {
             space="2xl"
             className="w-full h-[198px] bg-white rounded-[20px] border border-[#ededed] p-6 justify-center"
           >
-            <Text className="text-[#0f0f0f] text-2xl font-medium">
+            <Text className="text-text-text1 text-2xl font-ClashMedium">
               What is the color of your urine most often?
             </Text>
             <Controller
@@ -106,7 +106,7 @@ export const FormOne: React.FC = () => {
                 </Slider>
               )}
             />
-            <Text size="lg" className="text-[#848484] font-medium">
+            <Text size="lg" className="text-text-text2 font-ClashMedium">
               Answer: {urineColors[Math.round(urineColor / 25)].label}
             </Text>
           </VStack>
@@ -116,7 +116,7 @@ export const FormOne: React.FC = () => {
             space="2xl"
             className="w-full h-[198px] bg-white rounded-[20px] border border-[#ededed] p-6 justify-center"
           >
-            <Text className="text-[#0f0f0f] text-2xl font-medium">
+            <Text className="text-text-text1 text-2xl font-ClashMedium">
               How many times do you urinate at night?
             </Text>
             <Controller
@@ -145,7 +145,7 @@ export const FormOne: React.FC = () => {
                 </Slider>
               )}
             />
-            <Text size="lg" className="text-[#848484] font-medium">
+            <Text size="lg" className="text-text-text2 font-ClashMedium">
               Answer: {watch("urinationTimes")} times
             </Text>
           </VStack>
@@ -155,7 +155,7 @@ export const FormOne: React.FC = () => {
             space="2xl"
             className="w-full h-[280px] bg-white rounded-[20px] border border-[#ededed] p-6 justify-center"
           >
-            <Text className="text-[#0f0f0f] text-2xl font-medium">
+            <Text className="text-text-text1 text-2xl font-ClashMedium">
               How would you describe your sleep pattern?
             </Text>
             <Controller
@@ -174,7 +174,7 @@ export const FormOne: React.FC = () => {
                       onPress={() => onChange(option.value)}
                     >
                       <Text
-                        className="text-center text-[#6a1a57] text-xl font-medium"
+                        className="text-center text-primary-prime text-xl font-ClashMedium"
                         style={
                           value === option.value && styles.optionTextSelected
                         }
@@ -191,7 +191,7 @@ export const FormOne: React.FC = () => {
           {/* Back Pain */}
 
           <VStack className="w-full h-1/5 bg-white rounded-[20px] border border-[#ededed] p-6">
-            <Text className="text-[#0f0f0f] text-2xl font-medium">
+            <Text className="text-text-text1 text-2xl font-ClashMedium">
               Do you experience back pain?
             </Text>
             <Controller
@@ -209,7 +209,7 @@ export const FormOne: React.FC = () => {
                               className="color-primary-prime"
                             />
                           </RadioIndicator>
-                          <RadioLabel className="text-[#0f0f0f] text-xl font-normal">
+                          <RadioLabel className="text-text-text1 text-xl font-ClashRegular">
                             {option}
                           </RadioLabel>
                         </Radio>
@@ -234,7 +234,7 @@ export const FormOne: React.FC = () => {
           className="w-full"
           onPress={handleSubmit(onSubmit)}
         >
-          <ButtonText className="font-medium">Continue</ButtonText>
+          <ButtonText className="font-ClashMedium">Continue</ButtonText>
         </Button>
       </VStack>
     </SafeAreaView>
@@ -255,7 +255,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   optionSelected: {
-    backgroundColor: "#6a1a57",
+    backgroundColor: "#6A1B58",
   },
 
   optionTextSelected: {

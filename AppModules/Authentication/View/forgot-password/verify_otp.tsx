@@ -9,16 +9,12 @@ import {
 } from "@/components/ui/form-control";
 import { EyeIcon, EyeOffIcon } from "@/components/ui/icon";
 import { Input, InputField, InputIcon, InputSlot } from "@/components/ui/input";
+import { Spinner } from "@/components/ui/spinner";
 import { useToast } from "@/components/ui/toast";
 import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useRef, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import {
-  ActivityIndicator,
-  KeyboardAvoidingView,
-  Platform,
-  ScrollView,
-} from "react-native";
+import { KeyboardAvoidingView, Platform, ScrollView } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { z } from "zod";
 import TimerCount from "../../../../BaseModule/Components/TimerCount";
@@ -137,7 +133,7 @@ const VerifyOtpScreen = ({ userEmail, isEmail }) => {
                     key={index}
                   >
                     <InputField
-                      className="text-lg font-semibold self-center"
+                      className="text-lg font-ClashSemiBold self-center"
                       onChangeText={(text) => handleOtpChange(text, index)}
                       value={value}
                       maxLength={1}
@@ -149,7 +145,7 @@ const VerifyOtpScreen = ({ userEmail, isEmail }) => {
                 ))}
               </HStack>
               <FormControlError>
-                <FormControlErrorText>
+                <FormControlErrorText className="font-ClashRegular">
                   {!isOtpFilled && "Please fill in all OTP fields"}
                 </FormControlErrorText>
               </FormControlError>
@@ -160,7 +156,9 @@ const VerifyOtpScreen = ({ userEmail, isEmail }) => {
 
             <FormControl isInvalid={!!errors.password}>
               <FormControlLabel>
-                <FormControlLabelText size="lg">Password</FormControlLabelText>
+                <FormControlLabelText size="lg" className="font-ClashMedium">
+                  Password
+                </FormControlLabelText>
               </FormControlLabel>
               <Controller
                 name="password"
@@ -169,7 +167,7 @@ const VerifyOtpScreen = ({ userEmail, isEmail }) => {
                 render={({ field: { onChange, onBlur, value } }) => (
                   <Input size="lg">
                     <InputField
-                      className="text-md"
+                      className="text-md font-ClashMedium"
                       placeholder="Password"
                       value={value}
                       onChangeText={onChange}
@@ -183,7 +181,7 @@ const VerifyOtpScreen = ({ userEmail, isEmail }) => {
                 )}
               />
               <FormControlError>
-                <FormControlErrorText>
+                <FormControlErrorText className="font-ClashMedium">
                   {errors.password?.message}
                 </FormControlErrorText>
               </FormControlError>
@@ -191,7 +189,7 @@ const VerifyOtpScreen = ({ userEmail, isEmail }) => {
 
             <FormControl isInvalid={!!errors.confirmpassword}>
               <FormControlLabel>
-                <FormControlLabelText size="lg">
+                <FormControlLabelText size="lg" className="font-ClashMedium">
                   Confirm Password
                 </FormControlLabelText>
               </FormControlLabel>
@@ -202,7 +200,7 @@ const VerifyOtpScreen = ({ userEmail, isEmail }) => {
                 render={({ field: { onChange, onBlur, value } }) => (
                   <Input size="lg">
                     <InputField
-                      className="text-md"
+                      className="text-md font-ClashMedium"
                       placeholder="Confirm Password"
                       value={value}
                       onChangeText={onChange}
@@ -234,9 +232,11 @@ const VerifyOtpScreen = ({ userEmail, isEmail }) => {
               onPress={handleSubmit(onSubmit)}
             >
               {resetPasswordState?.isLoading ? (
-                <ActivityIndicator size="small" color="#ffffff" />
+                <Spinner size="small" className="color-white" />
               ) : (
-                <ButtonText className="font-medium">Update Password</ButtonText>
+                <ButtonText className="font-ClashMedium">
+                  Update Password
+                </ButtonText>
               )}
             </Button>
           </VStack>
@@ -250,7 +250,7 @@ export const VerifyOtp = () => {
   return (
     <AppLayout
       title="Enter OTP & New Password"
-      content="A verification code has been sent to sidhar@gmail.com"
+      content={`A verification code has been sent to `}
     >
       <VerifyOtpScreen userEmail="example@mail.com" isEmail={true} />
     </AppLayout>

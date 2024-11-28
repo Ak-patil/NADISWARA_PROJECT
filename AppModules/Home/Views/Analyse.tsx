@@ -6,23 +6,17 @@ import { handleNavigation } from "@/nadiswaraPro/Navigation/NaviagationHelper";
 const AnalysePulse = () => {
   return (
     <VStack className="w-full flex-1 bg-white px-[20px] pt-8 justify-center items-center">
-      {/* <Heading className="text-xl font-medium">Analyse your pulse</Heading>
-
-      <Text className="text-base color-[#848484] font-normal">
-        Check your pulse for instant health insights
-      </Text> */}
-
       <LottieAnimation
         animationSource={require("../../../assets/lottie/pulse.json")}
         width={300}
         height={300}
         containerStyle={{ backgroundColor: "#ffffff" }}
       />
-      <Heading className="text-xl font-medium pt-4">
+      <Heading className="text-xl font-ClashMedium pt-4">
         Analysing your pulse...
       </Heading>
       <Pressable>
-        <Text className="text-center text-[#848484] text-base font-normal">
+        <Text className="text-center text-text-text2 text-base font-ClashRegular">
           This will take a few seconds, Please stay calm
         </Text>
       </Pressable>
@@ -43,7 +37,7 @@ const AnalysePulse = () => {
           className="w-full"
           onPress={() => handleNavigation("FetchReport")}
         >
-          <ButtonText className="font-medium" children={"Analyse"} />
+          <ButtonText className="font-ClashMedium" children={"Analyse"} />
         </Button>
       </VStack>
     </VStack>

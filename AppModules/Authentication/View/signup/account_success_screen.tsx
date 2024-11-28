@@ -28,7 +28,7 @@ const AccountSuccessComponent: React.FC = () => {
           className="w-full"
           onPress={() => handleNavigation("signin")}
         >
-          <ButtonText className="font-medium">Continue</ButtonText>
+          <ButtonText className="font-ClashMedium">Continue</ButtonText>
         </Button>
       </VStack>
     </VStack>

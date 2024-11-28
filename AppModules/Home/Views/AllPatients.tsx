@@ -65,7 +65,7 @@ const AllPatients = () => {
 
   const renderEmptyComponent = () => (
     <VStack className="items-center justify-center mt-8">
-      <Text size="lg" className="text-[#848484] font-medium">
+      <Text size="lg" className="text-text-text2 font-ClashMedium">
         No patients available. Please add a new patient.
       </Text>
     </VStack>
@@ -86,7 +86,10 @@ const AllPatients = () => {
         >
           <HStack className="items-start w-full flex-1 py-4" space="2xl">
             <Avatar size="md" className="bg-[#e6e6fa]">
-              <AvatarFallbackText size="md" className="text-primary-prime">
+              <AvatarFallbackText
+                size="md"
+                className="text-primary-prime font-ClashMedium"
+              >
                 {item.name}
               </AvatarFallbackText>
               <AvatarImage
@@ -96,10 +99,13 @@ const AllPatients = () => {
               />
             </Avatar>
             <VStack>
-              <Heading size="lg" className="font-bold color-primary-prime">
+              <Heading
+                size="lg"
+                className="font-ClashMedium color-primary-prime"
+              >
                 {item.name}
               </Heading>
-              <Text size="lg" className="font-[#848484]">
+              <Text size="lg" className="text-text-text2 font-ClashMedium">
                 {item.age}
                 {", "}
                 {item.gender}
@@ -118,6 +124,7 @@ const AllPatients = () => {
     <VStack className="w-full flex-1 bg-white px-[20px] pt-8">
       <Input size="xl" className="bg-white rounded-xl mb-4">
         <InputField
+          className="font-ClashMedium"
           placeholder="Search..."
           value={searchQuery}
           onChangeText={(text) => setSearchQuery(text)}
@@ -128,11 +135,11 @@ const AllPatients = () => {
       </Input>
 
       <HStack className="justify-between mb-4 items-baseline">
-        <Text size="xl" className="font-bold">
+        <Text size="xl" className="font-ClashMedium text-text-text1">
           Patients
         </Text>
         <Pressable onPress={() => handleNavigation("AddPatient")}>
-          <Text size="xl" className="font-bold color-primary-prime">
+          <Text size="xl" className="font-ClashMedium color-primary-prime">
             + Add New
           </Text>
         </Pressable>
@@ -145,7 +152,10 @@ const AllPatients = () => {
         {patientListData?.isLoading ? (
           <VStack className="flex-1 justify-center items-center">
             <ActivityIndicator size="large" color="#562672" />
-            <Text size="md" className="text-gray-600 mt-4 self-center">
+            <Text
+              size="md"
+              className="text-gray-600 mt-4 self-center font-ClashMedium"
+            >
               Loading patients...
             </Text>
           </VStack>

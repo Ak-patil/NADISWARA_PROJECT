@@ -15,7 +15,7 @@ export const AuthLayout = (props: AuthLayoutProps) => {
       >
         <LinearGradient
           className="flex-1 justify-center items-center"
-          colors={["#6a1a57", "#6a1a57", "#FFFFFF", "#FFFFFF"]}
+          colors={["#62236B", "#62236B", "#FFFFFF", "#FFFFFF"]}
           locations={[0, 0.55, 0.55, 1]}
         >
           <Image

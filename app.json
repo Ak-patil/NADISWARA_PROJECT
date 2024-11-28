@@ -9,7 +9,7 @@
     "splash": {
       "image": "./assets/nadiswara_logo.png",
       "resizeMode": "contain",
-      "backgroundColor": "#6a1a57"
+      "backgroundColor": "#6a1a58"
     },
     "ios": {
       "supportsTablet": true,
@@ -33,7 +33,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/app_icon_circle.png",
-        "backgroundColor": "#6a1a57"
+        "backgroundColor": "#6a1a58"
       },
       "package": "com.nadiswaraPro"
     },

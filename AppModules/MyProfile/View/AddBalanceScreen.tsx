@@ -9,8 +9,9 @@ import {
 import { Box } from "@/components/ui/box";
 import { SafeAreaView } from "@/components/ui/safe-area-view";
 import { ScrollView } from "@/components/ui/scroll-view";
+import { Spinner } from "@/components/ui/spinner";
 import React, { useState } from "react";
-import { ActivityIndicator, Keyboard } from "react-native";
+import { Keyboard } from "react-native";
 import { Toast } from "react-native-toast-notifications";
 import { useDispatch, useSelector } from "react-redux";
 import EnterAmountComponent from "../Components/EnterAmountComponent";
@@ -35,7 +36,7 @@ export const AddBalanceScreen = () => {
     <SafeAreaView className="w-full h-full">
       <LinearGradient
         className="flex-1"
-        colors={["#6a1a57", "#6a1a57", "#FFFFFF", "#FFFFFF"]}
+        colors={["#6A1B58", "#6A1B58", "#FFFFFF", "#FFFFFF"]}
         locations={[0, 0.3, 0.3, 1]}
       >
         <ScrollView
@@ -51,10 +52,10 @@ export const AddBalanceScreen = () => {
               <EnterAmountComponent onAmountChange={handleAmountChange} />
             </Card>
             <Box className="w-full h-[120px] bg-white rounded-xl border border-[#dedede] justify-center p-4 mt-24">
-              <Text className="text-[#848484] text-md py-2 font-normal">
+              <Text className="text-text-text2 text-md py-2 font-ClashRegular">
                 *Wallet balance can be used only for in app purchases
               </Text>
-              <Text className="text-[#848484] text-md py-2 font-normal">
+              <Text className="text-text-text2 text-md py-2 font-ClashRegular">
                 *Wallet balance cannot be transferred into bank account
               </Text>
             </Box>
@@ -91,9 +92,9 @@ export const AddBalanceScreen = () => {
             className="w-full"
           >
             {addBalalnceState?.isLoading ? (
-              <ActivityIndicator size="small" color="#ffffff" />
+              <Spinner size="small" className="color-white" />
             ) : (
-              <ButtonText className="font-medium" children="Add" />
+              <ButtonText className="font-ClashMedium" children="Add" />
             )}
           </Button>
         </VStack>

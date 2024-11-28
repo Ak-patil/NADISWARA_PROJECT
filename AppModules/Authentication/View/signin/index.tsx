@@ -89,13 +89,13 @@ export const LoginWithLeftBackground = ({ navigation }) => {
   return (
     <>
       <VStack className="items-center" space="xs">
-        <Heading
-          className="text-[#0f0f0f] font-extrabold font-ClashBold"
-          size="2xl"
-        >
+        <Heading className="text-black  font-ClashMedium" size="2xl">
           Login
         </Heading>
-        <Text size="md" className="text-center text-[#848484]">
+        <Text
+          size="md"
+          className="text-center text-text-text2 font-ClashRegular"
+        >
           Login to your existing account using your email and password
         </Text>
       </VStack>
@@ -106,7 +106,7 @@ export const LoginWithLeftBackground = ({ navigation }) => {
             className="w-full pt-2"
           >
             <FormControlLabel>
-              <FormControlLabelText size="lg">
+              <FormControlLabelText size="lg" className="font-ClashMedium">
                 Email or phone number
               </FormControlLabelText>
             </FormControlLabel>
@@ -127,7 +127,7 @@ export const LoginWithLeftBackground = ({ navigation }) => {
               render={({ field: { onChange, onBlur, value } }) => (
                 <Input size="lg">
                   <InputField
-                    className="text-md"
+                    className="text-md font-ClashRegular"
                     placeholder="Email or phone number"
                     value={value}
                     onChangeText={onChange}
@@ -151,7 +151,9 @@ export const LoginWithLeftBackground = ({ navigation }) => {
             className="w-full"
           >
             <FormControlLabel>
-              <FormControlLabelText size="lg">Password</FormControlLabelText>
+              <FormControlLabelText size="lg" className="font-ClashMedium">
+                Password
+              </FormControlLabelText>
             </FormControlLabel>
             <Controller
               defaultValue=""
@@ -170,7 +172,7 @@ export const LoginWithLeftBackground = ({ navigation }) => {
               render={({ field: { onChange, onBlur, value } }) => (
                 <Input size="lg">
                   <InputField
-                    className="text-md"
+                    className="text-md font-ClashRegular"
                     type={showPassword ? "text" : "password"}
                     placeholder="Enter password"
                     value={value}
@@ -216,7 +218,11 @@ export const LoginWithLeftBackground = ({ navigation }) => {
             {loginViaEmailState?.isLoading ? (
               <ActivityIndicator size="small" color="#ffffff" />
             ) : (
-              <ButtonText className="font-medium" children={"Log in"} />
+              <ButtonText
+                size="lg"
+                className="font-ClashMedium"
+                children={"Log in"}
+              />
             )}
           </Button>
           <Button
@@ -226,7 +232,10 @@ export const LoginWithLeftBackground = ({ navigation }) => {
             className="w-full gap-1"
             onPress={() => handleNavigation("LoginViaPhone")}
           >
-            <ButtonText className="font-medium color-primary-prime">
+            <ButtonText
+              size="lg"
+              className="font-ClashMedium color-primary-prime"
+            >
               Login via OTP
             </ButtonText>
           </Button>
@@ -238,13 +247,15 @@ export const LoginWithLeftBackground = ({ navigation }) => {
             onPress={() => handleNavigation("LoginViaPhone")}
           >
             <ButtonIcon as={GoogleIcon} />
-            <ButtonText className="font-medium">
+            <ButtonText size="lg" className="font-ClashMedium">
               Continue with Google
             </ButtonText>
           </Button>
         </VStack>
         <HStack className="justify-center items-center" space="sm">
-          <Text size="lg">Don't have an account?</Text>
+          <Text size="lg" className="font-ClashRegular">
+            Don't have an account?
+          </Text>
           <Button
             size="lg"
             variant="link"
@@ -252,7 +263,7 @@ export const LoginWithLeftBackground = ({ navigation }) => {
             className="justify-end"
             onPress={() => navigation.navigate("signup")}
           >
-            <ButtonText className="font-extrabold text-lg text-primary-prime">
+            <ButtonText className="font-ClashSemiBold text-lg text-primary-prime">
               Sign up
             </ButtonText>
           </Button>

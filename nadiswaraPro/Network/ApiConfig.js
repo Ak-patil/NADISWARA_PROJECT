@@ -11,7 +11,7 @@ export const BASE_API_CONFIG = {
 };
 
 const axiosInstance = axios.create({
-  baseURL: "https://basavaanveshana.com",
+  baseURL: "https://nadiswarapro-backend.online",
   timeout: BASE_API_CONFIG.requestTimeOut,
   // headers: { 'api-token': AppConfig.API_TOKEN }
 });

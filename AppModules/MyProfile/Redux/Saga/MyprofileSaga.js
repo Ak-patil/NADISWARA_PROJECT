@@ -188,6 +188,7 @@ function* addBalancerequest(action) {
         successColor: "green",
       });
       yield call(getWalletBalance);
+      yield call(getWalletTransactions);
       yield put(MyprofileAction.addBalanceSuccess(updatedVerifyRes?.data));
       handleNavigation("WalletScreen");
     } else {

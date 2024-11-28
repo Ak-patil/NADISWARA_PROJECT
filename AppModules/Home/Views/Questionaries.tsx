@@ -75,7 +75,7 @@ export const FormTwo: React.FC = () => {
       >
         <VStack className="flex-1 bg-white mt-4" space="xl">
           <VStack className="w-full h-[260px] bg-white rounded-[20px] border border-[#ededed] p-6">
-            <Text className="text-[#0f0f0f] text-2xl font-medium">
+            <Text className="text-text-text1 text-2xl font-ClashMedium">
               How would you describe your hunger levels?
             </Text>
             <Controller
@@ -98,7 +98,7 @@ export const FormTwo: React.FC = () => {
                               className="color-primary-prime"
                             />
                           </RadioIndicator>
-                          <RadioLabel className="text-[#0f0f0f] text-xl font-normal">
+                          <RadioLabel className="text-text-text1 text-xl font-ClashRegular">
                             {option}
                           </RadioLabel>
                         </Radio>
@@ -115,7 +115,7 @@ export const FormTwo: React.FC = () => {
 
           {/* Bowel Movements */}
           <VStack className="w-full h-[310px] bg-white rounded-[20px] border border-[#ededed] p-6">
-            <Text className="text-[#0f0f0f] text-2xl font-medium">
+            <Text className="text-text-text1 text-2xl font-ClashMedium">
               How would you describe your bowel movements?
             </Text>
             <Controller
@@ -139,7 +139,7 @@ export const FormTwo: React.FC = () => {
                               className="color-primary-prime"
                             />
                           </RadioIndicator>
-                          <RadioLabel className="text-[#0f0f0f] text-xl font-normal">
+                          <RadioLabel className="text-text-text1 text-xl font-ClashRegular">
                             {option}
                           </RadioLabel>
                         </Radio>
@@ -156,7 +156,7 @@ export const FormTwo: React.FC = () => {
 
           {/* Numbness */}
           <VStack className="w-full h-[190px] bg-white rounded-[20px] border border-[#ededed] p-6">
-            <Text className="text-[#0f0f0f] text-2xl font-medium">
+            <Text className="text-text-text1 text-2xl font-ClashMedium">
               Do you experience numbness?
             </Text>
             <Controller
@@ -178,7 +178,7 @@ export const FormTwo: React.FC = () => {
                               className="color-primary-prime"
                             />
                           </RadioIndicator>
-                          <RadioLabel className="text-[#0f0f0f] text-xl font-normal">
+                          <RadioLabel className="text-text-text1 text-xl font-ClashRegular">
                             {option}
                           </RadioLabel>
                         </Radio>
@@ -195,7 +195,7 @@ export const FormTwo: React.FC = () => {
 
           {/* Headaches */}
           <VStack className="w-full h-1/4 bg-white rounded-[20px] border border-[#ededed] p-6">
-            <Text className="text-[#0f0f0f] text-2xl font-medium">
+            <Text className="text-text-text1 text-2xl font-ClashMedium">
               Do you experience headaches?
             </Text>
             <Controller
@@ -229,7 +229,7 @@ export const FormTwo: React.FC = () => {
                                   className="color-primary-prime"
                                 />
                               </RadioIndicator>
-                              <RadioLabel className="text-[#0f0f0f] text-xl font-normal">
+                              <RadioLabel className="text-text-text1 text-xl font-ClashRegular">
                                 {option}
                               </RadioLabel>
                             </Radio>
@@ -297,7 +297,7 @@ export const FormTwo: React.FC = () => {
           className="w-full"
           onPress={handleSubmit(onSubmit)}
         >
-          <ButtonText className="font-medium">Continue</ButtonText>
+          <ButtonText className="font-ClashMedium">Continue</ButtonText>
         </Button>
       </VStack>
     </SafeAreaView>

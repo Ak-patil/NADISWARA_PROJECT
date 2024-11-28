@@ -1,6 +1,6 @@
 const Colors = {
   PRIMARY: {
-    PRIMARY_PURPLE: "#6a1a57",
+    PRIMARY_PURPLE: "#6A1B58",
     PRIMARY_QUEER_BLUE: "#8DACEB",
     PRIMARY_HUSKY: "#E1E9FA",
   },

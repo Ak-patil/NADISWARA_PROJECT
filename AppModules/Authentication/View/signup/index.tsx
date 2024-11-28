@@ -11,6 +11,7 @@ import { Heading } from "@/components/ui/heading";
 import { HStack } from "@/components/ui/hstack";
 import { EyeIcon, EyeOffIcon } from "@/components/ui/icon";
 import { Input, InputField, InputIcon, InputSlot } from "@/components/ui/input";
+import { Spinner } from "@/components/ui/spinner";
 import { Text } from "@/components/ui/text";
 import { Toast, ToastTitle, useToast } from "@/components/ui/toast";
 import { VStack } from "@/components/ui/vstack";
@@ -18,7 +19,7 @@ import { handleNavigation } from "@/nadiswaraPro/Navigation/NaviagationHelper";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { ActivityIndicator, Keyboard } from "react-native";
+import { Keyboard } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { z } from "zod";
 import { signupViaEmailRequest } from "../../Redux/Actions/AuthAction";
@@ -121,10 +122,13 @@ const SignUpWithLeftBackground = ({ navigation }) => {
   return (
     <VStack className="max-w-[440px] w-full" space="md">
       <VStack className="items-center" space="xs">
-        <Heading className="text-center" size="2xl">
+        <Heading className="text-center font-ClashMedium" size="xl">
           Sign up
         </Heading>
-        <Text size="md" className="text-center text-[#848484] font-normal">
+        <Text
+          size="md"
+          className="text-center text-text-text2 font-ClashMedium"
+        >
           Sign up and start using gluestack
         </Text>
       </VStack>
@@ -133,7 +137,7 @@ const SignUpWithLeftBackground = ({ navigation }) => {
         <VStack space="xl" className="w-full">
           <FormControl isInvalid={!!errors.email_or_phone}>
             <FormControlLabel>
-              <FormControlLabelText size="lg">
+              <FormControlLabelText size="lg" className="font-ClashMedium">
                 Email or phone number
               </FormControlLabelText>
             </FormControlLabel>
@@ -154,7 +158,7 @@ const SignUpWithLeftBackground = ({ navigation }) => {
               render={({ field: { onChange, onBlur, value } }) => (
                 <Input size="lg">
                   <InputField
-                    className="text-md"
+                    className="text-md font-ClashRegular"
                     placeholder="Email or phone number"
                     type="text"
                     value={value}
@@ -167,14 +171,14 @@ const SignUpWithLeftBackground = ({ navigation }) => {
               )}
             />
             <FormControlError>
-              <FormControlErrorText>
+              <FormControlErrorText className="font-ClashRegular">
                 {errors?.email_or_phone?.message}
               </FormControlErrorText>
             </FormControlError>
           </FormControl>
           <FormControl isInvalid={!!errors.password}>
             <FormControlLabel>
-              <FormControlLabelText size="lg">
+              <FormControlLabelText size="lg" className="font-ClashMedium">
                 New password
               </FormControlLabelText>
             </FormControlLabel>
@@ -197,7 +201,7 @@ const SignUpWithLeftBackground = ({ navigation }) => {
               render={({ field: { onChange, onBlur, value } }) => (
                 <Input size="lg">
                   <InputField
-                    className="text-md"
+                    className="text-md font-ClashRegular"
                     placeholder="New password"
                     value={value}
                     onChangeText={onChange}
@@ -213,14 +217,14 @@ const SignUpWithLeftBackground = ({ navigation }) => {
               )}
             />
             <FormControlError>
-              <FormControlErrorText>
+              <FormControlErrorText className="font-ClashRegular">
                 {errors?.password?.message}
               </FormControlErrorText>
             </FormControlError>
           </FormControl>
           <FormControl isInvalid={!!errors.confirmpassword}>
             <FormControlLabel>
-              <FormControlLabelText size="lg">
+              <FormControlLabelText size="lg" className="font-ClashMedium">
                 Confirm new password
               </FormControlLabelText>
             </FormControlLabel>
@@ -244,7 +248,7 @@ const SignUpWithLeftBackground = ({ navigation }) => {
                 <Input size="lg">
                   <InputField
                     placeholder="Confirm new password"
-                    className="text-md"
+                    className="text-md font-ClashRegular"
                     value={value}
                     onChangeText={onChange}
                     onBlur={onBlur}
@@ -262,7 +266,7 @@ const SignUpWithLeftBackground = ({ navigation }) => {
               )}
             />
             <FormControlError>
-              <FormControlErrorText>
+              <FormControlErrorText className="font-ClashRegular">
                 {errors?.confirmpassword?.message}
               </FormControlErrorText>
             </FormControlError>
@@ -278,9 +282,13 @@ const SignUpWithLeftBackground = ({ navigation }) => {
             onPress={handleSubmit(onSubmit)}
           >
             {signupViaEmailState?.isLoading ? (
-              <ActivityIndicator size="small" color="#ffffff" />
+              <Spinner size="small" className="color-white" />
             ) : (
-              <ButtonText className="font-medium" children={"Signup"} />
+              <ButtonText
+                size="lg"
+                className="font-ClashMedium"
+                children={"Signup"}
+              />
             )}
           </Button>
           <Button
@@ -290,7 +298,10 @@ const SignUpWithLeftBackground = ({ navigation }) => {
             className="w-full gap-1"
             onPress={() => handleNavigation("LoginViaPhone")}
           >
-            <ButtonText className="font-medium color-primary-prime">
+            <ButtonText
+              size="lg"
+              className="font-ClashMedium color-primary-prime"
+            >
               Login via OTP
             </ButtonText>
           </Button>
@@ -302,13 +313,15 @@ const SignUpWithLeftBackground = ({ navigation }) => {
             onPress={() => {}}
           >
             <ButtonIcon as={GoogleIcon} />
-            <ButtonText className="font-medium">
+            <ButtonText size="lg" className="font-ClashMedium">
               Continue with Google
             </ButtonText>
           </Button>
         </VStack>
         <HStack className="justify-center items-center" space="sm">
-          <Text size="lg">Already have an account?</Text>
+          <Text size="lg" className="font-ClashMedium">
+            Already have an account?
+          </Text>
           <Button
             size="lg"
             variant="link"
@@ -316,7 +329,7 @@ const SignUpWithLeftBackground = ({ navigation }) => {
             className="justify-end"
             onPress={() => navigation.navigate("signin")}
           >
-            <ButtonText className="font-extrabold text-lg text-primary-prime">
+            <ButtonText className="font-ClashSemiBold text-lg text-primary-prime">
               Sign
             </ButtonText>
           </Button>

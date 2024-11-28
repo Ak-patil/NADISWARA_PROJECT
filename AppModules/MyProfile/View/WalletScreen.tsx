@@ -57,16 +57,22 @@ export const WalletScreen = () => {
     <HStack space="2xl" className="justify-between items-center w-full py-3">
       <HStack className="items-center" space="md">
         <Avatar size="md" className="bg-[#e9e6fa]">
-          <Icon as={IndianRupeeIcon} size="lg" className="color-[#6a1a57]" />
+          <Icon
+            as={IndianRupeeIcon}
+            size="lg"
+            className="color-primary-prime"
+          />
         </Avatar>
         <VStack>
-          <Heading size="lg">{item?.description}</Heading>
-          <Text size="md" className="text-[#848484] file:font-normal">
+          <Text size="lg" className="font-ClashMedium text-text-text1">
+            {item?.description}
+          </Text>
+          <Text size="md" className="text-text-text2 file:font-ClashRegular">
             {getFormatedDateTime(item?.purchased_at)}
           </Text>
         </VStack>
       </HStack>
-      <Text className="color-[#6a1a57]">{item?.amount}</Text>
+      <Text className="color-primary-prime">{item?.amount}</Text>
     </HStack>
   );
 
@@ -75,28 +81,28 @@ export const WalletScreen = () => {
       <VStack className="w-full h-full flex-1 bg-white px-8">
         {/* Wallet Header */}
         <Box className="w-full h-[194px] rounded-[20px] bg-[#62236b] justify-between items-center p-6 mt-6">
-          <Text className="text-white text-lg font-medium">
+          <Text className="text-white text-lg font-ClashMedium">
             Available balance
           </Text>
 
-          <Heading size="3xl" className="text-white font-semibold py-3">
+          <Heading size="3xl" className="text-white font-ClashSemiBold py-3">
             {walletBalanceState?.isLoading ? (
               <ActivityIndicator color={"white"} />
             ) : (
               `₹ ${amount}`
             )}
           </Heading>
-          <Divider className="bg-white mt-4" />
-          <Text className="text-center text-white text-sm font-normal pt-1 w-3/4">
+          <Divider className="bg-white mt-3" />
+          <Text className="text-center text-white text-sm font-ClashRegular pt-1 w-3/4">
             Wallet balance can be used only for in-app purchases
           </Text>
         </Box>
 
         {/* Transactions List */}
         <VStack className="self-start flex-1 mt-6 w-full">
-          <Heading size="xl" className="font-semibold text-black mb-4">
+          <Text size="xl" className="font-ClashMedium text-text-text1 mb-4">
             Previous transactions
-          </Heading>
+          </Text>
           <FlashList
             data={filteredEventData}
             renderItem={renderTransactionItem}
@@ -116,7 +122,11 @@ export const WalletScreen = () => {
             action="primary"
             className="w-full"
           >
-            <ButtonText className="font-medium" children={"Add"} />
+            <ButtonText
+              size="lg"
+              className="font-ClashMedium"
+              children={"Add balance"}
+            />
           </Button>
         </VStack>
       </VStack>

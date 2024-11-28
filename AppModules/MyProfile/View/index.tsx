@@ -1,4 +1,4 @@
-import { HStack, Heading, LinearGradient, Text, VStack } from "@/components/ui";
+import { HStack, LinearGradient, Text, VStack } from "@/components/ui";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Center } from "@/components/ui/center";
 import { Divider } from "@/components/ui/divider";
@@ -74,7 +74,7 @@ export const ProfileScreen = () => {
       >
         <LinearGradient
           className="flex-1 items-center justify-center"
-          colors={["#6a1a57", "#6a1a57", "#FFFFFF", "#FFFFFF"]}
+          colors={["#6A1B58", "#6A1B58", "#FFFFFF", "#FFFFFF"]}
           locations={[0, 0.55, 0.55, 1]}
         >
           <Center className="md:mt-14 mt-6 w-full md:px-10 md:pt-6 pb-4">
@@ -112,7 +112,7 @@ export const ProfileScreen = () => {
                     className="w-full flex-1"
                   >
                     <HStack
-                      className="items-stretch w-full flex-1 py-5 px-8"
+                      className="items-stretch w-full flex-1 py-4 px-8"
                       space="2xl"
                     >
                       <Icon
@@ -120,10 +120,13 @@ export const ProfileScreen = () => {
                         className="color-primary-prime w-7 h-7 mt-1"
                       />
                       <VStack>
-                        <Heading size="lg" className="font-bold">
+                        <Text size="lg" className="font-ClashMedium">
                           {item.subText}
-                        </Heading>
-                        <Text size="sm" className="font-[#848484]">
+                        </Text>
+                        <Text
+                          size="sm"
+                          className="text-text-text2 font-ClashRegular"
+                        >
                           {item.subText2}
                         </Text>
                       </VStack>
@@ -143,8 +146,8 @@ export const ProfileScreen = () => {
         className="absolute bottom-6 left-1/2 -translate-x-1/2  px-6 py-3"
       >
         <HStack space="md">
-          <Icon as={LogOut} className="color-[#d32121] w-7 h-7" />
-          <Text size="md" className="text-[#d32121] font-bold">
+          <Icon as={LogOut} className="color-warning-warning w-7 h-7" />
+          <Text size="lg" className="text-warning-warning font-ClashMedium">
             Logout
           </Text>
         </HStack>
