@@ -210,6 +210,61 @@ function* addBalancerequest(action) {
   }
 }
 
+function* deviceEnrolmentRequest(action) {
+  try {
+    const response = yield apiCall(
+      MyprofileNetwork.deviceEnrolmentApiCall,
+      action.payload
+    );
+    const deviceEnrolmentResponse = yield response;
+    if (deviceEnrolmentResponse) {
+      if (
+        deviceEnrolmentResponse &&
+        deviceEnrolmentResponse?.data?.status === "success" &&
+        deviceEnrolmentResponse?.status === 201
+      ) {
+        yield put(
+          MyprofileAction.deviceEnrolmentRequestSuccess(
+            deviceEnrolmentResponse.data
+          )
+        );
+        Toast.show(deviceEnrolmentResponse?.data?.message, {
+          type: "success",
+          placement: "bottom",
+          duration: 3000,
+          animationType: "zoom-in",
+          successColor: "green",
+        });
+        // handleNavigation("FormOne");
+      } else {
+        yield put(
+          MyprofileAction.deviceEnrolmentRequestError({
+            message: deviceEnrolmentResponse?.data?.message,
+          })
+        );
+        Toast.show(deviceEnrolmentResponse?.data?.message, {
+          type: "danger",
+          placement: "bottom",
+          duration: 3000,
+          animationType: "zoom-in",
+          dangerColor: "red",
+        });
+      }
+    }
+  } catch (e) {
+    yield put(
+      MyprofileAction.deviceEnrolmentRequestError({ message: "Network Error" })
+    );
+    Toast.show("Network Error", {
+      type: "danger",
+      placement: "bottom",
+      duration: 3000,
+      animationType: "zoom-in",
+      dangerColor: "red",
+    });
+  }
+}
+
 function* MyprofileSaga() {
   yield all([
     takeLeading(MyprofileAction.getProfileRequest, getProfileRequest),
@@ -220,6 +275,7 @@ function* MyprofileSaga() {
       MyprofileAction.getWalletTransactionsRequest,
       getWalletTransactions
     ),
+    takeLeading(MyprofileAction.deviceEnrolmentRequest, deviceEnrolmentRequest),
   ]);
 }
 

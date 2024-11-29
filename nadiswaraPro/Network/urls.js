@@ -11,3 +11,4 @@ export const addBalanceOrderCreationEndpoint = `${BASE_URL}/pulse_payments/payme
 export const paymentVerificationEndpoint = `${BASE_URL}/pulse_payments/payment/verify/`;
 export const getWalletBalanceEndpoint = `${BASE_URL}/pulse_payments/payment/balance/`;
 export const getWalletTransactionsEndpoint = `${BASE_URL}/pulse_payments/payment/history/`;
+export const deviceEnrolmentEndpoint = `${BASE_URL}/device_management/register-device/`;

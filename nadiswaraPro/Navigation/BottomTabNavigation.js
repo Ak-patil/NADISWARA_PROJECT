@@ -8,7 +8,7 @@ import AddPatient from "../../AppModules/Home/Views/AddPatient";
 import AllPatients from "../../AppModules/Home/Views/AllPatients";
 import AllReports from "../../AppModules/Home/Views/AllReports";
 import { AddBalanceScreen } from "../../AppModules/MyProfile/View/AddBalanceScreen";
-import EditProfile from "../../AppModules/MyProfile/View/EditProfile";
+import { DeviceEnrolmentScreen } from "../../AppModules/MyProfile/View/DeviceEnrolmentScreen";
 import { WalletScreen } from "../../AppModules/MyProfile/View/WalletScreen";
 import { ProfileScreen } from "../../AppModules/MyProfile/View/index";
 import { Icon } from "../../components/ui/icon";
@@ -38,6 +38,15 @@ const ProfileNavigation = () => {
         }}
       />
       <Stack.Screen
+        name="DeviceEnrolment"
+        component={DeviceEnrolmentScreen}
+        options={{
+          headerShown: true,
+          title: "Enroll device",
+          headerTitleAlign: "center",
+        }}
+      />
+      <Stack.Screen
         name="AddBalanceScreen"
         component={AddBalanceScreen}
         options={{
@@ -45,11 +54,6 @@ const ProfileNavigation = () => {
           title: "Add balance",
           headerTitleAlign: "center",
         }}
-      />
-      <Stack.Screen
-        name="Edit Profile"
-        component={EditProfile}
-        options={{ headerShown: false }}
       />
     </Stack.Navigator>
   );

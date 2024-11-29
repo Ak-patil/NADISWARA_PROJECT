@@ -8,3 +8,5 @@ export const getBalanceSelector = (state) =>
   state.myprofilestate.getBalanceState;
 export const walletTransactionsSelector = (state) =>
   state.myprofilestate.walletTransactionsState;
+export const deviceEnrolmentSelector = (state) =>
+  state.myprofilestate.deviceEnrolmentState;

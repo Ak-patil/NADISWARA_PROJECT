@@ -38,6 +38,13 @@ const initialState = {
     data: {},
     message: "",
   },
+  deviceEnrolmentState: {
+    isLoading: false,
+    isError: false,
+    isSuccess: false,
+    data: {},
+    message: "",
+  },
 };
 
 const getProfileRequest = (state, action) => {
@@ -215,6 +222,41 @@ const getWalletTransactionsError = (state, action) => {
   });
 };
 
+const deviceEnrolmentRequest = (state, action) => {
+  return update(state, {
+    deviceEnrolmentState: {
+      isLoading: { $set: true },
+      isError: { $set: false },
+      isSuccess: { $set: true },
+      message: { $set: "" },
+      data: { $set: action.payload },
+    },
+  });
+};
+
+const deviceEnrolmentSucess = (state, action) => {
+  return update(state, {
+    deviceEnrolmentState: {
+      isLoading: { $set: false },
+      isError: { $set: false },
+      isSuccess: { $set: true },
+      message: { $set: "" },
+      data: { $set: action.payload },
+    },
+  });
+};
+
+const deviceEnrolmentError = (state, action) => {
+  return update(state, {
+    deviceEnrolmentState: {
+      isLoading: { $set: false },
+      isError: { $set: true },
+      isSuccess: { $set: false },
+      message: { $set: "" },
+    },
+  });
+};
+
 export default handleActions(
   {
     [Myprofileactionconst.GET_PROFILE_REQUEST]: getProfileRequest,
@@ -235,6 +277,9 @@ export default handleActions(
       getWalletTransactionsSuccess,
     [Myprofileactionconst.GET_WALLET_TRANSACTION_ERROR]:
       getWalletTransactionsError,
+    [Myprofileactionconst.DEVICE_ENROLMENT_REQUEST]: deviceEnrolmentRequest,
+    [Myprofileactionconst.DEVICE_ENROLMENT_SUCCESS]: deviceEnrolmentSucess,
+    [Myprofileactionconst.DEVICE_ENROLMENT_ERROR]: deviceEnrolmentError,
   },
   initialState
 );

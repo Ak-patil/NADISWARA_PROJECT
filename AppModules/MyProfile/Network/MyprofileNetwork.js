@@ -4,6 +4,7 @@ import {
 } from "../../../nadiswaraPro/Network/SessionConst";
 import {
   addBalanceOrderCreationEndpoint,
+  deviceEnrolmentEndpoint,
   getWalletBalanceEndpoint,
   getWalletTransactionsEndpoint,
   paymentVerificationEndpoint,
@@ -51,6 +52,17 @@ export const MyprofileNetwork = {
       },
     },
     url: getWalletTransactionsEndpoint,
+    restAPIType: REST_API_TYPE.BASIC,
+  }),
+  deviceEnrolmentApiCall: (payload) => ({
+    method: NETWORK_METHOD.POST,
+    config: {
+      headers: {
+        "content-type": "application/json",
+      },
+    },
+    url: deviceEnrolmentEndpoint,
+    data: payload,
     restAPIType: REST_API_TYPE.BASIC,
   }),
 };

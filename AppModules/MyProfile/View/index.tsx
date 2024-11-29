@@ -13,6 +13,7 @@ import {
   LogOut,
   MessageSquare,
   Settings,
+  Smartphone,
   Wallet,
   type LucideIcon,
 } from "lucide-react-native";
@@ -49,6 +50,12 @@ const accountData: AccountCardType[] = [
     subText: "Change password",
     subText2: "Change password",
     navigation: "ChangePasswordScreen",
+  },
+  {
+    iconName: Smartphone,
+    subText: "Device enrolment",
+    subText2: "Enroll for secure access and mangement",
+    navigation: "DeviceEnrolment",
   },
   {
     iconName: PhoneIcon,
@@ -143,7 +150,7 @@ export const ProfileScreen = () => {
       </ScrollView>
       <Pressable
         onPress={() => logout()}
-        className="absolute bottom-6 left-1/2 -translate-x-1/2  px-6 py-3"
+        className="absolute bottom-6 left-1/2 -translate-x-1/2  px-6 pt-3"
       >
         <HStack space="md">
           <Icon as={LogOut} className="color-warning-warning w-7 h-7" />

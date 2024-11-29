@@ -50,3 +50,13 @@ export const getWalletTransactionsSuccess = createAction(
 export const getWalletTransactionsError = createAction(
   Myprofileactionconst.GET_WALLET_TRANSACTION_ERROR
 );
+
+export const deviceEnrolmentRequest = createAction(
+  Myprofileactionconst.DEVICE_ENROLMENT_REQUEST
+);
+export const deviceEnrolmentRequestSuccess = createAction(
+  Myprofileactionconst.DEVICE_ENROLMENT_SUCCESS
+);
+export const deviceEnrolmentRequestError = createAction(
+  Myprofileactionconst.DEVICE_ENROLMENT_ERROR
+);
