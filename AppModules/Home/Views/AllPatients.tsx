@@ -121,7 +121,7 @@ const AllPatients = () => {
   };
 
   return (
-    <VStack className="w-full flex-1 bg-white px-[20px] pt-8">
+    <VStack space="xl" className="w-full flex-1 bg-white px-[20px] pt-24">
       <Input size="xl" className="bg-white rounded-xl mb-4">
         <InputField
           className="font-ClashMedium"
@@ -136,7 +136,7 @@ const AllPatients = () => {
 
       <HStack className="justify-between mb-4 items-baseline">
         <Text size="xl" className="font-ClashMedium text-text-text1">
-          Patients
+          All patients
         </Text>
         <Pressable onPress={() => handleNavigation("AddPatient")}>
           <Text size="xl" className="font-ClashMedium color-primary-prime">

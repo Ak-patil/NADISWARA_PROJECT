@@ -5,8 +5,8 @@ import { HeartPulse, Home, User2, Users } from "lucide-react-native";
 import React from "react";
 import { Animated, Platform, StyleSheet, View } from "react-native";
 import AddPatient from "../../AppModules/Home/Views/AddPatient";
+import AllPatients from "../../AppModules/Home/Views/AllPatients";
 import AllReports from "../../AppModules/Home/Views/AllReports";
-import ManagePatient from "../../AppModules/Home/Views/ManagePatient";
 import { AddBalanceScreen } from "../../AppModules/MyProfile/View/AddBalanceScreen";
 import EditProfile from "../../AppModules/MyProfile/View/EditProfile";
 import { WalletScreen } from "../../AppModules/MyProfile/View/WalletScreen";
@@ -59,8 +59,8 @@ const ManagePatientNavigation = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="ManagePatient"
-        component={ManagePatient}
+        name="AllPatients"
+        component={AllPatients}
         options={{
           headerShown: false,
         }}

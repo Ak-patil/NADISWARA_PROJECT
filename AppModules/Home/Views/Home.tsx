@@ -32,7 +32,7 @@ const Home = ({ navigation }) => {
           </VStack>
         </VStack>
         <VStack className="basis-4/5">
-          <Pressable onPress={() => navigation.navigate("AllPatients")}>
+          <Pressable onPress={() => navigation.navigate("AddPatient")}>
             <HStack className="w-11/12 h-[180px] bg-primary-prime rounded-tr-[20px] rounded-br-[20px] justify-between">
               <VStack
                 space="lg"
@@ -65,7 +65,7 @@ const Home = ({ navigation }) => {
               </VStack>
             </HStack>
           </Pressable>
-          <Pressable>
+          {/* <Pressable>
             <HStack className="w-11/12 h-[180px] self-end top-8 bg-background-secondary rounded-tl-[20px] rounded-bl-[20px] shadow justify-between">
               <VStack className="w-1/3 bg-white rounded-xl justify-center items-center my-4 left-[12px]">
                 <Image
@@ -94,7 +94,7 @@ const Home = ({ navigation }) => {
                 />
               </VStack>
             </HStack>
-          </Pressable>
+          </Pressable> */}
         </VStack>
       </VStack>
     </SafeAreaView>

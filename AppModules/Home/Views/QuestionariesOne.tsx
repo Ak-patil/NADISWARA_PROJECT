@@ -49,7 +49,7 @@ const backPainOptions = ["Sometimes", "Always", "No"];
 export const FormOne: React.FC = () => {
   const { control, handleSubmit, watch } = useForm<FormData>({
     defaultValues: {
-      urineColor: 50,
+      urineColor: 25,
       urinationTimes: 1,
       sleepPattern: "",
       backPain: "",

@@ -140,7 +140,7 @@ const addBalanceError = (state, action) => {
       isLoading: { $set: false },
       isError: { $set: true },
       isSuccess: { $set: false },
-      message: { $set: action.payload.message },
+      message: { $set: "" },
     },
   });
 };
@@ -175,7 +175,7 @@ const getBalanceError = (state, action) => {
       isLoading: { $set: false },
       isError: { $set: true },
       isSuccess: { $set: false },
-      message: { $set: action.payload.message },
+      message: { $set: "" },
     },
   });
 };

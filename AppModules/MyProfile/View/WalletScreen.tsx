@@ -72,7 +72,9 @@ export const WalletScreen = () => {
           </Text>
         </VStack>
       </HStack>
-      <Text className="color-primary-prime">{item?.amount}</Text>
+      <Text size="lg" className="color-primary-prime font-ClashMedium">
+        ₹ {item?.amount}
+      </Text>
     </HStack>
   );
 

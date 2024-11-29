@@ -90,7 +90,7 @@ export const LoginViaPhoneComponent = ({ navigation }) => {
   return (
     <>
       <VStack className="items-center" space="xs">
-        <Heading className="text-text-text1 font-ClashSemiBold" size="xl">
+        <Heading className="text-text-text1 font-ClashMedium" size="xl">
           Login via OTP
         </Heading>
         <Text
@@ -104,7 +104,7 @@ export const LoginViaPhoneComponent = ({ navigation }) => {
         <VStack space="xl" className="w-full py-8">
           <FormControl isInvalid={!!errors.phoneNumber}>
             <FormControlLabel className="mb-2">
-              <FormControlLabelText size="lg" className="font-ClashSemiBold">
+              <FormControlLabelText size="lg" className="font-ClashMedium">
                 Phone number
               </FormControlLabelText>
             </FormControlLabel>

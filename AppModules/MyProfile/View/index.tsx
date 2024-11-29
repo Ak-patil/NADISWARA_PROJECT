@@ -120,11 +120,11 @@ export const ProfileScreen = () => {
                         className="color-primary-prime w-7 h-7 mt-1"
                       />
                       <VStack>
-                        <Text size="lg" className="font-ClashMedium">
+                        <Text size="xl" className="font-ClashMedium">
                           {item.subText}
                         </Text>
                         <Text
-                          size="sm"
+                          size="md"
                           className="text-text-text2 font-ClashRegular"
                         >
                           {item.subText2}

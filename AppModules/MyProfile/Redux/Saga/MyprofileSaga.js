@@ -199,14 +199,14 @@ function* addBalancerequest(action) {
     }
   } catch (error) {
     // Generic error handling
-    Toast.show(error.message || "Payment process failed", {
+    yield put(MyprofileAction.addBalanceError());
+    Toast.show("Payment process failed", {
       type: "danger",
       placement: "bottom",
       duration: 3000,
       animationType: "zoom-in",
       successColor: "red",
     });
-    yield put(MyprofileAction.addBalanceError(error?.message));
   }
 }
 
