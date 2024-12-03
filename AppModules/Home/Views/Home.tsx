@@ -5,10 +5,13 @@ import { SafeAreaView } from "@/components/ui/safe-area-view";
 import { Bell } from "lucide-react-native";
 import React from "react";
 import { useDispatch } from "react-redux";
+import { patientListRequest } from "../Redux/Actions/HomeAction";
 
 const Home = ({ navigation }) => {
   const dispatch = useDispatch();
   dispatch(getBalanceRequest());
+  dispatch(patientListRequest());
+
   return (
     <SafeAreaView className="w-full h-full bg-white">
       <VStack className="w-full flex-1 bg-white top-20">

@@ -94,10 +94,58 @@ export function* patientlistapicallRequest() {
   }
 }
 
+export function* patienthistoryapicallRequest(action) {
+  const { patient_id } = action?.payload;
+  try {
+    const response = yield apiCall(HomeNetwork.patientHistoryApiCall, {
+      patient_id,
+    });
+    const patientHistoryResponse = yield response;
+    if (patientHistoryResponse) {
+      if (
+        patientHistoryResponse &&
+        patientHistoryResponse?.data?.status === "success" &&
+        patientHistoryResponse?.status === 200
+      ) {
+        yield put(
+          HomeActions.patientHistorySuccess(patientHistoryResponse.data)
+        );
+      } else {
+        yield put(
+          HomeActions.patientHistoryError({
+            message: patientHistoryResponse?.data?.message,
+          })
+        );
+        Toast.show(patientHistoryResponse?.data?.message, {
+          type: "danger",
+          placement: "bottom",
+          duration: 3000,
+          animationType: "zoom-in",
+          dangerColor: "red",
+        });
+      }
+    } else {
+    }
+  } catch (e) {
+    yield put(HomeActions.patientHistoryError({ message: "Network Error" }));
+    Toast.show("Network Error", {
+      type: "danger",
+      placement: "bottom",
+      duration: 3000,
+      animationType: "zoom-in",
+      dangerColor: "red",
+    });
+  }
+}
+
 function* HomeSage() {
   yield all([
     takeLeading(HomeActions.addPatientRequest, addPatientRequest),
     takeLeading(HomeActions.patientListRequest, patientlistapicallRequest),
+    takeLeading(
+      HomeActions.patientHistoryRequest,
+      patienthistoryapicallRequest
+    ),
   ]);
 }
 

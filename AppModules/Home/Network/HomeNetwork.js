@@ -4,6 +4,7 @@ import {
 } from "../../../nadiswaraPro/Network/SessionConst";
 import {
   addPatientEndpoint,
+  patientHistoryEndpoint,
   patientListEndpoint,
 } from "../../../nadiswaraPro/Network/urls";
 
@@ -34,6 +35,18 @@ export const HomeNetwork = {
     },
     url: patientListEndpoint,
     data: payload,
+    restAPIType: REST_API_TYPE.BASIC,
+  }),
+  patientHistoryApiCall: (payload) => ({
+    method: NETWORK_METHOD.GET,
+    config: {
+      headers: {
+        "content-type": "application/json",
+        "User-Agent": "PostmanRuntime/7.40.0",
+        Connection: "keep-alive",
+      },
+    },
+    url: `${patientHistoryEndpoint}?patient_id=${payload.patient_id}`,
     restAPIType: REST_API_TYPE.BASIC,
   }),
 };

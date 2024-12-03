@@ -1,13 +1,7 @@
 // import Clipboard from '@cd ../clipboard';
 import dayjs from "dayjs";
-import _, { isArray, isNaN } from "lodash/lang";
-import {
-  Dimensions,
-  Keyboard,
-  PermissionsAndroid,
-  Platform,
-  Share,
-} from "react-native";
+import _, { isNaN } from "lodash/lang";
+import { Dimensions, Keyboard, Platform, Share } from "react-native";
 const FormData = require("form-data");
 
 export const DATE_FORMAT_DD_MM_YYYY = "DD/MM/YYYY";
@@ -19,7 +13,7 @@ export const DATE_TIME_FORMAT_DD_MM_YYYY_HH_MM_SS = "DD-MM-YYYY HH:mm:ss";
 export const DATE_TIME_FORMAT_YYYY_MM_DD_HH_MM_SS = "YYYY-MM-DD HH:mm:ss";
 export const DISPLAY_DATE_FORMAT_DD_MM = "DD/MM";
 export const DISPLAY_DATE_MONTH_TIME_FORMAT = "DD MMM hh:mm a";
-export const DISPLAY_COMPLETE_MONTH_DATE_FORMAT = "MMM DD, YYYY";
+export const DISPLAY_COMPLETE_MONTH_DATE_FORMAT = "MMMM DD, YYYY";
 export const GET_YEAR = "YYYY";
 export const DISPLAY_DATE_FORMAT = "DD MMM YYYY";
 export const DISPLAY_COMPLETE_DATE_FORMAT = "DD MMMM YYYY";
@@ -553,4 +547,22 @@ export const appendObjectToForm = (object) => {
     form.append(key, value);
   }
   return form;
+};
+
+export const calculateAge = (dob) => {
+  const birthDate = new Date(dob); // Convert the dob string into a Date object
+  const today = new Date(); // Get today's date
+
+  let age = today.getFullYear() - birthDate.getFullYear(); // Calculate the difference in years
+  const monthDifference = today.getMonth() - birthDate.getMonth(); // Check the month difference
+
+  // Adjust the age if the current month/day is before the birth month/day
+  if (
+    monthDifference < 0 ||
+    (monthDifference === 0 && today.getDate() < birthDate.getDate())
+  ) {
+    age--;
+  }
+
+  return age;
 };

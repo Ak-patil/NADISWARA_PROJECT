@@ -1,4 +1,4 @@
-const BASE_URL = `https://nadiswarapro-backend.online/api/v1`;
+const BASE_URL = `https://nadiswarapro-backend-test.online/api/v1`;
 
 export const LoginviaemailrequestEndpoint = `${BASE_URL}/accounts/login/`;
 export const SignupviaemailrequestEndpoint = `${BASE_URL}/accounts/signup-view/`;
@@ -12,3 +12,4 @@ export const paymentVerificationEndpoint = `${BASE_URL}/pulse_payments/payment/v
 export const getWalletBalanceEndpoint = `${BASE_URL}/pulse_payments/payment/balance/`;
 export const getWalletTransactionsEndpoint = `${BASE_URL}/pulse_payments/payment/history/`;
 export const deviceEnrolmentEndpoint = `${BASE_URL}/device_management/register-device/`;
+export const patientHistoryEndpoint = `${BASE_URL}/report_service/treatment-history-datetime/`;

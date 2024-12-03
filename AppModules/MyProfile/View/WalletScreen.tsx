@@ -21,17 +21,11 @@ import { FlashList } from "@shopify/flash-list";
 import { IndianRupeeIcon } from "lucide-react-native";
 import React, { useEffect, useState } from "react";
 import { ActivityIndicator } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
-import { getWalletTransactionsRequest } from "../Redux/Actions/MyprofileAction";
+import { useSelector } from "react-redux";
 
 export const WalletScreen = () => {
   const [amount, setAmount] = useState<number | undefined>();
   const [filteredEventData, setFilteredEventData] = useState<any[]>([]);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getWalletTransactionsRequest());
-  }, [dispatch]);
 
   const walletTransactionData = useSelector((state: any) =>
     walletTransactionsSelector(state)
@@ -116,7 +110,7 @@ export const WalletScreen = () => {
         </VStack>
 
         {/* Add Button */}
-        <VStack className="pb-4 bg-white">
+        <VStack className="pb-4 bg-white mt-2">
           <Button
             onPress={() => handleNavigation("AddBalanceScreen")}
             size="xl"

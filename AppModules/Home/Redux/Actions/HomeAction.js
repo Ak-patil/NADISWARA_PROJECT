@@ -20,3 +20,13 @@ export const patientListSuccess = createAction(
 export const patientListError = createAction(
   HomeActionsConst.PATIENT_LIST_ERROR
 );
+
+export const patientHistoryRequest = createAction(
+  HomeActionsConst.PATIENT_HISTORY_REQUEST
+);
+export const patientHistorySuccess = createAction(
+  HomeActionsConst.PATIENT_HISTORY_SUCCESS
+);
+export const patientHistoryError = createAction(
+  HomeActionsConst.PATIENT_HISTORY_ERROR
+);

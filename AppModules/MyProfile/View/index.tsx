@@ -17,7 +17,9 @@ import {
   Wallet,
   type LucideIcon,
 } from "lucide-react-native";
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getWalletTransactionsRequest } from "../Redux/Actions/MyprofileAction";
 
 interface AccountCardType {
   iconName: LucideIcon | typeof Icon;
@@ -49,7 +51,7 @@ const accountData: AccountCardType[] = [
     iconName: KeyIcon,
     subText: "Change password",
     subText2: "Change password",
-    navigation: "ChangePasswordScreen",
+    navigation: "ChangePassword",
   },
   {
     iconName: Smartphone,
@@ -73,6 +75,11 @@ const logout = async () => {
 };
 
 export const ProfileScreen = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getWalletTransactionsRequest());
+  }, [dispatch]);
   return (
     <SafeAreaView className="w-full h-full">
       <ScrollView

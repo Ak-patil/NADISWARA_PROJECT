@@ -1,7 +1,9 @@
+import { calculateAge } from "@/BaseModule/Utils/helpers";
 import {
   Card,
   HStack,
   Heading,
+  Icon,
   Input,
   InputField,
   InputIcon,
@@ -18,20 +20,22 @@ import { Divider } from "@/components/ui/divider";
 import { Pressable } from "@/components/ui/pressable";
 import { handleNavigation } from "@/nadiswaraPro/Navigation/NaviagationHelper";
 import { FlashList } from "@shopify/flash-list";
-import { SearchIcon } from "lucide-react-native";
+import { ChevronRightIcon, SearchIcon } from "lucide-react-native";
 import React, { useEffect, useState } from "react";
 import { ActivityIndicator } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { patientListRequest } from "../Redux/Actions/HomeAction";
+import { patientHistoryRequest } from "../Redux/Actions/HomeAction";
 import { patientListSelector } from "../Redux/Reducer/HomeSelector";
 
 type Patient = {
-  name: string;
+  first_name: string;
+  last_name: string;
   relation: string;
   age: number;
   gender: string;
   family_member: number;
   avatar: string;
+  dob: string;
 };
 
 const AllPatients = () => {
@@ -39,9 +43,9 @@ const AllPatients = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(patientListRequest());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(patientListRequest());
+  // }, [dispatch]);
 
   const patientListData = useSelector((state) => patientListSelector(state));
   console.log("patientListData", patientListData);
@@ -57,7 +61,7 @@ const AllPatients = () => {
       setFilteredEventData(patientListData?.data?.data || []);
     } else {
       const filtered = patientListData?.data?.data.filter((patient: Patient) =>
-        patient.name.toLowerCase().includes(searchQuery.toLowerCase())
+        patient.first_name.toLowerCase().includes(searchQuery.toLowerCase())
       );
       setFilteredEventData(filtered);
     }
@@ -71,6 +75,11 @@ const AllPatients = () => {
     </VStack>
   );
 
+  const handlePatientDetails = (item: Patient) => {
+    dispatch(patientHistoryRequest({ patient_id: 13 }));
+    handleNavigation("PatientHistory");
+  };
+
   const renderPatientItem = ({
     item,
     index,
@@ -78,39 +87,47 @@ const AllPatients = () => {
     item: Patient;
     index: number;
   }) => {
+    const fullName = item.first_name + " " + item.last_name;
     return (
       <React.Fragment key={index}>
         <Pressable
-          onPress={() => handleNavigation("FormOne")}
+          onPress={() => handlePatientDetails(item)}
           className="w-full flex-1"
         >
-          <HStack className="items-start w-full flex-1 py-4" space="2xl">
-            <Avatar size="md" className="bg-[#e6e6fa]">
-              <AvatarFallbackText
-                size="md"
-                className="text-primary-prime font-ClashMedium"
-              >
-                {item.name}
-              </AvatarFallbackText>
-              <AvatarImage
-                source={{
-                  uri: item.avatar,
-                }}
-              />
-            </Avatar>
-            <VStack>
-              <Heading
-                size="lg"
-                className="font-ClashMedium color-primary-prime"
-              >
-                {item.name}
-              </Heading>
-              <Text size="lg" className="text-text-text2 font-ClashMedium">
-                {item.age}
-                {", "}
-                {item.gender}
-              </Text>
-            </VStack>
+          <HStack
+            className="justify-between items-center w-full flex-1 py-4"
+            space="2xl"
+          >
+            <HStack space="xl">
+              <Avatar size="md" className="bg-[#e6e6fa]">
+                <AvatarFallbackText
+                  size="md"
+                  className="text-primary-prime font-ClashMedium"
+                >
+                  {fullName}
+                </AvatarFallbackText>
+                <AvatarImage
+                  source={{
+                    uri: item.avatar,
+                  }}
+                />
+              </Avatar>
+              <VStack>
+                <Heading
+                  size="lg"
+                  className="font-ClashMedium color-primary-prime"
+                >
+                  {fullName}
+                </Heading>
+                <Text size="lg" className="text-text-text2 font-ClashMedium">
+                  {calculateAge(item.dob)}
+                  {", "}
+                  {item.gender}
+                </Text>
+              </VStack>
+            </HStack>
+
+            <Icon as={ChevronRightIcon} className="color-primary-prime" />
           </HStack>
         </Pressable>
         {patientListData.length !== index && (
