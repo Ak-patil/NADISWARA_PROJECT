@@ -81,7 +81,11 @@ export const FormTwo: React.FC = () => {
             <Controller
               name="hungerLevel"
               control={control}
-              render={({ field: { value, onChange } }) => (
+              rules={{ required: "Please select your hunger level" }}
+              render={({
+                field: { value, onChange },
+                fieldState: { error },
+              }) => (
                 <>
                   {[
                     "No Hunger",
@@ -108,6 +112,9 @@ export const FormTwo: React.FC = () => {
                       )}
                     </>
                   ))}
+                  {error && (
+                    <Text className="text-red-600 mt-2">{error.message}</Text>
+                  )}
                 </>
               )}
             />
@@ -121,7 +128,11 @@ export const FormTwo: React.FC = () => {
             <Controller
               name="bowelMovements"
               control={control}
-              render={({ field: { value, onChange } }) => (
+              rules={{ required: "Please describe your bowel movements" }}
+              render={({
+                field: { value, onChange },
+                fieldState: { error },
+              }) => (
                 <>
                   {[
                     "Constipated Sometimes",
@@ -149,6 +160,9 @@ export const FormTwo: React.FC = () => {
                       )}
                     </>
                   ))}
+                  {error && (
+                    <Text className="text-red-600 mt-2">{error.message}</Text>
+                  )}
                 </>
               )}
             />
@@ -162,7 +176,11 @@ export const FormTwo: React.FC = () => {
             <Controller
               name="numbness"
               control={control}
-              render={({ field: { value, onChange } }) => (
+              rules={{ required: "Please describe your numbness" }}
+              render={({
+                field: { value, onChange },
+                fieldState: { error },
+              }) => (
                 <>
                   {[
                     "Not Feeling Numbness",
@@ -188,6 +206,9 @@ export const FormTwo: React.FC = () => {
                       )}
                     </>
                   ))}
+                  {error && (
+                    <Text className="text-red-600 mt-2">{error.message}</Text>
+                  )}
                 </>
               )}
             />
@@ -201,7 +222,11 @@ export const FormTwo: React.FC = () => {
             <Controller
               name="headache"
               control={control}
-              render={({ field: { value, onChange } }) => (
+              rules={{ required: "Please describe your headache" }}
+              render={({
+                field: { value, onChange },
+                fieldState: { error },
+              }) => (
                 <>
                   {["Not Feeling Headache", "Feeling Headache"].map(
                     (option) => (
@@ -281,6 +306,9 @@ export const FormTwo: React.FC = () => {
                           )}
                       </VStack>
                     )
+                  )}
+                  {error && (
+                    <Text className="text-red-600 mt-2">{error.message}</Text>
                   )}
                 </>
               )}

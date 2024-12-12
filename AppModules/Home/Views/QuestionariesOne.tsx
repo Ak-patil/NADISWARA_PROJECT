@@ -29,12 +29,12 @@ type FormData = {
 };
 
 const urineColors = [
-  { label: "Transparent", color: "#E9F6FF" }, // Indicates overhydration
-  { label: "Pale Yellow", color: "#F7FFAF" }, // Healthy hydration
-  { label: "Yellow", color: "#FFF200" }, // Normal hydration
-  { label: "Dark Yellow", color: "#FFC300" }, // Mild dehydration
-  { label: "Amber", color: "#FFB74D" }, // Dehydration
-  { label: "Brown", color: "#8B4513" }, // Severe dehydration or liver issue
+  { label: "Transparent", color: "#E9F6FF" },
+  { label: "Pale Yellow", color: "#F7FFAF" },
+  { label: "Yellow", color: "#FFF200" },
+  { label: "Dark Yellow", color: "#FFC300" },
+  { label: "Amber", color: "#FFB74D" },
+  { label: "Brown", color: "#8B4513" },
 ];
 
 const sleepOptions = [
@@ -47,7 +47,12 @@ const sleepOptions = [
 const backPainOptions = ["Sometimes", "Always", "No"];
 
 export const FormOne: React.FC = () => {
-  const { control, handleSubmit, watch } = useForm<FormData>({
+  const {
+    control,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<FormData>({
     defaultValues: {
       urineColor: 25,
       urinationTimes: 1,
@@ -83,6 +88,7 @@ export const FormOne: React.FC = () => {
             <Controller
               name="urineColor"
               control={control}
+              rules={{ required: "Please select your urine color" }}
               render={({ field: { value, onChange } }) => (
                 <Slider
                   onChange={onChange}
@@ -106,6 +112,9 @@ export const FormOne: React.FC = () => {
                 </Slider>
               )}
             />
+            {errors.urineColor && (
+              <Text className="text-red-600">{errors.urineColor.message}</Text>
+            )}
             <Text size="lg" className="text-text-text2 font-ClashMedium">
               Answer: {urineColors[Math.round(urineColor / 25)].label}
             </Text>
@@ -122,12 +131,15 @@ export const FormOne: React.FC = () => {
             <Controller
               name="urinationTimes"
               control={control}
+              rules={{
+                required: "Please select the number of times you urinate",
+              }}
               render={({ field: { value, onChange } }) => (
                 <Slider
                   minValue={0}
                   maxValue={5}
                   onChange={onChange}
-                  defaultValue={30}
+                  defaultValue={1}
                   step={1}
                   size="md"
                   value={value}
@@ -145,6 +157,11 @@ export const FormOne: React.FC = () => {
                 </Slider>
               )}
             />
+            {errors.urinationTimes && (
+              <Text className="text-red-600">
+                {errors.urinationTimes.message}
+              </Text>
+            )}
             <Text size="lg" className="text-text-text2 font-ClashMedium">
               Answer: {watch("urinationTimes")} times
             </Text>
@@ -161,6 +178,7 @@ export const FormOne: React.FC = () => {
             <Controller
               name="sleepPattern"
               control={control}
+              rules={{ required: "Please select your sleep pattern" }}
               render={({ field: { value, onChange } }) => (
                 <View style={styles.optionContainer}>
                   {sleepOptions.map((option) => (
@@ -186,10 +204,14 @@ export const FormOne: React.FC = () => {
                 </View>
               )}
             />
+            {errors.sleepPattern && (
+              <Text className="text-red-600">
+                {errors.sleepPattern.message}
+              </Text>
+            )}
           </VStack>
 
           {/* Back Pain */}
-
           <VStack className="w-full h-1/5 bg-white rounded-[20px] border border-[#ededed] p-6">
             <Text className="text-text-text1 text-2xl font-ClashMedium">
               Do you experience back pain?
@@ -197,6 +219,7 @@ export const FormOne: React.FC = () => {
             <Controller
               name="backPain"
               control={control}
+              rules={{ required: "Please select an option for back pain" }}
               render={({ field: { value, onChange } }) => (
                 <>
                   {backPainOptions.map((option) => (
@@ -222,6 +245,9 @@ export const FormOne: React.FC = () => {
                 </>
               )}
             />
+            {errors.backPain && (
+              <Text className="text-red-600">{errors.backPain.message}</Text>
+            )}
           </VStack>
         </VStack>
       </ScrollView>
@@ -257,7 +283,6 @@ const styles = StyleSheet.create({
   optionSelected: {
     backgroundColor: "#6A1B58",
   },
-
   optionTextSelected: {
     color: "#fff",
   },
