@@ -4,20 +4,10 @@
     "strict": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "./*"
-      ],
-      "@/assets/*": [
-        "../../packages/shared/assets/*",
-        "./assets/*"
-      ]
+      "@/*": ["./*"],
+      "@/assets/*": ["../../packages/shared/assets/*", "./assets/*"]
     }
   },
-  "exclude": [
-    "node_modules"
-  ],
-  "include": [
-    "**/*.ts",
-    "**/*.tsx"
-  ]
+  "exclude": ["node_modules"],
+  "include": ["**/*.ts", "**/*.tsx", "AppModules/MyProfile/View/Profile.jsx"]
 }

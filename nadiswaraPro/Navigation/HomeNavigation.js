@@ -9,7 +9,7 @@ import { FormOne } from "../../AppModules/Home/Views/QuestionariesOne";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
-import Home from "../../AppModules/Home/Views/Home";
+// import Profile from "../../AppModules/MyProfile/View/Profile";
 
 const Stack = createNativeStackNavigator();
 
