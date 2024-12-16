@@ -4,25 +4,41 @@
     "slug": "NADISWARA_PROJECT",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/app_icon_circle.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/nadiswara_logo.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#6a1a58"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.nadiswarapro"
     },
+    "plugins": [
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./assets/fonts/ClashGrotesk-Regular.otf",
+            "./assets/fonts/ClashGrotesk-Medium.otf",
+            "./assets/fonts/ClashGrotesk-Bold.otf",
+            "./assets/fonts/ClashGrotesk-Semibold.otf",
+            "./assets/fonts/ClashGrotesk-Extralight.otf",
+            "./assets/fonts/ClashGrotesk-Light.otf"
+          ]
+        }
+      ]
+    ],
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "foregroundImage": "./assets/app_icon_circle.png",
+        "backgroundColor": "#6a1a58"
       },
       "package": "com.nadiswaraPro"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/nadiswara_logo.png"
     },
     "extra": {
       "eas": {

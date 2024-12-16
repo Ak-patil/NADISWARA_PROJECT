@@ -1,16 +1,23 @@
 {
+  "extends": "expo/tsconfig.base",
   "compilerOptions": {
+    "strict": true,
+    "baseUrl": ".",
     "paths": {
       "@/*": [
         "./*"
       ],
-      "tailwind.config": [
-        "./tailwind.config.js"
+      "@/assets/*": [
+        "../../packages/shared/assets/*",
+        "./assets/*"
       ]
     }
   },
   "exclude": [
     "node_modules"
   ],
-  "extends": "expo/tsconfig.base"
+  "include": [
+    "**/*.ts",
+    "**/*.tsx"
+  ]
 }

@@ -38,7 +38,7 @@ const TimerCount = ({ handleResendClick }) => {
             {
               color:
                 isTimerCompleted === true
-                  ? Colors.PRIMARY.PRIMARY_RETRO_BLUE
+                  ? Colors.PRIMARY.PRIMARY_PURPLE
                   : "#48607770",
             },
           ]}
@@ -47,7 +47,7 @@ const TimerCount = ({ handleResendClick }) => {
         </Text>
       </TouchableOpacity>
       <Text
-        style={{ textAlign: "center", fontSize: moderateScale(16) }}
+        style={{ textAlign: "center", fontSize: moderateScale(14) }}
       >{`${seconds}s`}</Text>
     </View>
   );
@@ -58,10 +58,10 @@ export default TimerCount;
 const styles = StyleSheet.create({
   resend: {
     paddingRight: moderateScale(8),
-    fontSize: moderateScale(16),
+    fontSize: moderateScale(14),
     textAlign: "right",
     fontFamily: "Urbanist-SemiBold",
-    fontWeight: "700",
+    fontWeight: "500",
     marginBottom: 6,
   },
 });

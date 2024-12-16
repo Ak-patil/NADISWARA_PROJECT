@@ -1,8 +1,32 @@
-import { HomeActions } from './HomeActionsConst';
+import { createAction } from "redux-actions";
+import * as HomeActionsConst from "./HomeActionsConst";
 
-export const sumbitForbusinessAction = (updatedForm) => {
-    return {
-        type: HomeActions.SUMBIT_FORMBUSINESS_ACTION,
-        payload: updatedForm
-    };
-};
+export const addPatientRequest = createAction(
+  HomeActionsConst.ADD_PATIENT_REQUEST
+);
+export const addPatientSuccess = createAction(
+  HomeActionsConst.ADD_PATIENT_SUCCESS
+);
+export const addPatientError = createAction(
+  HomeActionsConst.ADD_PATIENT__ERROR
+);
+
+export const patientListRequest = createAction(
+  HomeActionsConst.PATIENT_LIST_REQUEST
+);
+export const patientListSuccess = createAction(
+  HomeActionsConst.PATIENT_LIST_SUCCESS
+);
+export const patientListError = createAction(
+  HomeActionsConst.PATIENT_LIST_ERROR
+);
+
+export const patientHistoryRequest = createAction(
+  HomeActionsConst.PATIENT_HISTORY_REQUEST
+);
+export const patientHistorySuccess = createAction(
+  HomeActionsConst.PATIENT_HISTORY_SUCCESS
+);
+export const patientHistoryError = createAction(
+  HomeActionsConst.PATIENT_HISTORY_ERROR
+);
