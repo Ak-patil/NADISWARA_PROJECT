@@ -1,20 +1,59 @@
 import { Button, ButtonText, Text, VStack } from "@/components/ui";
 import { SafeAreaView } from "@/components/ui/safe-area-view";
 import { ScrollView } from "@/components/ui/scroll-view";
-import React from "react";
+import React, { useState } from "react";
+import { Toast } from "react-native-toast-notifications";
+import { UsbSerialManager } from "react-native-usb-serialport-for-android";
 import { useDispatch, useSelector } from "react-redux";
+import { deviceEnrolmentRequest } from "../Redux/Actions/MyprofileAction";
 import { deviceEnrolmentSelector } from "../Redux/Reducer/MyprofileSelector";
 
-export const DeviceEnrolmentScreen = () => {
+interface DeviceState {
+  usbAttached: boolean;
+  deviceId: number;
+}
+
+export const DeviceEnrolmentScreen: React.FC = () => {
+  const [state, setState] = useState<DeviceState>({
+    usbAttached: false,
+    deviceId: 0,
+  });
+
+  const [status, setStatus] = useState<number>(0);
   const dispatch = useDispatch();
 
-  const handleSubmit = (): void => {
-    // dispatch(deviceEnrolmentRequest());
-  };
+  // Redux state selector
+  const deviceEnrolmentState = useSelector(deviceEnrolmentSelector);
 
-  const deviceEnrolmentState = useSelector((state) =>
-    deviceEnrolmentSelector(state)
-  );
+  const initializeUsb = async (): Promise<void> => {
+    try {
+      const devices = await UsbSerialManager.list();
+      console.log("Devices:", devices);
+
+      if (devices && devices.length > 0) {
+        dispatch(
+          deviceEnrolmentRequest({ data: String(devices[0]?.deviceId) })
+        );
+        setState((prev) => ({
+          ...prev,
+          usbAttached: true,
+          deviceId: devices[0]?.deviceId,
+        }));
+        setStatus(1);
+      } else {
+        setStatus(0);
+        Toast.show("No USB devices found", {
+          type: "danger",
+          placement: "bottom",
+          duration: 3000,
+          animationType: "zoom-in",
+          dangerColor: "red",
+        });
+      }
+    } catch (error: unknown) {
+      setStatus(0);
+    }
+  };
 
   return (
     <SafeAreaView className="w-full h-full">
@@ -22,7 +61,10 @@ export const DeviceEnrolmentScreen = () => {
         className="w-full flex-1 bg-white"
         contentContainerStyle={{ flexGrow: 1 }}
       >
-        <VStack space="2xl" className="flex-1  px-6 mt-16">
+        <VStack space="2xl" className="flex-1 px-6 mt-16">
+          <Text size="lg" className="text-text-text1 font-ClashRegular">
+            Device ID: {state?.deviceId}
+          </Text>
           <Text size="2xl" className="text-text-text1 font-ClashMedium">
             Device Enrollment
           </Text>
@@ -32,7 +74,7 @@ export const DeviceEnrolmentScreen = () => {
           </Text>
           <VStack className="pb-4 bg-white">
             <Button
-              onPress={() => handleSubmit()}
+              onPress={initializeUsb}
               size="xl"
               variant="solid"
               action="primary"
@@ -41,7 +83,7 @@ export const DeviceEnrolmentScreen = () => {
               <ButtonText
                 size="lg"
                 className="font-ClashMedium"
-                children={"Enroll this Device"}
+                children="Enroll this Device"
               />
             </Button>
           </VStack>
