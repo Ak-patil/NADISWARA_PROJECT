@@ -1,7 +1,16 @@
+import LottieAnimation from "@/AppModules/Authentication/Utils/lottie";
 import { Button, ButtonText, Text, VStack } from "@/components/ui";
 import { SafeAreaView } from "@/components/ui/safe-area-view";
 import { ScrollView } from "@/components/ui/scroll-view";
-import React, { useState } from "react";
+import {
+  Actionsheet,
+  ActionsheetBackdrop,
+  ActionsheetContent,
+  ActionsheetDragIndicator,
+  ActionsheetDragIndicatorWrapper,
+} from "@/components/ui/select/select-actionsheet";
+import { Spinner } from "@/components/ui/spinner";
+import React, { useEffect, useState } from "react";
 import { Toast } from "react-native-toast-notifications";
 import { UsbSerialManager } from "react-native-usb-serialport-for-android";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,16 +23,25 @@ interface DeviceState {
 }
 
 export const DeviceEnrolmentScreen: React.FC = () => {
+  const [showActionsheet, setShowActionsheet] = useState(false);
+  const deviceEnrolmentState = useSelector(deviceEnrolmentSelector);
+
   const [state, setState] = useState<DeviceState>({
     usbAttached: false,
     deviceId: 0,
   });
+  const handleClose = () => setShowActionsheet(false);
+
+  useEffect(() => {
+    if (deviceEnrolmentState?.isSuccess) {
+      setShowActionsheet(deviceEnrolmentState?.isSuccess);
+    }
+  }, [deviceEnrolmentState]);
 
   const [status, setStatus] = useState<number>(0);
   const dispatch = useDispatch();
 
   // Redux state selector
-  const deviceEnrolmentState = useSelector(deviceEnrolmentSelector);
 
   const initializeUsb = async (): Promise<void> => {
     try {
@@ -80,13 +98,43 @@ export const DeviceEnrolmentScreen: React.FC = () => {
               action="primary"
               className="w-full"
             >
-              <ButtonText
-                size="lg"
-                className="font-ClashMedium"
-                children="Enroll this Device"
-              />
+              {deviceEnrolmentState?.isLoading ? (
+                <Spinner size="small" className="color-white" />
+              ) : (
+                <ButtonText
+                  size="lg"
+                  className="font-ClashMedium"
+                  children="Enroll this Device"
+                />
+              )}
             </Button>
           </VStack>
+          <Actionsheet
+            isOpen={showActionsheet}
+            onClose={handleClose}
+            snapPoints={[40]}
+          >
+            <ActionsheetBackdrop />
+            <ActionsheetContent>
+              <ActionsheetDragIndicatorWrapper>
+                <ActionsheetDragIndicator />
+              </ActionsheetDragIndicatorWrapper>
+              <VStack className="justify-between mt-8">
+                <LottieAnimation
+                  animationSource={require("../../../assets/lottie/success.json")}
+                  width={150}
+                  height={150}
+                  containerStyle={{ backgroundColor: "#ffffff" }}
+                />
+                <Text
+                  size="2xl"
+                  className="font-ClashMedium text-text-text1 mt-8"
+                >
+                  Device enrolled successfully
+                </Text>
+              </VStack>
+            </ActionsheetContent>
+          </Actionsheet>
         </VStack>
       </ScrollView>
     </SafeAreaView>

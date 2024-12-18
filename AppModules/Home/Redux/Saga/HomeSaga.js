@@ -138,6 +138,47 @@ export function* patienthistoryapicallRequest(action) {
   }
 }
 
+function* checkUserDeviceRequest(action) {
+  try {
+    const response = yield apiCall(
+      HomeNetwork.checkUserDeviceApiCall,
+      action.payload
+    );
+    const checkUserDeviceResponse = yield response;
+    if (checkUserDeviceResponse) {
+      if (
+        checkUserDeviceResponse &&
+        checkUserDeviceResponse?.data?.status === "success" &&
+        checkUserDeviceResponse?.status === 200
+      ) {
+        yield put(
+          HomeActions.checkUserDeviceSuccess(checkUserDeviceResponse.data)
+        );
+      } else {
+        yield put(
+          HomeActions.checkUserDeviceError(checkUserDeviceResponse.data)
+        );
+        Toast.show(checkUserDeviceResponse?.message, {
+          type: "danger",
+          placement: "bottom",
+          duration: 3000,
+          animationType: "zoom-in",
+          dangerColor: "red",
+        });
+      }
+    }
+  } catch (e) {
+    yield put(HomeActions.checkUserDeviceError({ message: "Network Error" }));
+    Toast.show("Network Error", {
+      type: "danger",
+      placement: "bottom",
+      duration: 3000,
+      animationType: "zoom-in",
+      dangerColor: "red",
+    });
+  }
+}
+
 function* HomeSage() {
   yield all([
     takeLeading(HomeActions.addPatientRequest, addPatientRequest),
@@ -146,6 +187,7 @@ function* HomeSage() {
       HomeActions.patientHistoryRequest,
       patienthistoryapicallRequest
     ),
+    takeLeading(HomeActions.checkUserDeviceRequest, checkUserDeviceRequest),
   ]);
 }
 

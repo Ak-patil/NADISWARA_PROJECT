@@ -24,6 +24,13 @@ const initialState = {
     data: {},
     message: "",
   },
+  checkUserDeviceState: {
+    isLoading: false,
+    isError: false,
+    isSuccess: false,
+    data: {},
+    message: "",
+  },
 };
 
 const addPatientRequest = (state, action) => {
@@ -138,6 +145,45 @@ const patienthistoryerror = (state, action) => {
     },
   });
 };
+
+const checkuserdevicerequest = (state = initialState, action) => {
+  if (!state.checkUserDeviceState) {
+    return initialState;
+  }
+  return update(state, {
+    checkUserDeviceState: {
+      isLoading: { $set: true },
+      isError: { $set: false },
+      isSuccess: { $set: true },
+      message: { $set: "" },
+      data: { $set: {} }, // Clear previous data on request start
+    },
+  });
+};
+
+const checkuserdevicesuccess = (state, action) => {
+  const payload = action?.payload || {};
+  return update(state, {
+    checkUserDeviceState: {
+      isLoading: { $set: false },
+      isError: { $set: false },
+      isSuccess: { $set: true },
+      message: { $set: payload.message || "Success" },
+      data: { $set: payload }, // Ensure action.payload.data exists
+    },
+  });
+};
+
+const checkuserdeviceerror = (state, action) => {
+  return update(state, {
+    checkUserDeviceState: {
+      isLoading: { $set: false },
+      isError: { $set: true },
+      isSuccess: { $set: false },
+      message: { $set: action.payload.message || "Error occurred" },
+    },
+  });
+};
 export default handleActions(
   {
     [HomeActionsConst.ADD_PATIENT_REQUEST]: addPatientRequest,
@@ -149,6 +195,9 @@ export default handleActions(
     [HomeActionsConst.PATIENT_HISTORY_REQUEST]: patienthistoryrequest,
     [HomeActionsConst.PATIENT_HISTORY_SUCCESS]: patienthistorysuccess,
     [HomeActionsConst.PATIENT_HISTORY_ERROR]: patienthistoryerror,
+    [HomeActionsConst.CHECK_USER_DEVICE_REQUEST]: checkuserdevicerequest,
+    [HomeActionsConst.CHECK_USER_DEVICE_SUCCESS]: checkuserdevicesuccess,
+    [HomeActionsConst.CHECK_USER_DEVICE_ERROR]: checkuserdeviceerror,
   },
   initialState
 );

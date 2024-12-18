@@ -227,7 +227,7 @@ const deviceEnrolmentRequest = (state, action) => {
     deviceEnrolmentState: {
       isLoading: { $set: true },
       isError: { $set: false },
-      isSuccess: { $set: true },
+      isSuccess: { $set: false },
       message: { $set: "" },
       data: { $set: action.payload },
     },
