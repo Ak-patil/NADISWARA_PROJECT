@@ -7,7 +7,6 @@ import { Toast } from "react-native-toast-notifications";
 import { UsbSerialManager } from "react-native-usb-serialport-for-android";
 import { useDispatch } from "react-redux";
 import { handleNavigation } from "../../../nadiswaraPro/Navigation/NaviagationHelper";
-import { checkUserDeviceRequest } from "../Redux/Actions/HomeAction";
 
 interface DeviceState {
   usbAttached: boolean;
@@ -23,7 +22,11 @@ const DeviceConnection = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    initializeUsb();
+    const interval = setInterval(() => {
+      initializeUsb();
+    }, 5000);
+
+    return () => clearInterval(interval);
   }, []);
 
   const initializeUsb = async (): Promise<void> => {
@@ -31,9 +34,9 @@ const DeviceConnection = () => {
       const devices = await UsbSerialManager.list();
 
       if (devices && devices.length > 0) {
-        dispatch(
-          checkUserDeviceRequest({ device_id: String(devices[0]?.deviceId) })
-        );
+        // dispatch(
+        //   checkUserDeviceRequest({ device_id: String(devices[0]?.deviceId) })
+        // );
         setState((prev) => ({
           ...prev,
           usbAttached: true,
@@ -67,11 +70,21 @@ const DeviceConnection = () => {
       <Heading className="text-xl font-ClashMedium pt-4">
         Connecting to sensor...
       </Heading>
-      <Pressable onPress={() => handleNavigation("AnalysePulse")}>
+      {state?.usbAttached ? (
+        <Pressable
+          onPress={() =>
+            handleNavigation("AnalysePulse", { deviceId: state?.deviceId })
+          }
+        >
+          <Text className="text-base color-primary-prime font-ClashRegular">
+            1 Device found
+          </Text>
+        </Pressable>
+      ) : (
         <Text className="text-base color-primary-prime font-ClashRegular">
-          1 Device found
+          No Device found
         </Text>
-      </Pressable>
+      )}
     </VStack>
   );
 };

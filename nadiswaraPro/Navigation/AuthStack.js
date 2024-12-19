@@ -10,6 +10,7 @@ import { VerifyOtpEmail } from "../../AppModules/Authentication/View/forgot-pass
 import { LoginViaPhone } from "../../AppModules/Authentication/View/signin/loginViaPhone";
 import { AccountSuccess } from "../../AppModules/Authentication/View/signup/account_success_screen";
 import { SignupScreenTwo } from "../../AppModules/Authentication/View/signup/signup_screen_two";
+// import AnalysePulse from "../../AppModules/Home/Views/Analyse";
 
 const Stack = createNativeStackNavigator();
 

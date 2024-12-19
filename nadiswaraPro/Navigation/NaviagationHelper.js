@@ -1,7 +1,7 @@
-import * as NavigationService from "./NavigationService";
 import { isValidElement } from "../../BaseModule/Utils/helpers";
+import * as NavigationService from "./NavigationService";
 
-export const handleNavigation = (routeName, params = undefined) => {
+export const handleNavigation = (routeName, params) => {
   if (isValidElement(routeName)) {
     if (isValidElement(params)) {
       NavigationService.navigate(routeName, params);

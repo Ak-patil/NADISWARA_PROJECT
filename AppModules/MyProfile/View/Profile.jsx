@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 
-import axios from "axios";
 import {
   Alert,
   Button,
@@ -31,10 +30,6 @@ const Profile = () => {
   const [pulseDataArray, setPulseDataArray] = useState([]);
   const [isCollecting, setIsCollecting] = useState(false);
   const [isReady, setIsReady] = useState(false);
-
-  const ANALYZE_ENDPOINT =
-    "https://nadiswarapro-backend-test.online/api/v1/pulse_service/analyse_pulse/";
-  const ACCESS_TOKEN = "Bearer YOUR_ACCESS_TOKEN";
 
   useEffect(() => {
     const timer = setTimeout(() => initializeUsb(), 500);
@@ -112,7 +107,7 @@ const Profile = () => {
                     value: decimalValue,
                   },
                 ];
-                return newData.slice(-maxBufferSize); // Maintain only recent data points
+                return newData; // Maintain only recent data points
               });
 
               // Append to state output
@@ -231,36 +226,10 @@ const Profile = () => {
     }, 1000);
   };
 
-  //console.log('Graph Data being passed to USBReadingsGraph:', graphData);
+  console.log("Graph Data being passed to USBReadingsGraph:", graphData);
 
-  const sendPulseDataToBackend = async () => {
-    if (pulseDataArray.length === 0) {
-      Alert.alert("Error", "No data to analyze. Start data collection first.");
-      return;
-    }
-
-    try {
-      const signalDataString = pulseDataArray.join(","); // Use pulseDataArray
-      const payload = { patient_id: "79", signal_data: signalDataString };
-
-      console.log("Sending payload:", payload);
-
-      const response = await axios.post(ANALYZE_ENDPOINT, payload, {
-        headers: {
-          Authorization: ACCESS_TOKEN,
-          "Content-Type": "application/json",
-        },
-      });
-
-      console.log("Pulse data sent successfully:", response.data);
-      Alert.alert("Success", "Pulse data analyzed successfully.");
-    } catch (error) {
-      console.error("Error sending pulse data:", error.response?.data || error);
-      Alert.alert("Error", "Failed to analyze pulse data. Please try again.");
-    }
-  };
-  // console.log('Graph Data:', graphData);
-  //console.log('Is Collecting:', isCollecting);
+  console.log("Graph Data:", graphData);
+  console.log("Is Collecting:", isCollecting);
 
   const handleClearButton = () => {
     setState((prev) => ({
@@ -279,39 +248,9 @@ const Profile = () => {
   return (
     <ScrollView style={styles.body}>
       <View style={styles.container}>
-        <View style={styles.header}>
-          <View style={styles.line}>
-            <Text style={styles.title}>Status:</Text>
-            <Text
-              style={[
-                styles.value,
-                { color: state.connected ? "green" : "black" },
-              ]}
-            >
-              {status}
-            </Text>
-          </View>
-          <View style={styles.line}>
-            <Text style={styles.title}>USB:</Text>
-            <Text style={styles.value}>
-              {state.usbAttached ? "Attached" : "Not Attached"}
-            </Text>
-          </View>
-          <View style={styles.line}>
-            <Text style={styles.title}>Connection:</Text>
-            <Text style={styles.value}>
-              {state.connected ? "Connected" : "Not Connected"}
-            </Text>
-          </View>
-          {state.deviceId && (
-            <View style={styles.line}>
-              <Text style={styles.title}>Device ID:</Text>
-              <Text style={styles.value}>{state.deviceId}</Text>
-            </View>
-          )}
-        </View>
-
-        {/* {state.connected && <USBReadingsGraph data={graphData} isCollecting={isCollecting} />} */}
+        {/* {state.connected && (
+          <USBReadingsGraph data={graphData} isCollecting={isCollecting} />
+        )} */}
 
         <ScrollView style={styles.output} nestedScrollEnabled={true}>
           <Text>{state.output === "" ? "No Content" : state.output}</Text>
@@ -337,18 +276,6 @@ const Profile = () => {
           onPress={startDataCollection}
           disabled={isCollecting}
         />
-
-        <TouchableOpacity
-          style={
-            pulseDataArray.length > 0 && !isCollecting
-              ? styles.analyzeButtonActive
-              : styles.analyzeButtonDisabled
-          }
-          onPress={sendPulseDataToBackend}
-          disabled={pulseDataArray.length === 0 || isCollecting}
-        >
-          <Text style={styles.buttonText}>Analyze</Text>
-        </TouchableOpacity>
 
         {/* Display collected data */}
         <View style={styles.collectedDataSection}>
