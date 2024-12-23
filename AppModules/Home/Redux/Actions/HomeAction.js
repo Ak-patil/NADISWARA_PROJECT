@@ -32,11 +32,11 @@ export const patientHistoryError = createAction(
 );
 
 export const checkUserDeviceRequest = createAction(
-  HomeActionsConst.PATIENT_HISTORY_REQUEST
+  HomeActionsConst.CHECK_USER_DEVICE_REQUEST
 );
 export const checkUserDeviceSuccess = createAction(
-  HomeActionsConst.PATIENT_HISTORY_SUCCESS
+  HomeActionsConst.CHECK_USER_DEVICE_SUCCESS
 );
 export const checkUserDeviceError = createAction(
-  HomeActionsConst.PATIENT_HISTORY_ERROR
+  HomeActionsConst.CHECK_USER_DEVICE_ERROR
 );
