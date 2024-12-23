@@ -30,3 +30,13 @@ export const patientHistorySuccess = createAction(
 export const patientHistoryError = createAction(
   HomeActionsConst.PATIENT_HISTORY_ERROR
 );
+
+export const checkUserDeviceRequest = createAction(
+  HomeActionsConst.PATIENT_HISTORY_REQUEST
+);
+export const checkUserDeviceSuccess = createAction(
+  HomeActionsConst.PATIENT_HISTORY_SUCCESS
+);
+export const checkUserDeviceError = createAction(
+  HomeActionsConst.PATIENT_HISTORY_ERROR
+);

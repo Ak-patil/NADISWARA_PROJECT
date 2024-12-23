@@ -4,6 +4,7 @@ import {
 } from "../../../nadiswaraPro/Network/SessionConst";
 import {
   addPatientEndpoint,
+  checkUserDeviceEndpoint,
   patientHistoryEndpoint,
   patientListEndpoint,
 } from "../../../nadiswaraPro/Network/urls";
@@ -47,6 +48,17 @@ export const HomeNetwork = {
       },
     },
     url: `${patientHistoryEndpoint}?patient_id=${payload.patient_id}`,
+    restAPIType: REST_API_TYPE.BASIC,
+  }),
+  checkUserDeviceApiCall: (payload) => ({
+    method: NETWORK_METHOD.POST,
+    config: {
+      headers: {
+        "content-type": "application/json",
+      },
+    },
+    url: checkUserDeviceEndpoint,
+    data: payload,
     restAPIType: REST_API_TYPE.BASIC,
   }),
 };

@@ -67,11 +67,12 @@ const accountData: AccountCardType[] = [
   },
 ];
 const logout = async () => {
-  await AsyncStorage.clear()
-    .then(() => {
-      handleNavigation("launchscreen");
-    })
-    .catch((e) => console.log(e, "error while logout"));
+  try {
+    await AsyncStorage.clear();
+    handleNavigation("launchscreen");
+  } catch (e) {
+    console.log(e, "error while logout");
+  }
 };
 
 export const ProfileScreen = () => {

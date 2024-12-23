@@ -3,13 +3,14 @@ import AllPatients from "../../AppModules/Home/Views/AllPatients";
 import AnalysePulse from "../../AppModules/Home/Views/Analyse";
 import DeviceConnection from "../../AppModules/Home/Views/DeviceConnection";
 import FetchReport from "../../AppModules/Home/Views/FetchReport";
+import Home from "../../AppModules/Home/Views/Home";
 import ManagePatient from "../../AppModules/Home/Views/ManagePatient";
 import { FormTwo } from "../../AppModules/Home/Views/Questionaries";
 import { FormOne } from "../../AppModules/Home/Views/QuestionariesOne";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
-import Home from "../../AppModules/Home/Views/Home";
+// import Profile from "../../AppModules/MyProfile/View/Profile";
 
 const Stack = createNativeStackNavigator();
 
